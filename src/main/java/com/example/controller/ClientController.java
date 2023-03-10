@@ -12,16 +12,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("api")
 public class ClientController {
     @Autowired
     private ClientService service;
 
-    @GetMapping
+    @GetMapping("client/")
     public ResponseEntity<List<Client>> getAllClients() {
         List<Client> list = service.getAllClients();
 
         return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+
+    @GetMapping("client/ping")
+    public ResponseEntity<String> pingClient() {
+        return new ResponseEntity<>("da thanh cong", new HttpHeaders(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

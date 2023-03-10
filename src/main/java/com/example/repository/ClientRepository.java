@@ -9,8 +9,4 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     @Query("SELECT c FROM Client c WHERE c.email = ?1")
     Client findByEmail(String email);
-
-    @Query("SELECT c FROM Client c WHERE c.verificationCode = ?1")
-    Client findByVerificationCode(String code);
-
 }

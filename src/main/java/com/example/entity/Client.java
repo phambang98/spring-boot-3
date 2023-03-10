@@ -51,27 +51,6 @@ public class Client  implements Serializable {
     @Column(name = "PROVIDER")
     private String provider;
 
-    @Column(name = "verification_code")
-    private String verificationCode;
-
-    private boolean enabled;
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public String getVerificationCode() {
-        return verificationCode;
-    }
-
-    public void setVerificationCode(String verificationCode) {
-        this.verificationCode = verificationCode;
-    }
-
     public Long getId() {
         return id;
     }
