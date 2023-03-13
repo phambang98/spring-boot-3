@@ -63,8 +63,9 @@ public class ClientService {
     }
 
     public void processOAuthPostLogin(CustomOAuth2Client customOAuth2Client) {
-        Client existClient = clientRepository.findByUserName(customOAuth2Client.getName());
-
+        String registrationId = customOAuth2Client.getRegistrationId();
+        Client existClient = clientRepository.findByUserNameAndProviderEqualsIgnoreCase(customOAuth2Client.getName(), registrationId);
+        //FIXME-TODO
         if (existClient == null) {
             Client client = new Client();
             Map<String, Object> mapAttr = customOAuth2Client.getAttributes();

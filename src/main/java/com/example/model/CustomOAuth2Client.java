@@ -39,4 +39,12 @@ public class CustomOAuth2Client implements OAuth2User {
     public String getEmail() {
         return oauth2User.getAttribute("email");
     }
+
+    public String getRegistrationId() {
+        return registrationId;
+    }
+
+    public void setRegistrationId(String registrationId) {
+        this.registrationId = registrationId;
+    }
 }

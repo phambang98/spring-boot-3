@@ -10,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 @EnableScheduling
 @EnableJpaRepositories(basePackages = "com.example.repository")
-@EnableWebMvc
 public class DemoApplication {
 
     public static void main(String[] args) {
