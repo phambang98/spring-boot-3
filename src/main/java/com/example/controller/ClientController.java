@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.entity.Client;
+import com.example.model.ClientBean;
 import com.example.model.RecordNotFoundException;
 import com.example.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,13 @@ public class ClientController {
     @GetMapping("client/")
     public ResponseEntity<List<Client>> getAllClients() {
         List<Client> list = service.getAllClients();
+
+        return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
+    }
+
+    @GetMapping("client")
+    public ResponseEntity<List<ClientBean>> getAllClientBean() {
+        List<ClientBean> list = service.getAllClientBean();
 
         return new ResponseEntity<>(list, new HttpHeaders(), HttpStatus.OK);
     }

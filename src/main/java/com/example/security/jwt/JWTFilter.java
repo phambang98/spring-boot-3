@@ -34,7 +34,7 @@ public class JWTFilter extends GenericFilterBean {
                 Authentication authentication = this.tokenProvider.getAuthentication(jwt);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
-        }else{
+        } else if (url.contains("/film")) {
             servletRequest = new HttpServletRequestWrapper(httpServletRequest) {
                 @Override
                 public String getRequestURI() {

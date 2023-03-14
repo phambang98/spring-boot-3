@@ -1,5 +1,6 @@
 package com.example.entity;
 
+import com.example.model.ClientBean;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
@@ -8,7 +9,19 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Client")
-public class Client  implements Serializable {
+@SqlResultSetMappings({
+        @SqlResultSetMapping(
+                name = "ClientBeanMapping",
+                classes = @ConstructorResult(
+                        targetClass = ClientBean.class,
+                        columns = {
+                                @ColumnResult(name = "id", type = Long.class),
+                                @ColumnResult(name = "userName"),
+                                @ColumnResult(name = "email"),
+                                @ColumnResult(name = "password"),
+                                @ColumnResult(name = "lastUpdateDate", type = Date.class)
+                        }))})
+public class Client implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

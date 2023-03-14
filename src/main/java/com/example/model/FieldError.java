@@ -1,7 +1,5 @@
 package com.example.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
 
 public class FieldError {

@@ -2,6 +2,7 @@ package com.example.service;
 
 import com.example.entity.Client;
 import com.example.enums.Provider;
+import com.example.model.ClientBean;
 import com.example.model.CustomOAuth2Client;
 import com.example.model.RecordNotFoundException;
 import com.example.repository.ClientRepository;
@@ -21,6 +22,16 @@ public class ClientService {
 
     public List<Client> getAllClients() {
         List<Client> clientList = clientRepository.findAll();
+
+        if (clientList.size() > 0) {
+            return clientList;
+        } else {
+            return new ArrayList<>();
+        }
+    }
+
+    public List<ClientBean> getAllClientBean() {
+        List<ClientBean> clientList = clientRepository.getAllClientBean();
 
         if (clientList.size() > 0) {
             return clientList;

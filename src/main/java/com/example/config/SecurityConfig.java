@@ -5,7 +5,6 @@ import com.example.security.jwt.JWTConfigurer;
 import com.example.security.jwt.TokenProvider;
 import com.example.service.ClientService;
 import com.example.service.CustomOAuth2ClientService;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -50,8 +49,6 @@ public class SecurityConfig {
                 .userService(customOAuth2ClientService)
                 .and()
                 .successHandler((request, response, authentication) -> {
-                    System.out.println("AuthenticationSuccessHandler invoked");
-                    System.out.println("Authentication name: " + authentication.getName());
                     CustomOAuth2Client oauthUser = (CustomOAuth2Client) authentication.getPrincipal();
                     clientService.processOAuthPostLogin(oauthUser);
                     String jwt = tokenProvider.createToken(authentication, false);
@@ -61,7 +58,6 @@ public class SecurityConfig {
                     out.print(jwt);
                     out.flush();
                 }).failureHandler((request, response, authentication) -> {
-                    System.out.println("AuthenticationFailureHandler invoked");
                     PrintWriter out = response.getWriter();
                     response.setContentType("application/json");
                     response.setCharacterEncoding("UTF-8");
