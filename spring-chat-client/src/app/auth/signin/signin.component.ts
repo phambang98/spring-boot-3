@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {AuthService} from 'src/app/_services/auth.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {SignInRequest} from 'src/app/_dtos/auth/SignInRequest';
-import {SignInResponse} from 'src/app/_dtos/auth/SignInResponse';
 import {Router, ActivatedRoute} from '@angular/router';
 import {environment} from '../../../environments/environment';
 
@@ -17,10 +16,21 @@ export class SigninComponent implements OnInit {
   signInFrom: FormGroup
   redirect = "/"
 
-  constructor(private _authService: AuthService, private fb: FormBuilder, private router: Router) {
+  constructor(private _authService: AuthService, private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) {
     this.signInFrom = this.fb.group({
       userName: [],
       password: []
+    })
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      let userName = params['userName']
+      let password = params['password']
+      if (userName && password) {
+        this.signInFrom.setValue({
+          userName: userName,
+          password: password
+        });
+      }
     })
   }
 

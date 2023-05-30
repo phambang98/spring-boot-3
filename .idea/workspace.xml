@@ -6,11 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="f358e88c-6661-4414-8c17-e78c688f2271" name="Changes" comment="cuu a">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signin/signin.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signin/signin.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-api/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-api/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/_dtos/auth/SignUpRequest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/_dtos/auth/SignUpRequest.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signin/signin.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signin/signin.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/service/CustomOAuth2UsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/service/CustomOAuth2UsersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/ultis/OAuth2UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/ultis/OAuth2UserInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signup/signup.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signup/signup.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signup/signup.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signup/signup.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/model/UserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat/src/main/resources/schema.sql.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/resources/schema.sql.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-mvc/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-mvc/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-web-services/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-web-services/src/main/resources/schema.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -373,7 +380,7 @@
       <workItem from="1685326179946" duration="16776000" />
       <workItem from="1685411353766" duration="9002000" />
       <workItem from="1685427047973" duration="25000" />
-      <workItem from="1685427078851" duration="9152000" />
+      <workItem from="1685427078851" duration="13292000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679381899693</created>
@@ -674,11 +681,6 @@
           <url>file://$PROJECT_DIR$/spring-mvc/src/main/java/com/example/springmvc/security/jwt/JWTFilter.java</url>
           <line>33</line>
           <option name="timeStamp" value="261" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/service/CustomOAuth2UsersService.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="277" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

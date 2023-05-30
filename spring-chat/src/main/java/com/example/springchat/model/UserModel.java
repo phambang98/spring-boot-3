@@ -1,6 +1,5 @@
 package com.example.springchat.model;
 
-import com.example.springchat.enums.AuthProvider;
 
 public class UserModel {
     private Long id;

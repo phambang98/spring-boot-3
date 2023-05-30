@@ -52,7 +52,7 @@ public class AccountController {
     @PostMapping("account/signup")
     public ResponseEntity<ApiResponse> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) throws BadRequestException {
         if (Boolean.TRUE.equals(userService.existsByUserName(signUpRequest.getUserName()))) {
-            throw new BadRequestException("Email address already in use.");
+            return ResponseEntity.ok(new ApiResponse(false, "Email address already in use."));
         }
         // Creating user's account
         var user = new UserModel(null, signUpRequest.getUserName(), signUpRequest.getEmail(),
