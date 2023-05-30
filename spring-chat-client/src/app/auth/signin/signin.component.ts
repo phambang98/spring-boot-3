@@ -48,6 +48,10 @@ export class SigninComponent implements OnInit {
     window.location.href = `${environment.DOMAIN}/oauth2/authorization/facebook?redirect_url=http://localhost:4200/auth/token`;
   }
 
+  github() {
+    window.location.href = `${environment.DOMAIN}/oauth2/authorization/github?redirect_url=http://localhost:4200/auth/token`;
+  }
+
   google() {
     window.location.href = `${environment.DOMAIN}/oauth2/authorization/google?redirect_url=http://localhost:4200/auth/token`;
   }

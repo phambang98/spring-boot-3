@@ -77,12 +77,41 @@ public abstract class OAuth2UserInfo {
         }
     }
 
+    public static class GitHubAuth2UserInfo extends OAuth2UserInfo {
+
+        public GitHubAuth2UserInfo(Map<String, Object> attributes) {
+            this.attributes = attributes;
+        }
+
+        @Override
+        public String getId() {
+            return String.valueOf(attributes.get("id"));
+        }
+
+        @Override
+        public String getName() {
+            return (String) attributes.get("login");
+        }
+
+        @Override
+        public String getEmail() {
+            return (String) attributes.get("email");
+        }
+
+        @Override
+        public String getImageUrl() {
+            return (String) attributes.get("avatar_url");
+        }
+    }
+
     public class OAuth2UserInfoFactory {
         public static OAuth2UserInfo getOAuth2UserInfo(String registrationId, Map<String, Object> attributes) throws OAuth2AuthenticationProcessingException {
             if (registrationId.equals(AuthProvider.google.toString())) {
                 return new GoogleOAuth2UserInfo(attributes);
             } else if (registrationId.equals(AuthProvider.facebook.toString())) {
                 return new FacebookOAuth2UserInfo(attributes);
+            } else if (registrationId.equals(AuthProvider.github.toString())) {
+                return new GitHubAuth2UserInfo(attributes);
             } else {
                 throw new OAuth2AuthenticationProcessingException("Sorry! Login with $registrationId is not supported yet.");
             }

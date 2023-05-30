@@ -6,8 +6,12 @@ import com.example.springchat.error.OAuth2AuthenticationProcessingException;
 import com.example.springchat.model.UserModel;
 import com.example.springchat.security.UserPrincipal;
 import com.example.springchat.ultis.OAuth2UserInfo;
+import com.example.springcore.entity.UserStatus;
 import com.example.springcore.entity.Users;
+import com.example.springcore.enums.Status;
+import com.example.springcore.repository.UserStatusRepository;
 import com.example.springcore.repository.UsersRepository;
+import com.example.springcore.utils.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +23,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 @Service
@@ -26,6 +31,9 @@ public class CustomOAuth2UsersService extends DefaultOAuth2UserService {
 
     @Autowired
     private UsersRepository usersRepository;
+
+    @Autowired
+    private UserStatusRepository userStatusRepository;
 
 
     @Override
@@ -44,7 +52,7 @@ public class CustomOAuth2UsersService extends DefaultOAuth2UserService {
         switch (AuthProvider.valueOf(oAuth2UserRequest.getClientRegistration().getRegistrationId())) {
             case facebook:
                 if (oAuth2UserInfo.getId().isEmpty()) {
-                    throw new OAuth2AuthenticationProcessingException("Id not found from OAuth2 provider facebook");
+                    throw new OAuth2AuthenticationProcessingException("FaceBook Id not found from OAuth2 provider facebook");
                 }
                 userEntity = usersRepository.findByUserName(oAuth2UserInfo.getId());
                 break;
@@ -53,6 +61,12 @@ public class CustomOAuth2UsersService extends DefaultOAuth2UserService {
                     throw new OAuth2AuthenticationProcessingException("Email not found from OAuth2 provider google");
                 }
                 userEntity = usersRepository.findByEmail(oAuth2UserInfo.getEmail());
+                break;
+            case github:
+                if (oAuth2UserInfo.getId().isEmpty()) {
+                    throw new OAuth2AuthenticationProcessingException("GitHub Id not found from OAuth2 provider github");
+                }
+                userEntity = usersRepository.findByUserName(oAuth2UserInfo.getId());
                 break;
             default:
                 throw new OAuth2AuthenticationProcessingException("Provider  invalid");
@@ -81,6 +95,8 @@ public class CustomOAuth2UsersService extends DefaultOAuth2UserService {
             users.setUserName(oAuth2UserInfo.getName());
         } else if (oAuth2UserRequest.getClientRegistration().getRegistrationId().equalsIgnoreCase(AuthProvider.facebook.name())) {
             users.setUserName(oAuth2UserInfo.getId());
+        } else if (oAuth2UserRequest.getClientRegistration().getRegistrationId().equalsIgnoreCase(AuthProvider.github.name())) {
+            users.setUserName(oAuth2UserInfo.getId());
         }
         users.setEmail(oAuth2UserInfo.getEmail());
         users.setProviderId(oAuth2UserInfo.getId());
@@ -88,6 +104,7 @@ public class CustomOAuth2UsersService extends DefaultOAuth2UserService {
         users.setPassword(new BCryptPasswordEncoder().encode(oAuth2UserInfo.getId()));
         users.setRoles(oAuth2UserRequest.getClientRegistration().getRegistrationId());
         users = usersRepository.save(users);
+        saveUserStatus(users.getId());
         return modelMapper.map(users, UserModel.class);
     }
 
@@ -98,6 +115,14 @@ public class CustomOAuth2UsersService extends DefaultOAuth2UserService {
         users = usersRepository.save(users);
         userModel.setId(users.getId());
         return userModel;
+    }
+
+    private void saveUserStatus(Long userId) {
+        UserStatus userStatus = new UserStatus();
+        userStatus.setStatus(Status.ONLINE.name());
+        userStatus.setUserId(userId);
+        userStatus.setLastTimeLogin(DateUtils.convertDateToString(new Date(), "dd-MM-yyyy HH:mm:ss"));
+        userStatusRepository.save(userStatus);
     }
 
 }
