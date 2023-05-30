@@ -1,0 +1,63 @@
+nb-card {
+  padding: 0 !important;
+  height: 100%;
+
+  nb-card-body {
+    overflow: unset;
+  }
+
+  nb-list {
+    height: 60vh;
+
+    nb-list-item:hover {
+      background-color: #4C4C4C09;
+      cursor: pointer;
+    }
+
+    nb-list-item {
+
+      ::ng-deep {
+
+        nb-user {
+
+          .user-picture {
+            width: 6em;
+            height: 6em;
+          }
+
+          .user-name {
+            margin-top: 10px;
+            font-size: 3em;
+          }
+
+          .user-title {
+            margin-top: 10px;
+            font-size: 2em;
+          }
+
+          .info-container {
+            height: 6em;
+          }
+
+          nb-badge {
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+
+  nb-card-header {
+    .profile {
+      font-size: 30px;
+      padding-top: 5px;
+    }
+  }
+
+  nb-icon {
+    width: 2em;
+    height: 2em;
+  }
+}

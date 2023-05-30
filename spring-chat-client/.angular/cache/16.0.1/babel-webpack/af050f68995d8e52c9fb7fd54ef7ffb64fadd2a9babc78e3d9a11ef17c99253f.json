@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class UserProfile {\n  constructor(id, email, name, imgUrl) {\n    this.email = email;\n    this.name = name;\n    this.imgUrl = imgUrl;\n    this.id = id;\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

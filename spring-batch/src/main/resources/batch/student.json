@@ -1,0 +1,63 @@
+[
+  {
+    "id": null,
+    "name": "John",
+    "rollNumber": "sss",
+    "bags": [
+      {
+        "id": null,
+        "name": "bag1 John John",
+        "description": "John is bag1 ",
+        "idStudent": "1"
+      },
+      {
+        "id": null,
+        "name": "bag2",
+        "description": "what is bag2",
+        "idStudent": "1"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "name": "Arya",
+    "rollNumber": "vv",
+    "bags": [
+      {
+        "id": null,
+        "name": "Arya bag",
+        "description": "what is Arya bag ",
+        "idStudent": "2"
+      },
+      {
+        "id": null,
+        "name": "bag2",
+        "description": "GGez",
+        "idStudent": "2"
+      }
+    ]
+  },
+  {
+    "id": null,
+    "name": "Will",
+    "rollNumber": "hh"
+  },
+  {
+    "id": null,
+    "name": "Smith",
+    "rollNumber": "ff"
+  },
+  {
+    "id": null,
+    "name": "Rock",
+    "rollNumber": "uh",
+    "bags": [
+      {
+        "id": null,
+        "name": "Rock bag",
+        "description": "Rock bag ",
+        "idStudent": "5"
+      }
+    ]
+  }
+]

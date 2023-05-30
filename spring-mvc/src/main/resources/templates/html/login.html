@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Please Log In</title>
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+<link rel="stylesheet" th:href="@{/templates/css/login.css}" type="text/css">
+<body class="back-row-toggle splat-toggle">
+<div class="rain front-row"></div>
+<section>
+    <div class="main-form-container">
+        <div id="form_section" class="form-container">
+            <div class="login-form form-wraper ">
+                <div>
+                    <div class="form-title">
+                        <h2>Login</h2>
+                    </div>
+                    <div class="error-login authorizationRequestNotFound">
+                        <span th:text="${authorizationRequestNotFound}"></span>
+                    </div>
+                    <form th:action="@{/login}" action="#" method="post">
+                        <div class="input-group">
+                            <div class="box">
+                           <span>
+                                <input type="text" name="username" th:value="${userName}" class="myInput"
+                                       placeholder="Username" required/>
+                           </span>
+                            </div>
+                            <div class="error-login userNameError">
+                               <span th:text="${userNameError}"></span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <div class="box">
+                           <span>
+                                 <input type="password" name="password" th:value="${password}" class="myInput"
+                                        placeholder="Password" required/>
+                           </span>
+                            </div>
+                            <div class="error-login passwordError">
+                                <span th:text="${passwordError}"></span>
+                            </div>
+                        </div>
+                        <div class="forget-password">
+                            <a href="">FORGOT PASSWORD</a>
+                        </div>
+                        <div class="action-button">
+                            <button type="submit">Login</button>
+                        </div>
+                    </form>
+                    <div class="container">
+                        <a th:href="@{/login/oauth2/authorization/google}"> <i class="fa fa-google"
+                                                                               id="google"></i></a>
+                        <a th:href="@{/login/oauth2/authorization/facebook}"> <i class="fa fa-facebook-square"
+                                                                                 id="facebook"></i></a>
+                        <a th:href="@{/login/oauth2/authorization/github}"> <i class="fa fa-github-square github"
+                                                                               id="github"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="signUp-form form-wraper">
+                <div>
+                    <div class="form-title">
+                        <h2>Sign Up</h2>
+                    </div>
+                    <form th:action="@{/sign-up}" action="#" method="post" th:object="${usersSignUpModel}">
+                        <div class="input-group">
+                            <div class="box">
+                           <span>
+                           <input placeholder="User Name" name="userName" th:field="*{userName}" required
+                                  class="myInput" type="text"/>
+                           </span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <div class="box">
+                           <span>
+                           <input placeholder="Email" name="email" th:field="*{email}" required class="myInput"
+                                  type="email"/>
+                           </span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <div class="box">
+                           <span>
+                           <input placeholder="Password" name="password" th:field="*{password}" class="myInput"
+                                  type="password" required/>
+                           </span>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 0px;" class="input-group">
+                            <div class="box">
+                           <span>
+                           <input placeholder="Confirm Password" th:field="*{confirmPassword}" name="confirmPassword"
+                                  class="myInput"
+                                  type="password" required/>
+                           </span>
+                            </div>
+                        </div>
+                        <div class="action-button">
+                            <button>Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="multiple-btn" class="bg-btn-container">
+            <div class="action-button">
+                <button>Login</button>
+            </div>
+            <div class="action-button">
+                <button>Sign Up</button>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="rain back-row"></div>
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript" th:src="@{/templates/js/login.js}"></script>
+</html>

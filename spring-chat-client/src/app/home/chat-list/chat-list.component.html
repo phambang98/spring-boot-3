@@ -1,0 +1,27 @@
+<nb-card>
+  <nb-card-header>
+    <div class="row no-gutters align-items-center" *ngIf="profile">
+      <div class="col-lg-2">
+        <img src="{{profile.imageUrl}}" class="img-fluid rounded-circle" width="50px" appImgFallback/>
+      </div>
+      <div class="col-lg-8">
+        <h6 class="pl-3 pr-3 profile">{{profile.userName}}</h6>
+      </div>
+      <div class="col-lg-2">
+        <nb-icon icon="more-vertical-outline" [nbContextMenu]="menu" nbContextMenuPlacement="left"
+                 nbContextMenuTag="context-chat-more"></nb-icon>
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+    <input nbInput fullWidth name="search" placeholder="Search">
+  </nb-card-body>
+  <nb-list>
+    <nb-list-item *ngFor="let friend of friends | async" (click)="chatClicked(friend.userId)" >
+      <nb-user [name]="friend.userName" [title]="friend.lastMsg" size="giant" [picture]="friend.imageUrl" shape="round"
+               [badgeText]="badgeText" [badgeStatus]="friend.status" badgePosition="bottom right">
+
+      </nb-user>
+    </nb-list-item>
+  </nb-list>
+</nb-card>

@@ -1,0 +1,30 @@
+
+Ž
+java:S1130"lRemove the declaration of thrown exception 'java.lang.Exception', as it cannot be thrown from method's body.(ÙØ¤Þýÿÿÿÿ8•©Éñ€1
+”
+java:S1130%"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(•ŸÁì8–©Éñ€1
+]	java:S125&"<This block of commented-out lines of code should be removed.(¸³Ûÿÿÿÿÿ8—©Éñ€1
+U	java:S106("9Replace this use of System.out or System.err by a logger.(›Ã8—©Éñ€1
+]	java:S125)"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8—©Éñ€1
+W
+java:S1161,":Add the "@Override" annotation above this method signature(“–ýþ8˜©Éñ€1
+{
+java:S2142/"^Either re-interrupt this method or rethrow the "InterruptedException" that can be caught here.(”ý¾8˜©Éñ€1
+U	java:S1060"9Replace this use of System.out or System.err by a logger.(Ÿ¸Æî8˜©Éñ€1
+b
+java:S1128"@Remove this unused import 'com.example.springcore.enums.Status'.(ðâÿÓøÿÿÿÿ8˜©Éñ€1
+e
+java:S1128"CRemove this unused import 'com.example.springcore.utils.DateUtils'.(–ô„Šüÿÿÿÿ8˜©Éñ€1
+N
+java:S1128"1Remove this unused import 'java.math.BigDecimal'.(êêŠ8˜©Éñ€1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8˜©Éñ€1
+M
+java:S1128
+"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8˜©Éñ€1
+Q
+java:S1128"/Remove this unused import 'java.util.Optional'.(¨˜ëÝüÿÿÿÿ8˜©Éñ€1
+c
+java:S1128"ARemove this unused import 'java.util.concurrent.ExecutorService'.(æ÷–£ùÿÿÿÿ8˜©Éñ€1
+]
+java:S1128";Remove this unused import 'java.util.concurrent.Executors'.(äåÒÛÿÿÿÿÿ8˜©Éñ€1

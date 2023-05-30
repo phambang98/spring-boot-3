@@ -1,0 +1,59 @@
+<entity-mappings version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm
+    http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd">
+
+    <named-native-query name="getAllUsersBean" result-class="com.example.springcore.model.UsersBean"
+                        result-set-mapping="UsersBeanMapping">
+        <query><![CDATA[
+        select id,user_name as userName,email,password,Last_update_date as lastUpdateDate
+        from Users
+        where user_name = :userName or email = :userName
+        ]]>
+        </query>
+    </named-native-query>
+    <sql-result-set-mapping name="UsersBeanMapping">
+        <constructor-result target-class="com.example.springcore.model.UsersBean">
+            <column name="id" class="java.lang.Long"/>
+            <column name="userName"/>
+            <column name="email"/>
+            <column name="password"/>
+            <column name="lastUpdateDate" class="java.util.Date"/>
+        </constructor-result>
+    </sql-result-set-mapping>
+
+    <sql-result-set-mapping name="ChatMessageBeanMapping">
+        <constructor-result target-class="com.example.springcore.model.ChatMessageBean">
+            <column name="id" class="java.lang.Long"/>
+            <column name="type"/>
+            <column name="content"/>
+            <column name="clientFrom"/>
+            <column name="clientTo"/>
+            <column name="displayOrder" class="java.lang.Long"/>
+            <column name="timeSend"/>
+        </constructor-result>
+    </sql-result-set-mapping>
+
+    <sql-result-set-mapping name="FriendProfileModelMapping">
+        <constructor-result target-class="com.example.springcore.model.FriendProfileModel">
+            <column name="userId" class="java.lang.Long"/>
+            <column name="email"/>
+            <column name="userName"/>
+            <column name="imageUrl"/>
+            <column name="blockedBy" class="java.lang.Long"/>
+            <column name="status"/>
+            <column name="lastTimeLogin"/>
+            <column name="lastMsg"/>
+            <column name="lastTimeMsg" class="java.util.Date"/>
+        </constructor-result>
+    </sql-result-set-mapping>
+
+    <sql-result-set-mapping name="StatusModelMapping">
+        <constructor-result target-class="com.example.springcore.model.StatusModel">
+            <column name="userId" class="java.lang.Long"/>
+            <column name="userName"/>
+            <column name="status"/>
+            <column name="lastTimeLogin"/>
+        </constructor-result>
+    </sql-result-set-mapping>
+</entity-mappings>

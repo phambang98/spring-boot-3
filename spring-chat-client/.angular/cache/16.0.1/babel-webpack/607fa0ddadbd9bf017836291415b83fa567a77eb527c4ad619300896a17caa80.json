@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class MessageRequest {\n  constructor(recipientId, content, messageId) {\n    this.recipientId = recipientId;\n    this.content = content;\n    this.messageId = messageId;\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

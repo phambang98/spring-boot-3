@@ -1,0 +1,11 @@
+package com.example.springchat.enums;
+
+public enum SocketType {
+    USER_CONVERSATION_UPDATED,
+    USER_CONVERSATION_ADDED,
+    USER_MESSAGE_UPDATED,
+
+    USER_MESSAGE_DELETE,
+    USER_MESSAGE_ADDED,
+    USER_STATUS
+}

@@ -1,0 +1,26 @@
+<div class="h-100">
+  <nb-chat *ngIf="friendProfile" [title]="friendProfile.userName" [nbContextMenu]="menuFriend" status="basic"
+           scrollBottom="true" style="height: 90vh;">
+
+    <nb-chat-message *ngFor="let msg of messages"
+                     [type]="msg.contentType"
+                     [message]="msg.content"
+                     [reply]="msg.reply"
+                     [sender]="msg.senderName"
+                     [date]="msg.createdAt"
+                     [files]="msg.files"
+                     [quote]="msg.quote"
+                     [latitude]="msg.latitude"
+                     [dateFormat]="'dd-MM-yyyy hh:mm:ss'"
+                     [longitude]="msg.longitude"
+                     [avatar]="msg.imageUrl"
+                     [nbContextMenu]=" msg.reply == true ? eventMessageMain :eventMessageSub"
+                     nbContextMenuPlacement="bottom"
+                     nbContextMenuTag="chat-detail"
+                     (click)="clickId(msg.messageId)"
+                     nbContextMenuTrigger="click">
+    </nb-chat-message>
+    <nb-chat-form [dropFiles]="true" (send)="sendMessage($event)">
+    </nb-chat-form>
+  </nb-chat>
+</div>

@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class TokenVerify {\n  constructor(accessToken) {\n    this.accessToken = accessToken;\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}
