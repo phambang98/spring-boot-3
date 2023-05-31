@@ -13,6 +13,7 @@ import com.example.springcore.model.StatusModel;
 import com.example.springcore.repository.ChatRepository;
 import com.example.springcore.repository.UserStatusRepository;
 import com.example.springcore.repository.UsersRepository;
+import com.example.springcore.utils.DateUtils;
 import com.example.springcore.utils.WebSocketKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -63,13 +64,14 @@ public class ChatService {
         var friendStatusEntity = userStatusRepository.findByUserId(friend.getId());
         simpMessagingTemplate.convertAndSendToUser(String.valueOf(friend.getId()), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(typeConv,
                 new FriendProfileModel(userPrincipal.getId(), userPrincipal.getEmail(), userPrincipal.getName(),
-                        userPrincipal.getImageUrl(), chatEntity.getBlockedBy(), userStatusEntity.getStatus(), userStatusEntity.getLastTimeLogin(),  "", null)));
+                        userPrincipal.getImageUrl(), chatEntity.getBlockedBy(), userStatusEntity.getStatus(), userStatusEntity.getLastTimeLogin(), "", null)));
         return new FriendProfileModel(friend.getId(), friend.getEmail(), friend.getUserName(), friend.getImageUrl(), chatEntity.getBlockedBy(),
                 friendStatusEntity.getStatus(), friendStatusEntity.getLastTimeLogin(), "", null);
     }
 
     public FriendProfileModel blockConversation(Long recipientId, UserPrincipal user) throws ResourceNotFoundException, BadRequestException {
         var chatEntity = chatRepository.findByUserId1AndUserId2OrUserId1AndUserId2(recipientId, user.getId(), user.getId(), recipientId);
+        Date date = new Date();
         if (chatEntity != null) {
             if (chatEntity.getBlockedBy() == null) {
                 chatEntity.setBlockedBy(user.getId());
@@ -80,11 +82,11 @@ public class ChatService {
                     throw new ResourceNotFoundException("Data error");
                 }
                 simpMessagingTemplate.convertAndSendToUser(String.valueOf(recipientUser.get().getId()), WebSocketKey.DESTINATION_STATUS,
-                        new SocketModel<>(SocketType.USER_CONVERSATION_UPDATED,
-                                new FriendProfileModel(recipientId, user.getEmail(), user.getUsername(),
-                                        user.getImageUrl(), chatEntity.getBlockedBy(), Status.OFFLINE.name(), "", "", null)));
+                        new SocketModel<>(SocketType.USER_CONVERSATION_BLOCK,
+                                new FriendProfileModel(user.getId(), user.getEmail(), user.getUsername(),
+                                        user.getImageUrl(), chatEntity.getBlockedBy(), Status.OFFLINE.name(), DateUtils.convertDateToString(date, "yyyy-MM-dd hh:mm:ss"), "", null)));
                 return new FriendProfileModel(recipientId, recipientUser.get().getEmail(), recipientUser.get().getUserName(),
-                        recipientUser.get().getImageUrl(), chatEntity.getBlockedBy(), Status.OFFLINE.name(), "", "", null);
+                        recipientUser.get().getImageUrl(), chatEntity.getBlockedBy(), Status.OFFLINE.name(), DateUtils.convertDateToString(date, "yyyy-MM-dd hh:mm:ss"), "", null);
             } else {
                 throw new BadRequestException("Sorry you can block this conversation");
             }
@@ -105,9 +107,9 @@ public class ChatService {
                     throw new ResourceNotFoundException("Data error");
                 }
                 var userStatus = userStatusRepository.findByUserId(recipientId);
-                simpMessagingTemplate.convertAndSendToUser(String.valueOf(recipientId), WebSocketKey.DESTINATION_MESSAGE,
-                        new SocketModel<>(SocketType.USER_CONVERSATION_UPDATED,
-                                new FriendProfileModel(recipientId, user.getEmail(), user.getName(), user.getImageUrl(), chatEntity.getBlockedBy(),
+                simpMessagingTemplate.convertAndSendToUser(String.valueOf(recipientId), WebSocketKey.DESTINATION_STATUS,
+                        new SocketModel<>(SocketType.USER_CONVERSATION_UNBLOCK,
+                                new FriendProfileModel(user.getId(), user.getEmail(), user.getName(), user.getImageUrl(), chatEntity.getBlockedBy(),
                                         userStatus.getStatus(), userStatus.getLastTimeLogin(), "", null)));
                 return new FriendProfileModel(recipientId, friend.get().getEmail(), friend.get().getUserName(), friend.get().getImageUrl(), chatEntity.getBlockedBy(),
                         userStatus.getStatus(), userStatus.getLastTimeLogin(), "", null);

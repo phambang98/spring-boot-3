@@ -133,24 +133,42 @@ create table USER_STATUS
 create table CHAT
 (
     CHAT_ID    INT AUTO_INCREMENT PRIMARY KEY,
-    USER_ID1      NUMBER(15),
-    USER_ID2      NUMBER(15),
+    USER_ID1   NUMBER(15),
+    USER_ID2   NUMBER(15),
     BLOCKED_BY NUMBER(15),
     CREATED_AT timestamp(6),
     UPDATED_AT timestamp(6)
 );
 
+create table CHAT_GROUP
+(
+    CHAT_GROUP_ID INT AUTO_INCREMENT PRIMARY KEY,
+    DISPLAY_NAME  VARCHAR2(250),
+    IMAGE_URL     VARCHAR2(250),
+    CREATED_BY    NUMBER(15),
+    CREATED_AT    timestamp(6)
+);
+
+create table USER_CHAT_GROUP
+(
+    USER_CHAT_GROUP_ID INT AUTO_INCREMENT PRIMARY KEY,
+    CHAT_GROUP_ID      NUMBER(15),
+    USER_ID            NUMBER(15),
+    JOIN_DATE          timestamp(6)
+);
+
 create table MESSAGE
 (
-    MESSAGE_ID   INT AUTO_INCREMENT PRIMARY KEY,
-    SENDER_ID    NUMBER(15),
-    recipient_Id NUMBER(15),
-    CHAT_ID      NUMBER(15),
-    content      VARCHAR2(4000),
-    CONTENT_TYPE VARCHAR2(15),
-    CREATE_AT    timestamp(6),
-    UPDATE_AT    timestamp(6),
-    READ         VARCHAR2(1)
+    MESSAGE_ID    INT AUTO_INCREMENT PRIMARY KEY,
+    SENDER_ID     NUMBER(15),
+    recipient_Id  NUMBER(15),
+    CHAT_ID       NUMBER(15),
+    CHAT_GROUP_ID NUMBER(15),
+    content       VARCHAR2(4000),
+    CONTENT_TYPE  VARCHAR2(15),
+    CREATE_AT     timestamp(6),
+    UPDATE_AT     timestamp(6),
+    READ          VARCHAR2(1)
 );
 
 create table FILE

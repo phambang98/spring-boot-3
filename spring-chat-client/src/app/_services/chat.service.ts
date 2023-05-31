@@ -17,9 +17,6 @@ export class ChatService extends WebSocketService {
   public friendProfiles: Observable<FriendProfile[]>
   private myFriendProfiles: BehaviorSubject<FriendProfile[]> = new BehaviorSubject([])
 
-  public friendProfileStatus: Observable<FriendProfile>
-  private myFriendProfileStatus: BehaviorSubject<FriendProfile> = new BehaviorSubject(new FriendProfile())
-
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -33,13 +30,19 @@ export class ChatService extends WebSocketService {
       'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
     })
     this.friendProfiles = this.myFriendProfiles.asObservable()
-    this.friendProfileStatus = this.myFriendProfileStatus.asObservable()
   }
 
-  updateFriends(newFriends: FriendProfile[], isUpdate: Boolean) {
+  updateFetchFriends(newFriends: FriendProfile[], isUpdate: Boolean) {
     let friendValue = this.myFriendProfiles.value
-    if (isUpdate && !friendValue.find(f => f.userId == newFriends[0].userId)) {
-      newFriends.forEach(f => friendValue.push(f))
+    if (isUpdate) {
+      let data = friendValue.find(f => f.userId == newFriends[0].userId)
+      if (!data) {
+        newFriends.forEach(f => friendValue.push(f))
+      } else {
+        data.status = newFriends[0].status
+        data.lastTimeLogin = newFriends[0].lastTimeLogin
+        data.blockedBy = newFriends[0].blockedBy
+      }
     }
     this.myFriendProfiles.next(friendValue)
   }
@@ -86,7 +89,7 @@ export class ChatService extends WebSocketService {
   fetchFriends(): Observable<FriendProfile[]> {
     return this.httpClient.get(`${environment.DOMAIN}/api/chat`, this.httpOptions)
       .pipe(map((friends: FriendProfile[]) => {
-        this.updateFriends(friends, false)
+        this.updateFetchFriends(friends, false)
         return friends
       }))
   }
@@ -94,7 +97,7 @@ export class ChatService extends WebSocketService {
   createFriend(userName: String): Observable<FriendProfile> {
     return this.httpClient.post(`${environment.DOMAIN}/api/chat?userName=${userName}`, this.httpOptions)
       .pipe(map((friend: FriendProfile) => {
-        this.updateFriends([friend], true)
+        this.updateFetchFriends([friend], true)
         return friend
       }))
   }
@@ -118,26 +121,42 @@ export class ChatService extends WebSocketService {
   onStatusReceived(status: any) {
     let json = JSON.parse(status.body)
     let data = json['data'] as FriendProfile
-    if (json['type'] == "USER_CONVERSATION_UPDATED" || json['type'] == "USER_CONVERSATION_ADDED") {
-      let data = json['data'] as FriendProfile
-      this.updateFriends([data], true)
+    if (json['type'] == "USER_CONVERSATION_UPDATED" || json['type'] == "USER_CONVERSATION_ADDED" || json['type'] == "USER_STATUS"
+      || json['type'] == "USER_CONVERSATION_BLOCK" || json['type'] == "USER_CONVERSATION_UNBLOCK") {
+      this.updateStatusFriend(data)
+      this.updateFetchFriends([data], true)
     }
-    this.updateStatusFriend(data)
-    this.myFriendProfileStatus.next(data)
   }
 
   updateStatusFriend(data: FriendProfile) {
     if (data.status === 'ONLINE') {
       data.status = 'success'
     } else if (data.status === 'OFFLINE') {
-      data.status = 'danger'
+      if (data.blockedBy) {
+        data.status = ''
+      } else {
+        data.status = 'danger'
+      }
     }
   }
 
-  blockFriend(recipientId: number) {
-    this.httpClient.post(`${environment.DOMAIN}/api/chat/${recipientId}`, this.httpOptions).subscribe((FriendProfile: number) => {
+  blockFriend(recipientId: number): Observable<any> {
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat/block/${recipientId}`, this.httpOptions)
+      .pipe(map((friend: FriendProfile) => {
+        this.updateStatusFriend(friend)
+        this.updateFetchFriends([friend], true)
 
-    })
+        return friend
+      }))
+  }
+
+  unblockFriend(recipientId: number): Observable<any> {
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat/unblock/${recipientId}`, this.httpOptions)
+      .pipe(map((friend: FriendProfile) => {
+        this.updateStatusFriend(friend)
+        this.updateFetchFriends([friend], true)
+        return friend
+      }))
   }
 
 }

@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {SharedModule} from '../shared/shared.module';
 
 import {HomeComponent} from './home.component';
@@ -34,7 +34,7 @@ import {NotificationService} from "../_services/notification.service";
     NewChatComponent
   ],
   imports: [
-    CommonModule, HomeRoutingModule, SharedModule, MatProgressBarModule
+    CommonModule, HomeRoutingModule, SharedModule, MatProgressBarModule, NgOptimizedImage
   ],
   providers: [
     NbMenuService, WebSocketService, UserService, ChatService, MessageService, NotificationService

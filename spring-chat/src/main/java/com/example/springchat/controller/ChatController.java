@@ -33,13 +33,13 @@ public class ChatController {
         return ResponseEntity.ok(chatService.newConversation(user, userName));
     }
 
-    @PostMapping("chat/{recipientId}/block")
+    @PostMapping("chat/block/{recipientId}")
     public ResponseEntity<FriendProfileModel> blockUser(@PathVariable("recipientId") Long recipientId) throws BadRequestException, ResourceNotFoundException {
         UserPrincipal user = SecurityUtils.getCurrentIdLogin();
         return ResponseEntity.ok(chatService.blockConversation(recipientId, user));
     }
 
-    @PostMapping("chat/{recipientId}/unblock")
+    @PostMapping("chat/unblock/{recipientId}")
     public ResponseEntity<FriendProfileModel> unblockUser(@PathVariable("recipientId") Long recipientId) throws BadRequestException, ResourceNotFoundException {
         UserPrincipal user = SecurityUtils.getCurrentIdLogin();
         return ResponseEntity.ok(chatService.unblockConversation(recipientId, user));

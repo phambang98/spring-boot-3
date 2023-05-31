@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {NbMenuService, NbDialogService, NbIconLibraries} from '@nebular/theme';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {NbMenuService, NbDialogService} from '@nebular/theme';
 import {filter, map} from 'rxjs/operators';
 import {Router, ActivatedRoute} from '@angular/router';
 import {UserService} from 'src/app/_services/user.service';
@@ -8,7 +8,6 @@ import {Observable} from 'rxjs';
 import {FriendProfile} from 'src/app/_dtos/chat/FriendProfile';
 import {NewChatComponent} from './new-chat/new-chat.component';
 import {ChatService} from "../../_services/chat.service";
-import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'home-chat-list',
@@ -40,13 +39,8 @@ export class ChatListComponent implements OnInit, AfterViewInit {
     this.friends['_value'].forEach(x => {
       this.chatService.updateStatusFriend(x)
     })
-    this.chatService.friendProfileStatus.subscribe((fp: FriendProfile) => {
-      if (fp.userId) {
-        let newFriend = this.friends['_value'].find(x => x.userId === fp.userId)
-        newFriend.lastTimeLogin = fp.lastTimeLogin
-        newFriend.status = fp.status
-        this.chatService.updateStatusFriend(newFriend)
-      }
+    this.chatService.friendProfiles.subscribe((fp: FriendProfile[]) => {
+      this.friends['_value'] = fp
     })
   }
 

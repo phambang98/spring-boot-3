@@ -1,8 +1,7 @@
 import {
-  AfterContentInit,
   AfterViewInit,
-  Component,
-  OnInit
+  Component, ElementRef,
+  OnInit, Renderer2
 } from '@angular/core';
 import {ChatService} from 'src/app/_services/chat.service';
 import {Router, ActivatedRoute} from '@angular/router';
@@ -13,9 +12,7 @@ import {MessageDetail} from 'src/app/_dtos/chat/MessageDetail';
 import {MessageRequest} from "../../_dtos/chat/MessageRequest";
 import {MessageService} from "../../_services/message.service";
 import {ErrorService} from "../../_services/error.service";
-import {NbMenuItem, NbMenuService} from "@nebular/theme";
-import {filter, map} from "rxjs/operators";
-import {NewChatComponent} from "../chat-list/new-chat/new-chat.component";
+import {NbMenuService} from "@nebular/theme";
 
 @Component({
   selector: 'app-chat-detail',
@@ -25,16 +22,12 @@ import {NewChatComponent} from "../chat-list/new-chat/new-chat.component";
 export class ChatDetailComponent implements OnInit {
 
   messages: MessageDetail[] = []
-  friendId: number
   friendProfile: FriendProfile
   myProfile: UserProfile
   subscription: any
-
   private messageId: number
   menuFriend = [
-    {title: 'Profile Friend', icon: 'person-outline'},
-    {title: 'Block', icon: 'close-circle-outline'},
-    {title: 'Un Block', icon: 'checkmark-circle-outline'},
+    {id: 1, title: 'Profile Friend', icon: 'person-outline'},
   ]
 
   eventMessageMain = [
@@ -48,14 +41,17 @@ export class ChatDetailComponent implements OnInit {
 
   constructor(private chatService: ChatService, private messageService: MessageService, private router: Router,
               private route: ActivatedRoute, private userService: UserService, private errorService: ErrorService,
-              private menuService: NbMenuService) {
+              private menuService: NbMenuService, private renderer: Renderer2, private elementRef: ElementRef) {
 
     (async () => {
       this.route.params.subscribe(params => {
-        this.friendId = params['id']
         if (this.subscription) this.subscription.unsubscribe()
         this.myProfile = this.userService.getProfile()
-        this.friendProfile = this.chatService.getFriend(Number(this.friendId))
+        this.friendProfile = this.chatService.getFriend(Number(params['id']))
+        this.chatService.friendProfiles.subscribe((fps: FriendProfile[]) => {
+          this.friendProfile = fps.find(x => x.userId = this.friendProfile.userId)
+        })
+        this.showHideBlock()
         this.getChat()
       })
     })();
@@ -63,6 +59,21 @@ export class ChatDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuChatDetail()
+  }
+
+  showHideBlock() {
+    if (this.friendProfile.blockedBy) {
+      this.menuFriend = this.menuFriend.filter(x => x.id === 1)
+      if (this.friendProfile.blockedBy === this.myProfile.id) {
+        this.menuFriend.push({id: 2, title: 'Un Block', icon: 'checkmark-circle-outline'})
+      } else {
+        this.menuFriend.push({id: 2, title: 'You are blocked', icon: 'close-circle-outline'})
+      }
+
+    } else {
+      this.menuFriend = this.menuFriend.filter(x => x.id === 1)
+      this.menuFriend.push({id: 3, title: 'Block', icon: 'close-circle-outline'})
+    }
   }
 
   clickId(messageId) {
@@ -73,19 +84,41 @@ export class ChatDetailComponent implements OnInit {
     this.menuService.onItemClick().subscribe((data) => {
       switch (data.item.title) {
         case 'Delete':
-          this.messageService.deleteMessage(this.messageId, this.friendId)
+          this.messageService.deleteMessage(this.messageId, this.friendProfile.userId)
           break;
         case 'Update':
           break;
         case 'Block':
-          this.chatService.blockFriend(this.friendId)
+          this.chatService.blockFriend(this.friendProfile.userId).subscribe({
+            next: (value: FriendProfile) => {
+              this.friendProfile = value
+              this.showHideBlock()
+            },
+            error: (err) => {
+              console.log("err-block-friend", err)
+            }
+          })
           break;
         case 'Un Block':
+          this.chatService.unblockFriend(this.friendProfile.userId).subscribe({
+            next: (value: FriendProfile) => {
+              this.friendProfile = value
+              this.showHideBlock()
+            },
+            error: (err) => {
+              console.log("err-block-friend", err)
+            }
+          })
           break;
         case 'Reply':
           break;
         case 'Profile Friend':
-          this.router.navigate(['/profile-friend'], {queryParams: {friendId: this.friendId, isFriend: true,}});
+          this.router.navigate(['/profile-friend'], {
+            queryParams: {
+              friendId: this.friendProfile.userId,
+              isFriend: true,
+            }
+          });
           break;
         default:
           break;
@@ -95,8 +128,7 @@ export class ChatDetailComponent implements OnInit {
 
   getChat() {
     this.messages = []
-
-    this.subscription = this.messageService.fetchMessages(this.friendId).subscribe({
+    this.subscription = this.messageService.fetchMessages(this.friendProfile.userId).subscribe({
       next: (arrayMsg: MessageDetail[]) => {
         arrayMsg.forEach(msg => {
           if (msg.senderId == this.myProfile.id) {
@@ -119,7 +151,7 @@ export class ChatDetailComponent implements OnInit {
 
   sendMessage(event) {
     const files = !event.files ? [] : event.files;
-    let messageRequest = new MessageRequest(this.friendId, event.message, null);
+    let messageRequest = new MessageRequest(this.friendProfile.userId, event.message, null);
     this.messageService.createMessage(messageRequest, files)
   }
 

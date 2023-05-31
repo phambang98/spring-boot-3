@@ -9,6 +9,8 @@ public class MessageModel {
     private Long senderId;
     private Long recipientId;
     private Long chatId;
+
+    private Long chatGroupId;
     private String content;
     private List<FileModel> files;
     private String contentType;
@@ -103,5 +105,13 @@ public class MessageModel {
 
     public void setRecipientId(Long recipientId) {
         this.recipientId = recipientId;
+    }
+
+    public Long getChatGroupId() {
+        return chatGroupId;
+    }
+
+    public void setChatGroupId(Long chatGroupId) {
+        this.chatGroupId = chatGroupId;
     }
 }

@@ -5,19 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f358e88c-6661-4414-8c17-e78c688f2271" name="Changes" comment="cuu a">
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/entity/ChatGroup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/entity/UserChatGroup.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/repository/ChatGroupRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/repository/UserChatGroupRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-api/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-api/src/main/resources/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/_dtos/auth/SignUpRequest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/_dtos/auth/SignUpRequest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signin/signin.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signin/signin.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signup/signup.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signup/signup.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signup/signup.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/auth/signup/signup.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/model/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/model/UserModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/_services/chat.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/_services/chat.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-detail/chat-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-detail/chat-detail.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-detail/chat-detail.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-detail/chat-detail.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-detail/chat-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-detail/chat-detail.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-list/chat-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-list/chat-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/home/home.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/home/home.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/controller/ChatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/controller/ChatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/enums/SocketType.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/enums/SocketType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/service/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/service/ChatService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-chat/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/resources/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-chat/src/main/resources/schema.sql.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/resources/schema.sql.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-mvc/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-mvc/src/main/resources/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-web-services/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-web-services/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/entity/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/entity/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/model/FriendProfileModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/model/FriendProfileModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/model/MessageModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/model/MessageModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/repository/impl/ChatRepositoryCustomImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/repository/impl/ChatRepositoryCustomImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,11 +154,11 @@
       <recent name="com.example.springchat.ultis" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.springcore.repository" />
+      <recent name="com.example.springcore.entity" />
       <recent name="com.example.springchat.error" />
       <recent name="com.example.springcore.model" />
-      <recent name="com.example.springcore.repository" />
       <recent name="com.example.springchat.model" />
-      <recent name="com.example.springchat.controller" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -380,7 +387,7 @@
       <workItem from="1685326179946" duration="16776000" />
       <workItem from="1685411353766" duration="9002000" />
       <workItem from="1685427047973" duration="25000" />
-      <workItem from="1685427078851" duration="13292000" />
+      <workItem from="1685427078851" duration="30115000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679381899693</created>

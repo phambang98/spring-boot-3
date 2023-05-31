@@ -1,7 +1,15 @@
 <div class="h-100">
-  <nb-chat *ngIf="friendProfile" [title]="friendProfile.userName" [nbContextMenu]="menuFriend" status="basic"
-           scrollBottom="true" style="height: 90vh;">
-
+  <nb-chat *ngIf="friendProfile" status="basic" scrollBottom="true" style="height: 90vh;">
+    <ng-template nbChatTitle>
+      <div class="col-lg-1">
+        <img src="{{friendProfile.imageUrl}}" width="50px"/>
+      </div>
+      <div class="col-lg-9 friend-profile-name">{{friendProfile.userName}}</div>
+      <div class="col-lg-2">
+        <nb-icon icon="more-vertical-outline" [nbContextMenu]="menuFriend" nbContextMenuPlacement="left"
+                 nbContextMenuTag="context-chat-more"></nb-icon>
+      </div>
+    </ng-template>
     <nb-chat-message *ngFor="let msg of messages"
                      [type]="msg.contentType"
                      [message]="msg.content"
@@ -20,7 +28,10 @@
                      (click)="clickId(msg.messageId)"
                      nbContextMenuTrigger="click">
     </nb-chat-message>
-    <nb-chat-form [dropFiles]="true" (send)="sendMessage($event)">
+    <nb-chat-form *ngIf="!friendProfile.blockedBy" [dropFiles]="true" (send)="sendMessage($event)">
+    </nb-chat-form>
+    <nb-chat-form *ngIf="friendProfile.blockedBy" [message]="'Bạn không thể gửi tin nhắn lúc này'"
+                  [showButton]=false [dropFiles]="false">
     </nb-chat-form>
   </nb-chat>
 </div>

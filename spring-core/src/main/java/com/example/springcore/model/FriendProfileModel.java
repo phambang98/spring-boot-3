@@ -8,13 +8,11 @@ public class FriendProfileModel {
     private String userName;
     private String imageUrl;
     private Long blockedBy;
-
     private String status;
-
     private String lastTimeLogin;
-
     private String lastMsg;
     private Date lastTimeMsg;
+
 
     public FriendProfileModel() {
     }
