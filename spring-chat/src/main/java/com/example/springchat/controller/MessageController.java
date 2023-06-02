@@ -24,23 +24,25 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    @GetMapping("/message/{recipientId}")
-    public ResponseEntity<List<MessageModel>> getMessagesByRecipientId(@PathVariable("recipientId") Long friendId) {
+    @GetMapping("/message/{chatId}")
+    public ResponseEntity<List<MessageModel>> getMessagesByRecipientId(@PathVariable("chatId") Long chatId) {
         UserPrincipal user = SecurityUtils.getCurrentIdLogin();
-        return ResponseEntity.ok(messageService.getMessagesByRecipientId(friendId, user.getId()));
+        return ResponseEntity.ok(messageService.getMessagesByRecipientId(chatId, user.getId()));
     }
 
     @DeleteMapping("/message/{messageId}")
-    public ResponseEntity<Long> deleteMessage(@PathVariable("messageId") Long messageId) {
+    public ResponseEntity<Void> deleteMessage(@PathVariable("messageId") Long messageId) {
         UserPrincipal user = SecurityUtils.getCurrentIdLogin();
-        return ResponseEntity.ok(messageService.deleteMessage(messageId, user.getId()));
+        messageService.deleteMessage(messageId, user.getId());
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping(value = "/message/files", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<MessageModel> createMessageFile(@RequestParam(value = "recipientId") Long recipientId,
+                                                          @RequestParam(value = "chatType") String chatType,
                                                           @RequestParam(value = "files") List<MultipartFile> files) throws BadRequestException, ResourceNotFoundException {
         UserPrincipal user = SecurityUtils.getCurrentIdLogin();
-        return ResponseEntity.ok(messageService.createMessageFile(recipientId, files, user));
+        return ResponseEntity.ok(messageService.createMessageFile(recipientId, chatType, files, user));
     }
 
     @MessageMapping("message")

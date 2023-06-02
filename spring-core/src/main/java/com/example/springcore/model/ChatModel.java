@@ -2,7 +2,9 @@ package com.example.springcore.model;
 
 import java.util.Date;
 
-public class FriendProfileModel {
+public class ChatModel {
+
+    private Long chatId;
     private Long userId;
     private String email;
     private String userName;
@@ -12,13 +14,14 @@ public class FriendProfileModel {
     private String lastTimeLogin;
     private String lastMsg;
     private Date lastTimeMsg;
+    private String chatType;
 
-
-    public FriendProfileModel() {
+    public ChatModel() {
     }
 
-    public FriendProfileModel(Long userId, String email, String userName, String imageUrl, Long blockedBy, String status,
-                              String lastTimeLogin, String lastMsg, Date lastTimeMsg) {
+    public ChatModel(Long chatId, Long userId, String email, String userName, String imageUrl, Long blockedBy,
+                     String status, String lastTimeLogin, String lastMsg, Date lastTimeMsg, String chatType) {
+        this.chatId = chatId;
         this.userId = userId;
         this.email = email;
         this.userName = userName;
@@ -28,6 +31,15 @@ public class FriendProfileModel {
         this.lastTimeLogin = lastTimeLogin;
         this.lastMsg = lastMsg;
         this.lastTimeMsg = lastTimeMsg;
+        this.chatType = chatType;
+    }
+
+    public Long getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(Long chatId) {
+        this.chatId = chatId;
     }
 
     public Long getUserId() {
@@ -101,5 +113,13 @@ public class FriendProfileModel {
 
     public void setLastTimeMsg(Date lastTimeMsg) {
         this.lastTimeMsg = lastTimeMsg;
+    }
+
+    public String getChatType() {
+        return chatType;
+    }
+
+    public void setChatType(String chatType) {
+        this.chatType = chatType;
     }
 }

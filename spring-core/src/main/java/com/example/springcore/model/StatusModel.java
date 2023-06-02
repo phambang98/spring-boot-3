@@ -1,6 +1,7 @@
 package com.example.springcore.model;
 
 public class StatusModel {
+    private Long chatId;
     private Long userId;
     private String userName;
 
@@ -10,11 +11,20 @@ public class StatusModel {
     public StatusModel() {
     }
 
-    public StatusModel(Long userId, String userName, String status, String lastTimeLogin) {
+    public StatusModel(Long chatId, Long userId, String userName, String status, String lastTimeLogin) {
+        this.chatId = chatId;
         this.userId = userId;
         this.userName = userName;
         this.status = status;
         this.lastTimeLogin = lastTimeLogin;
+    }
+
+    public Long getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(Long chatId) {
+        this.chatId = chatId;
     }
 
     public Long getUserId() {

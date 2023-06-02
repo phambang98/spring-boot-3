@@ -6,8 +6,12 @@ public class MessageRequest {
     private String content;
 
     private Long messageId;
+
     private Boolean updateMessage = false;
 
+    private String chatType;
+
+    private Long chatId;
 
     public Long getRecipientId() {
         return recipientId;
@@ -39,5 +43,21 @@ public class MessageRequest {
 
     public void setUpdateMessage(Boolean updateMessage) {
         this.updateMessage = updateMessage;
+    }
+
+    public String getChatType() {
+        return chatType;
+    }
+
+    public void setChatType(String chatType) {
+        this.chatType = chatType;
+    }
+
+    public Long getChatId() {
+        return chatId;
+    }
+
+    public void setChatId(Long chatId) {
+        this.chatId = chatId;
     }
 }

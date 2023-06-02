@@ -1,21 +1,22 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {FriendProfile} from "../_dtos/chat/FriendProfile";
+import {ChatModel} from "../_dtos/chat/ChatModel";
 import {TokenStorageService} from "./token-storage.service";
 import {WebSocketService} from "./web-socket.service";
 import {MessageDetail} from "../_dtos/chat/MessageDetail";
+import {ChatGroupModel} from "../_dtos/chat/ChatGroupModel";
 
 @Injectable()
 export class ChatService extends WebSocketService {
 
-  private _fetch: BehaviorSubject<number> = new BehaviorSubject(0);
-  public readonly fetch: Observable<number> = this._fetch.asObservable();
+  private fetch: BehaviorSubject<number> = new BehaviorSubject(0);
+  public readonly myFetch: Observable<number> = this.fetch.asObservable();
 
-  public friendProfiles: Observable<FriendProfile[]>
-  private myFriendProfiles: BehaviorSubject<FriendProfile[]> = new BehaviorSubject([])
+  public chatModel: Observable<ChatModel[]>
+  private myChatModel: BehaviorSubject<ChatModel[]> = new BehaviorSubject([])
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -29,50 +30,47 @@ export class ChatService extends WebSocketService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
     })
-    this.friendProfiles = this.myFriendProfiles.asObservable()
+    this.chatModel = this.myChatModel.asObservable()
   }
 
-  updateFetchFriends(newFriends: FriendProfile[], isUpdate: Boolean) {
-    let friendValue = this.myFriendProfiles.value
+  updateFetchChats(newChats: ChatModel[], isUpdate: Boolean) {
+    let chatsValue = this.myChatModel.value
     if (isUpdate) {
-      let data = friendValue.find(f => f.userId == newFriends[0].userId)
+      let data = chatsValue.find(f => f.chatId == newChats[0].chatId)
       if (!data) {
-        newFriends.forEach(f => friendValue.push(f))
+        newChats.forEach(f => chatsValue.push(f))
       } else {
-        data.status = newFriends[0].status
-        data.lastTimeLogin = newFriends[0].lastTimeLogin
-        data.blockedBy = newFriends[0].blockedBy
+        data.status = newChats[0].status
+        data.lastTimeLogin = newChats[0].lastTimeLogin
+        data.blockedBy = newChats[0].blockedBy
       }
     }
-    this.myFriendProfiles.next(friendValue)
+    this.myChatModel.next(chatsValue)
   }
 
-  onShowLastMsg(messageDetail: MessageDetail, recipientId ?: number) {
+  onShowLastMsg(messageDetail: MessageDetail, chatId ?: number) {
     if (!messageDetail) {
-      let data = this.myFriendProfiles.value.find(x => x.userId == recipientId)
+      let data = this.myChatModel.value.find(x => x.chatId == chatId)
       data.lastTimeMsg = null
       data.lastMsg = null
     } else {
-      let myFriend = this.myFriendProfiles.value.find(x => x.userId == messageDetail.senderId)
-      if (!myFriend) {
-        myFriend = this.myFriendProfiles.value.find(x => x.userId == messageDetail.recipientId)
-      }
+      let myChat = this.myChatModel.value.find(x => x.chatId == messageDetail.chatId)
       let msg = ''
       if (messageDetail.senderId == this.tokenStorageService.getUser().id) {
         msg = 'Bạn :'
       }
       if (messageDetail.content) {
-        myFriend.lastMsg = msg + messageDetail.content
+        myChat.lastMsg = msg + messageDetail.content
       } else {
-        myFriend.lastMsg = msg + messageDetail.files.length
+        myChat.lastMsg = msg + messageDetail.files.length
       }
-      myFriend.lastTimeMsg = new Date(messageDetail.createdAt)
+      myChat.lastTimeMsg = new Date(messageDetail.createdAt)
     }
-    this.sortFriends()
+    this.sortChats()
   }
 
-  sortFriends() {
-    this.myFriendProfiles.value.sort((obj1, obj2) => {
+  sortChats() {
+    this.myChatModel.value.sort((obj1, obj2) => {
       let o1 = new Date(obj1.lastTimeMsg);
       let o2 = new Date(obj2.lastTimeMsg);
       if (o2 > o1) {
@@ -86,49 +84,58 @@ export class ChatService extends WebSocketService {
   }
 
 
-  fetchFriends(): Observable<FriendProfile[]> {
+  fetchChats(): Observable<ChatModel[]> {
     return this.httpClient.get(`${environment.DOMAIN}/api/chat`, this.httpOptions)
-      .pipe(map((friends: FriendProfile[]) => {
-        this.updateFetchFriends(friends, false)
-        return friends
+      .pipe(map((chats: ChatModel[]) => {
+        this.updateFetchChats(chats, false)
+        return chats
       }))
   }
 
-  createFriend(userName: String): Observable<FriendProfile> {
+  createChat(userName: String): Observable<ChatModel> {
     return this.httpClient.post(`${environment.DOMAIN}/api/chat?userName=${userName}`, this.httpOptions)
-      .pipe(map((friend: FriendProfile) => {
-        this.updateFetchFriends([friend], true)
-        return friend
+      .pipe(map((chats: ChatModel) => {
+        this.updateFetchChats([chats], true)
+        return chats
       }))
   }
 
-  getFriendsAll(): Observable<FriendProfile[]> {
-    return this.myFriendProfiles
+  createChatGroup(chatGroupModel: ChatGroupModel): Observable<ChatModel> {
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat/group-new`, JSON.stringify(chatGroupModel),this.httpOptions)
+      .pipe(map((chats: ChatModel) => {
+      this.updateFetchChats([chats], true)
+      return chats
+    }))
   }
 
-  getFriend(id: number): FriendProfile {
-    return this.myFriendProfiles.value.find(x => x.userId === id)
+
+  getAllChat(): Observable<ChatModel[]> {
+    return this.myChatModel
+  }
+
+  getOneChat(chatId: number): ChatModel {
+    return this.myChatModel.value.find(x => x.chatId === chatId)
   }
 
   updateFetch(value) {
-    this._fetch.next(value)
+    this.fetch.next(value)
   }
 
-  fetchFriend(value: FriendProfile[]) {
-    this.myFriendProfiles.next(value)
+  fetchChat(value: ChatModel[]) {
+    this.myChatModel.next(value)
   }
 
   onStatusReceived(status: any) {
     let json = JSON.parse(status.body)
-    let data = json['data'] as FriendProfile
+    let data = json['data'] as ChatModel
     if (json['type'] == "USER_CONVERSATION_UPDATED" || json['type'] == "USER_CONVERSATION_ADDED" || json['type'] == "USER_STATUS"
       || json['type'] == "USER_CONVERSATION_BLOCK" || json['type'] == "USER_CONVERSATION_UNBLOCK") {
-      this.updateStatusFriend(data)
-      this.updateFetchFriends([data], true)
+      this.updateStatusChat(data)
+      this.updateFetchChats([data], true)
     }
   }
 
-  updateStatusFriend(data: FriendProfile) {
+  updateStatusChat(data: ChatModel) {
     if (data.status === 'ONLINE') {
       data.status = 'success'
     } else if (data.status === 'OFFLINE') {
@@ -140,22 +147,21 @@ export class ChatService extends WebSocketService {
     }
   }
 
-  blockFriend(recipientId: number): Observable<any> {
-    return this.httpClient.post(`${environment.DOMAIN}/api/chat/block/${recipientId}`, this.httpOptions)
-      .pipe(map((friend: FriendProfile) => {
-        this.updateStatusFriend(friend)
-        this.updateFetchFriends([friend], true)
-
-        return friend
+  blockChat(chatId: number): Observable<any> {
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat/block/${chatId}`, this.httpOptions)
+      .pipe(map((chat: ChatModel) => {
+        this.updateStatusChat(chat)
+        this.updateFetchChats([chat], true)
+        return chat
       }))
   }
 
-  unblockFriend(recipientId: number): Observable<any> {
-    return this.httpClient.post(`${environment.DOMAIN}/api/chat/unblock/${recipientId}`, this.httpOptions)
-      .pipe(map((friend: FriendProfile) => {
-        this.updateStatusFriend(friend)
-        this.updateFetchFriends([friend], true)
-        return friend
+  unblockChat(chatId: number): Observable<any> {
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat/unblock/${chatId}`, this.httpOptions)
+      .pipe(map((chat: ChatModel) => {
+        this.updateStatusChat(chat)
+        this.updateFetchChats([chat], true)
+        return chat
       }))
   }
 

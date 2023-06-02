@@ -1,4 +1,5 @@
-export class FriendProfile {
+export class ChatModel {
+  chatId: number
   userId: number
   email: string
   userName: string
@@ -9,8 +10,11 @@ export class FriendProfile {
   updatedAt: Date
   status: string;
   lastTimeLogin: string;
+  chatType: string;
 
-  constructor(id?: number, email?: string, userName?: string, imageUrl?: string, blockedBy?: number, updatedAt?: string, status?: string, lastTimeMsg?: Date) {
+  constructor(chatId?: number, id?: number, email?: string, userName?: string, imageUrl?: string, blockedBy?: number,
+              updatedAt?: string, status?: string, lastTimeMsg?: Date, chatType?: string) {
+    this.chatId = chatId
     this.userId = id
     this.email = email
     this.userName = userName
@@ -19,6 +23,7 @@ export class FriendProfile {
     this.updatedAt = new Date(updatedAt)
     this.status = status
     this.lastTimeMsg = lastTimeMsg
+    this.chatType = chatType
   }
 
   update(id: number, email: string, userName: string, imageUrl: string, blockedBy: number, updatedAt: Date) {

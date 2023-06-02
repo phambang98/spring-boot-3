@@ -5,6 +5,7 @@ export class MessageDetail {
   senderId: number
   recipientId
   chatId: number
+  chatType: string
   content: string
   quote: string = ""
   files: FileProfile[] = []

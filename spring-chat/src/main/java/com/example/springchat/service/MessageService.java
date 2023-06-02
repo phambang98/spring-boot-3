@@ -1,21 +1,18 @@
 package com.example.springchat.service;
 
+import com.example.springcore.enums.ChatType;
 import com.example.springchat.enums.ContentType;
 import com.example.springchat.enums.SocketType;
 import com.example.springchat.error.BadRequestException;
 import com.example.springchat.error.ResourceNotFoundException;
 import com.example.springchat.model.DeleteMessageModel;
+import com.example.springcore.entity.*;
 import com.example.springcore.model.FileModel;
 import com.example.springcore.model.MessageModel;
 import com.example.springchat.model.MessageRequest;
 import com.example.springchat.model.SocketModel;
 import com.example.springchat.security.UserPrincipal;
-import com.example.springcore.entity.Chat;
-import com.example.springcore.entity.File;
-import com.example.springcore.entity.Message;
-import com.example.springcore.repository.ChatRepository;
-import com.example.springcore.repository.FileRepository;
-import com.example.springcore.repository.MessageRepository;
+import com.example.springcore.repository.*;
 import com.example.springcore.utils.CommonKey;
 import com.example.springcore.utils.WebSocketKey;
 import org.apache.commons.collections4.CollectionUtils;
@@ -48,16 +45,28 @@ public class MessageService {
     @Autowired
     private FileRepository fileRepository;
 
+    @Autowired
+    private ChatGroupRepository chatGroupRepository;
 
-    public List<MessageModel> getMessagesByRecipientId(Long recipientId, Long userId) {
+    @Autowired
+    private UsersRepository usersRepository;
+    @Autowired
+    private UserStatusRepository userStatusRepository;
+
+
+    public List<MessageModel> getMessagesByRecipientId(Long chatId, Long userId) {
         ModelMapper modelMapper = new ModelMapper();
-        Chat chat = chatRepository.findByUserId1AndUserId2OrUserId1AndUserId2(recipientId, userId, userId, recipientId);
-        if (chat != null && (chat.getUserId1().equals(userId) || chat.getUserId2().equals(userId))) {
-            List<MessageModel> messageModelList = modelMapper.map(messageRepository.findAllByChatId(chat.getChatId()), new TypeToken<List<MessageModel>>() {
+        Chat chatEntity = chatRepository.findByChatId(chatId);
+        if (chatEntity != null) {
+            List<MessageModel> messageModelList = modelMapper.map(messageRepository.findAllByChatId(chatEntity.getChatId()), new TypeToken<List<MessageModel>>() {
             }.getType());
             messageModelList.forEach(x -> {
-                if (!x.getSenderId().equals(recipientId)) {
-                    x.setRecipientId(recipientId);
+                x.setImageUrl(usersRepository.findById(x.getSenderId()).orElseThrow().getImageUrl());
+                if (chatEntity.getChatType().equals(ChatType.NORMAL.getId())) {
+                    Long recipientId = chatEntity.getUserId1().equals(userId) ? chatEntity.getUserId2() : chatEntity.getUserId1();
+                    if (!x.getSenderId().equals(recipientId)) {
+                        x.setRecipientId(recipientId);
+                    }
                 }
                 List<FileModel> fileModelList = fileRepository.findByMessageId(x.getMessageId()).stream()
                         .map(f -> new FileModel(CommonKey.API_GET_FILE_CHAT + f.getFileName(), f.getType(), f.getFileName()))
@@ -70,7 +79,7 @@ public class MessageService {
     }
 
     @Transactional
-    public Long deleteMessage(Long messageId, Long userId) {
+    public void deleteMessage(Long messageId, Long userId) {
         Message messageEntity = messageRepository.findByMessageId(messageId);
         if (messageEntity != null) {
             Chat chatEntity = chatRepository.findByChatId(messageEntity.getChatId());
@@ -85,12 +94,11 @@ public class MessageService {
         } else {
             throw new ResourceNotFoundException("Message Not Found -messageId:" + messageId);
         }
-        return messageId;
     }
 
     @Transactional
     public void createMessage(MessageRequest messageRequest, UserPrincipal user) throws BadRequestException, ResourceNotFoundException {
-        Chat chat = chatRepository.findByUserId1AndUserId2OrUserId1AndUserId2(messageRequest.getRecipientId(), user.getId(), user.getId(), messageRequest.getRecipientId());
+        Chat chat = chatRepository.findByChatId(messageRequest.getChatId());
         if (chat != null) {
             if (chat.getBlockedBy() == null) {
                 ModelMapper modelMapper = new ModelMapper();
@@ -99,7 +107,6 @@ public class MessageService {
                     messageEntity = messageRepository.findByMessageId(messageRequest.getMessageId());
                     if (messageEntity == null) {
                         throw new ResourceNotFoundException("Message -id:" + messageRequest.getMessageId());
-
                     }
                     if (Boolean.FALSE.equals(messageRequest.getUpdateMessage())) {
                         messageEntity.setContentType(ContentType.file.name());
@@ -119,14 +126,22 @@ public class MessageService {
                 }
                 var messageModel = modelMapper.map(messageRepository.save(messageEntity), MessageModel.class);
                 messageModel.setSenderName(user.getUsername());
+                messageModel.setImageUrl(user.getImageUrl());
                 messageModel.setRecipientId(messageRequest.getRecipientId());
                 if (CollectionUtils.isNotEmpty(messageModel.getFiles())) {
                     messageModel.getFiles().forEach(x -> {
                         x.setUrl(CommonKey.API_GET_FILE_CHAT + x.getFileName());
                     });
                 }
-                simpMessagingTemplate.convertAndSendToUser(String.valueOf(messageRequest.getRecipientId()), WebSocketKey.DESTINATION_MESSAGE, new SocketModel<>(SocketType.USER_MESSAGE_ADDED, messageModel));
-                simpMessagingTemplate.convertAndSendToUser(String.valueOf(user.getId()), WebSocketKey.DESTINATION_MESSAGE, new SocketModel<>(SocketType.USER_MESSAGE_ADDED, messageModel));
+                if (chat.getChatType().equals(ChatType.GROUP.getId())) {
+                    for (var friendId : chatGroupRepository.getUserIdByChatId(messageModel.getChatId())) {
+                        simpMessagingTemplate.convertAndSendToUser(String.valueOf(friendId), WebSocketKey.DESTINATION_MESSAGE,
+                                new SocketModel<>(SocketType.USER_MESSAGE_GROUP_ADDED, messageModel));
+                    }
+                } else {
+                    simpMessagingTemplate.convertAndSendToUser(String.valueOf(messageRequest.getRecipientId()), WebSocketKey.DESTINATION_MESSAGE, new SocketModel<>(SocketType.USER_MESSAGE_ADDED, messageModel));
+                    simpMessagingTemplate.convertAndSendToUser(String.valueOf(user.getId()), WebSocketKey.DESTINATION_MESSAGE, new SocketModel<>(SocketType.USER_MESSAGE_ADDED, messageModel));
+                }
             } else {
                 throw new BadRequestException("Sorry you're blocked by user");
             }
@@ -136,15 +151,15 @@ public class MessageService {
     }
 
     @Transactional
-    public MessageModel createMessageFile(Long recipientId, List<MultipartFile> multipartFileList, UserPrincipal user) throws BadRequestException, ResourceNotFoundException {
-        Chat chats = chatRepository.findByUserId1AndUserId2OrUserId1AndUserId2(recipientId, user.getId(), user.getId(), recipientId);
-        if (chats != null) {
-            if (chats.getBlockedBy() == null) {
+    public MessageModel createMessageFile(Long recipientId, String chatType, List<MultipartFile> multipartFileList, UserPrincipal user) throws BadRequestException, ResourceNotFoundException {
+        Chat chat = chatRepository.findByUserId1AndUserId2AndChatType(user.getId(), null, chatType);
+        if (chat != null) {
+            if (chat.getBlockedBy() == null) {
                 ModelMapper modelMapper = new ModelMapper();
                 Message message = new Message();
                 message.setContentType(ContentType.file.name());
                 message.setSenderId(user.getId());
-                message.setChatId(chats.getChatId());
+                message.setChatId(chat.getChatId());
                 message.setRecipientId(recipientId);
                 var messageModel = modelMapper.map(messageRepository.save(message), MessageModel.class);
                 var uploadedFiles = fileStorageService.store(multipartFileList, messageModel.getChatId());
@@ -154,6 +169,7 @@ public class MessageService {
                 fileRepository.saveAll(entityList);
                 messageModel.setSenderName(user.getUsername());
                 messageModel.setRecipientId(recipientId);
+                messageModel.setImageUrl(user.getImageUrl());
                 messageModel.setFiles(modelMapper.map(fileRepository.saveAll(entityList), new TypeToken<List<FileModel>>() {
                 }.getType()));
                 return messageModel;

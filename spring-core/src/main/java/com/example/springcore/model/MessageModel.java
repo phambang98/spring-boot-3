@@ -9,8 +9,6 @@ public class MessageModel {
     private Long senderId;
     private Long recipientId;
     private Long chatId;
-
-    private Long chatGroupId;
     private String content;
     private List<FileModel> files;
     private String contentType;
@@ -18,6 +16,7 @@ public class MessageModel {
     private Date updatedAt;
     private Boolean read;
     private String senderName;
+    private String imageUrl;
 
     public Long getMessageId() {
         return messageId;
@@ -107,11 +106,11 @@ public class MessageModel {
         this.recipientId = recipientId;
     }
 
-    public Long getChatGroupId() {
-        return chatGroupId;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setChatGroupId(Long chatGroupId) {
-        this.chatGroupId = chatGroupId;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

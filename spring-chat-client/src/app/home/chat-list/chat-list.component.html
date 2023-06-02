@@ -17,9 +17,9 @@
     <input nbInput fullWidth name="search" placeholder="Search">
   </nb-card-body>
   <nb-list>
-    <nb-list-item *ngFor="let friend of friends | async" (click)="chatClicked(friend.userId)" >
-      <nb-user [name]="friend.userName" [title]="friend.lastMsg" size="giant" [picture]="friend.imageUrl" shape="round"
-               [badgeText]="badgeText" [badgeStatus]="friend.status" badgePosition="bottom right">
+    <nb-list-item *ngFor="let chat of chatModels | async" (click)="chatClicked(chat.chatId)">
+      <nb-user [name]="chat.userName" [title]="chat.lastMsg" size="giant" [picture]="chat.imageUrl"
+               shape="round" [badgeText]="badgeText" [badgeStatus]="chat.status" badgePosition="bottom right">
 
       </nb-user>
     </nb-list-item>

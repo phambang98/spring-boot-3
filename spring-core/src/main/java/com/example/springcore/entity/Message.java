@@ -23,8 +23,6 @@ public class Message {
     @Column(name = "CHAT_ID")
     private Long chatId;
 
-    @Column(name = "CHAT_GROUP_ID")
-    private Long chatGroupId;
     @Column(name = "CONTENT")
     private String content;
 
@@ -43,6 +41,9 @@ public class Message {
 
     @Column(name = "READ")
     private Boolean read;
+
+    @Column(name = "CHAT_TYPE")
+    private String chatType;
 
     public Long getMessageId() {
         return messageId;
@@ -66,14 +67,6 @@ public class Message {
 
     public void setChatId(Long chatId) {
         this.chatId = chatId;
-    }
-
-    public Long getChatGroupId() {
-        return chatGroupId;
-    }
-
-    public void setChatGroupId(Long chatGroupId) {
-        this.chatGroupId = chatGroupId;
     }
 
     public void setRecipientId(Long recipientId) {

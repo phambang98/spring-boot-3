@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
 import {UserProfile} from '../_dtos/user/UserProfile';
@@ -35,5 +35,12 @@ export class UserService {
   logout(): void {
     this.tokenStorageService.signOut()
     window.location.reload();
+  }
+
+  existsByUserName(userName: string): Observable<Boolean> {
+    let params = new HttpParams().set("userName", userName)
+    return this.httpClient.get(`${environment.DOMAIN}/api/user/exists`, {
+      headers: this.httpOptions.headers, params
+    }) as Observable<Boolean>;
   }
 }

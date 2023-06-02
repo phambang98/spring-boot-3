@@ -20,8 +20,17 @@ public class Chat {
     @Column(name = "USER_ID2")
     private Long userId2;
 
+    @Column(name = "CHAT_TYPE")
+    private String chatType;
+
     @Column(name = "BLOCKED_BY")
     private Long blockedBy;
+
+    @Column(name = "DISPLAY_NAME")
+    private String displayName;
+
+    @Column(name = "IMAGE_URL")
+    private String imageUrl;
 
     @Column(name = "CREATED_AT")
     private Date createdAt;
@@ -29,16 +38,10 @@ public class Chat {
     @Column(name = "UPDATED_AT")
     private Date updatedAt;
 
-    public Chat() {
-    }
+    @Column(name = "CREATED_BY")
+    private Long createdBy;
 
-    public Chat(Long chatId, Long userId1, Long userId2, Long blockedBy, Date createdAt, Date updatedAt) {
-        this.chatId = chatId;
-        this.userId1 = userId1;
-        this.userId2 = userId2;
-        this.blockedBy = blockedBy;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+    public Chat() {
     }
 
     public Long getChatId() {
@@ -65,6 +68,14 @@ public class Chat {
         this.userId2 = userId2;
     }
 
+    public String getChatType() {
+        return chatType;
+    }
+
+    public void setChatType(String chatType) {
+        this.chatType = chatType;
+    }
+
     public Long getBlockedBy() {
         return blockedBy;
     }
@@ -87,5 +98,29 @@ public class Chat {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public Long getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Long createdBy) {
+        this.createdBy = createdBy;
     }
 }

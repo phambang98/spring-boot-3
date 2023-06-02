@@ -1,5 +1,4 @@
 export class DeleteMessageDetail {
-  recipientId: number
+  chatId: number
   messageId: number
-
 }

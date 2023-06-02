@@ -20,6 +20,8 @@ import {NbMenuService} from "@nebular/theme";
 import {MessageService} from "../_services/message.service";
 import {WebSocketService} from "../_services/web-socket.service";
 import {NotificationService} from "../_services/notification.service";
+import {NewGroupComponent} from "./chat-list/new-group/new-group.component";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -31,10 +33,11 @@ import {NotificationService} from "../_services/notification.service";
     LoadingComponent,
     ChatDetailComponent,
     ChatBannerComponent,
-    NewChatComponent
+    NewChatComponent,
+    NewGroupComponent
   ],
   imports: [
-    CommonModule, HomeRoutingModule, SharedModule, MatProgressBarModule, NgOptimizedImage
+    CommonModule, HomeRoutingModule, SharedModule, MatProgressBarModule, NgOptimizedImage, ReactiveFormsModule
   ],
   providers: [
     NbMenuService, WebSocketService, UserService, ChatService, MessageService, NotificationService

@@ -16,8 +16,8 @@ import {DeleteMessageDetail} from "../_dtos/chat/DeleteMessageDetail";
 @Injectable()
 export class MessageService extends WebSocketService {
 
-  nbMessages: Observable<MessageDetail[]>
-  private myNbMessages: BehaviorSubject<MessageDetail[]> = new BehaviorSubject([])
+  nbMessages: Observable<Map<number, MessageDetail[]>>
+  private myNbMessages: BehaviorSubject<Map<number, MessageDetail[]>> = new BehaviorSubject(new Map())
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -41,47 +41,50 @@ export class MessageService extends WebSocketService {
 
   onMessageReceived(message) {
     let json = JSON.parse(message.body)
-    if (json['type'] == "USER_MESSAGE_ADDED") {
+    if (json['type'] == "USER_MESSAGE_ADDED" || json['type'] == "USER_MESSAGE_GROUP_ADDED") {
       let data = json['data'] as MessageDetail
       this.onUpdateMessage([data], true)
     } else if (json['type'] == "USER_MESSAGE_DELETE") {
       let data = json['data'] as DeleteMessageDetail
-      this.onDeleteMessage(data.messageId, data.recipientId)
+      this.onDeleteMessage(data.chatId, data.messageId)
     } else {
       console.log("json", json)
     }
   }
-
 
   onSendMessage(messageRequest: MessageRequest) {
     this.stompClient.send("/app/message", {}, JSON.stringify(messageRequest));
   }
 
   onUpdateMessage(messageDetails: MessageDetail[], isReceived: Boolean) {
-    let messageDetailValue: MessageDetail[] = []
-    if (isReceived) {
-      messageDetailValue = this.myNbMessages.value
-    }
-    messageDetails.forEach(m => {
-      if (m.senderId == this.myProfile.id) {
-        m.imageUrl = this.myProfile.imageUrl
-        m.reply = true
+    messageDetails.forEach(x => {
+      if (x.senderId == this.myProfile.id) {
+        x.reply = true
       } else {
-        m.imageUrl = this.chatService.getFriend(m.senderId).imageUrl
-        m.reply = false
-        if (isReceived) {
-          this.notificationService.newMessage("You have new message :" + this.chatService.getFriend(m.senderId).userName, m.content)
-        }
+        x.reply = false
       }
     })
-    this.myNbMessages.next(messageDetailValue.concat(messageDetails));
+    if (isReceived) {
+      if (messageDetails[0].senderId !== this.myProfile.id) {
+        this.notificationService.newMessage("You have new message :" + this.chatService.getOneChat(messageDetails[0].chatId).userName, messageDetails[0].content)
+      }
+      let messages = this.myNbMessages.value.get(messageDetails[0].chatId)
+      if (messages) {
+        this.myNbMessages.value.set(messageDetails[0].chatId, messages.concat(messageDetails))
+      }
+    } else {
+      if (messageDetails && messageDetails.length != 0) {
+        this.myNbMessages.value.set(messageDetails[0].chatId, messageDetails)
+      }
+    }
+    this.myNbMessages.next(this.myNbMessages.value);
     if (isReceived) {
       this.chatService.onShowLastMsg(messageDetails[0])
     }
   }
 
-  fetchMessages(recipientId: number): Observable<MessageDetail[]> {
-    return this.httpClient.get(`${environment.DOMAIN}/api/message/${recipientId}`, this.httpOptions)
+  fetchMessages(chatId: number): Observable<MessageDetail[]> {
+    return this.httpClient.get(`${environment.DOMAIN}/api/message/${chatId}`, this.httpOptions)
       .pipe(map((msg: MessageDetail[]) => {
         this.onUpdateMessage(msg, false)
         return msg
@@ -95,9 +98,10 @@ export class MessageService extends WebSocketService {
         formData.append('files', file)
       })
       formData.append('recipientId', messageRequest.recipientId + "")
+      formData.append('chatType', messageRequest.chatType)
       this.createMessageFile(formData).subscribe({
           next: (v: MessageDetail) => {
-            this.onSendMessage(new MessageRequest(messageRequest.recipientId, messageRequest.content, v.messageId))
+            this.onSendMessage(new MessageRequest(messageRequest.recipientId, messageRequest.content, v.messageId, messageRequest.chatType, messageRequest.chatId))
           },
           error: (err) => {
             console.log("err-createMessageFile", err)
@@ -105,7 +109,7 @@ export class MessageService extends WebSocketService {
         }
       )
     } else {
-      this.onSendMessage(new MessageRequest(messageRequest.recipientId, messageRequest.content, null))
+      this.onSendMessage(new MessageRequest(messageRequest.recipientId, messageRequest.content, null, messageRequest.chatType, messageRequest.chatId))
     }
   }
 
@@ -117,14 +121,20 @@ export class MessageService extends WebSocketService {
       }))
   }
 
-  deleteMessage(messageId: number, recipientId: number) {
-    this.httpClient.delete(`${environment.DOMAIN}/api/message/${messageId}`, this.httpOptions).subscribe((messageIdSuccess: number) => {
-      this.onDeleteMessage(messageIdSuccess, recipientId)
+  deleteMessage(chatId: number, messageId: number) {
+    this.httpClient.delete(`${environment.DOMAIN}/api/message/${messageId}`, this.httpOptions).subscribe({
+      complete: () => {
+        this.onDeleteMessage(chatId, messageId)
+      },
+      error: (e) => {
+        console.log(e)
+      }
     })
   }
 
-  onDeleteMessage(messageId: number, recipientId: number) {
-    this.myNbMessages.next(this.myNbMessages.value.filter(obj => obj.messageId !== messageId));
-    this.chatService.onShowLastMsg(this.myNbMessages.value[this.myNbMessages.value.length - 1], recipientId)
+  onDeleteMessage(chatId: number, messageId: number) {
+    this.myNbMessages.value.set(chatId, this.myNbMessages.value.get(chatId).filter(obj => obj.messageId !== messageId))
+    this.myNbMessages.next(this.myNbMessages.value);
+    this.chatService.onShowLastMsg(this.myNbMessages.value[this.myNbMessages.value.get(chatId).length - 1], chatId)
   }
 }

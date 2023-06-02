@@ -1,15 +1,18 @@
 package com.example.springchat.service;
 
+import com.example.springchat.model.ChatGroupModel;
+import com.example.springcore.entity.ChatGroup;
+import com.example.springcore.enums.ChatType;
 import com.example.springchat.enums.SocketType;
 import com.example.springchat.error.BadRequestException;
 import com.example.springchat.error.NewConversationException;
 import com.example.springchat.error.ResourceNotFoundException;
 import com.example.springcore.enums.Status;
-import com.example.springcore.model.FriendProfileModel;
+import com.example.springcore.model.ChatModel;
 import com.example.springchat.model.SocketModel;
 import com.example.springchat.security.UserPrincipal;
 import com.example.springcore.entity.Chat;
-import com.example.springcore.model.StatusModel;
+import com.example.springcore.repository.ChatGroupRepository;
 import com.example.springcore.repository.ChatRepository;
 import com.example.springcore.repository.UserStatusRepository;
 import com.example.springcore.repository.UsersRepository;
@@ -20,8 +23,10 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ChatService {
@@ -38,13 +43,16 @@ public class ChatService {
     @Autowired
     private UserStatusRepository userStatusRepository;
 
-    public List<FriendProfileModel> getFriendList(Long id) {
+    @Autowired
+    private ChatGroupRepository chatGroupRepository;
+
+    public List<ChatModel> getFriendList(Long id) {
         return chatRepository.getFriendList(id);
     }
 
 
     @Transactional
-    public FriendProfileModel newConversation(UserPrincipal userPrincipal, String userName) throws ResourceNotFoundException, NewConversationException {
+    public ChatModel newConversation(UserPrincipal userPrincipal, String userName) throws ResourceNotFoundException, NewConversationException {
         var friend = usersRepository.findByUserName(userName);
         if (friend == null) {
             throw new ResourceNotFoundException("User email-" + userName);
@@ -54,74 +62,135 @@ public class ChatService {
         }
 
         SocketType typeConv = SocketType.USER_CONVERSATION_UPDATED;
-        var chatEntity = chatRepository.findByUserId1AndUserId2OrUserId1AndUserId2(userPrincipal.getId(), friend.getId(), friend.getId(), userPrincipal.getId());
+        var chatEntity = chatRepository.findByUserId1AndUserId2AndChatType(userPrincipal.getId(), friend.getId(), ChatType.NORMAL.getId());
         if (chatEntity == null) {
-            chatEntity = new Chat(null, userPrincipal.getId(), friend.getId(), null, new Date(), new Date());
+            chatEntity = new Chat();
+            chatEntity.setUserId1(userPrincipal.getId());
+            chatEntity.setUserId2(friend.getId());
+            chatEntity.setChatType(ChatType.NORMAL.getId());
+            chatEntity.setCreatedAt(new Date());
+            chatEntity.setUpdatedAt(new Date());
             chatEntity = chatRepository.save(chatEntity);
             typeConv = SocketType.USER_CONVERSATION_ADDED;
         }
-        var userStatusEntity = userStatusRepository.findByUserId(userPrincipal.getId());
         var friendStatusEntity = userStatusRepository.findByUserId(friend.getId());
         simpMessagingTemplate.convertAndSendToUser(String.valueOf(friend.getId()), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(typeConv,
-                new FriendProfileModel(userPrincipal.getId(), userPrincipal.getEmail(), userPrincipal.getName(),
-                        userPrincipal.getImageUrl(), chatEntity.getBlockedBy(), userStatusEntity.getStatus(), userStatusEntity.getLastTimeLogin(), "", null)));
-        return new FriendProfileModel(friend.getId(), friend.getEmail(), friend.getUserName(), friend.getImageUrl(), chatEntity.getBlockedBy(),
-                friendStatusEntity.getStatus(), friendStatusEntity.getLastTimeLogin(), "", null);
+                new ChatModel(chatEntity.getChatId(), userPrincipal.getId(), userPrincipal.getEmail(), userPrincipal.getName(),
+                        userPrincipal.getImageUrl(), chatEntity.getBlockedBy(), Status.ONLINE.name(), null,
+                        "", null, ChatType.NORMAL.getId())));
+        return new ChatModel(chatEntity.getChatId(), friend.getId(), friend.getEmail(), friend.getUserName(), friend.getImageUrl(), chatEntity.getBlockedBy(),
+                friendStatusEntity.getStatus(), friendStatusEntity.getLastTimeLogin(), "", null, ChatType.NORMAL.getId());
     }
 
-    public FriendProfileModel blockConversation(Long recipientId, UserPrincipal user) throws ResourceNotFoundException, BadRequestException {
-        var chatEntity = chatRepository.findByUserId1AndUserId2OrUserId1AndUserId2(recipientId, user.getId(), user.getId(), recipientId);
+    public ChatModel blockChat(Long chatId, UserPrincipal user) throws ResourceNotFoundException, BadRequestException {
+        var chatEntity = chatRepository.findByChatId(chatId);
         Date date = new Date();
         if (chatEntity != null) {
             if (chatEntity.getBlockedBy() == null) {
                 chatEntity.setBlockedBy(user.getId());
                 chatEntity.setUpdatedAt(new Date());
                 chatEntity = chatRepository.save(chatEntity);
-                var recipientUser = usersRepository.findById(recipientId);
+                Long friendId = chatEntity.getUserId1().equals(user.getId()) ? chatEntity.getUserId2() : chatEntity.getUserId1();
+                var recipientUser = usersRepository.findById(friendId);
                 if (recipientUser.isEmpty()) {
                     throw new ResourceNotFoundException("Data error");
                 }
                 simpMessagingTemplate.convertAndSendToUser(String.valueOf(recipientUser.get().getId()), WebSocketKey.DESTINATION_STATUS,
                         new SocketModel<>(SocketType.USER_CONVERSATION_BLOCK,
-                                new FriendProfileModel(user.getId(), user.getEmail(), user.getUsername(),
-                                        user.getImageUrl(), chatEntity.getBlockedBy(), Status.OFFLINE.name(), DateUtils.convertDateToString(date, "yyyy-MM-dd hh:mm:ss"), "", null)));
-                return new FriendProfileModel(recipientId, recipientUser.get().getEmail(), recipientUser.get().getUserName(),
-                        recipientUser.get().getImageUrl(), chatEntity.getBlockedBy(), Status.OFFLINE.name(), DateUtils.convertDateToString(date, "yyyy-MM-dd hh:mm:ss"), "", null);
+                                new ChatModel(chatEntity.getChatId(), user.getId(), user.getEmail(), user.getUsername(),
+                                        user.getImageUrl(), chatEntity.getBlockedBy(), Status.OFFLINE.name(),
+                                        DateUtils.convertDateToString(date, "yyyy-MM-dd hh:mm:ss"), "", null, ChatType.NORMAL.getId())));
+                return new ChatModel(chatEntity.getChatId(), friendId, recipientUser.get().getEmail(), recipientUser.get().getUserName(),
+                        recipientUser.get().getImageUrl(), chatEntity.getBlockedBy(), Status.OFFLINE.name(),
+                        DateUtils.convertDateToString(date, "yyyy-MM-dd hh:mm:ss"), "", null, ChatType.NORMAL.getId());
             } else {
                 throw new BadRequestException("Sorry you can block this conversation");
             }
         } else {
-            throw new ResourceNotFoundException("Conversation not found -recipientId:" + recipientId);
+            throw new ResourceNotFoundException("Conversation not found -recipientId:" + chatId);
         }
     }
 
-    public FriendProfileModel unblockConversation(Long recipientId, UserPrincipal user) throws ResourceNotFoundException, BadRequestException {
-        var chatEntity = chatRepository.findByUserId1AndUserId2OrUserId1AndUserId2(recipientId, user.getId(), user.getId(), recipientId);
+    public ChatModel unBlockChat(Long chatId, UserPrincipal user) throws ResourceNotFoundException, BadRequestException {
+        var chatEntity = chatRepository.findByChatId(chatId);
         if (chatEntity != null) {
             if (chatEntity.getBlockedBy().equals(user.getId())) {
                 chatEntity.setBlockedBy(null);
                 chatEntity.setUpdatedAt(new Date());
                 chatEntity = chatRepository.save(chatEntity);
-                var friend = usersRepository.findById(recipientId);
+                Long friendId = chatEntity.getUserId1().equals(user.getId()) ? chatEntity.getUserId2() : chatEntity.getUserId1();
+                var friend = usersRepository.findById(friendId);
                 if (friend.isEmpty()) {
                     throw new ResourceNotFoundException("Data error");
                 }
-                var userStatus = userStatusRepository.findByUserId(recipientId);
-                simpMessagingTemplate.convertAndSendToUser(String.valueOf(recipientId), WebSocketKey.DESTINATION_STATUS,
+                var userStatus = userStatusRepository.findByUserId(friendId);
+                simpMessagingTemplate.convertAndSendToUser(String.valueOf(friendId), WebSocketKey.DESTINATION_STATUS,
                         new SocketModel<>(SocketType.USER_CONVERSATION_UNBLOCK,
-                                new FriendProfileModel(user.getId(), user.getEmail(), user.getName(), user.getImageUrl(), chatEntity.getBlockedBy(),
-                                        userStatus.getStatus(), userStatus.getLastTimeLogin(), "", null)));
-                return new FriendProfileModel(recipientId, friend.get().getEmail(), friend.get().getUserName(), friend.get().getImageUrl(), chatEntity.getBlockedBy(),
-                        userStatus.getStatus(), userStatus.getLastTimeLogin(), "", null);
+                                new ChatModel(chatEntity.getChatId(), user.getId(), user.getEmail(), user.getName(), user.getImageUrl(), chatEntity.getBlockedBy(),
+                                        userStatus.getStatus(), userStatus.getLastTimeLogin(),
+                                        "", null, ChatType.NORMAL.getId())));
+                return new ChatModel(chatEntity.getChatId(), friendId, friend.get().getEmail(), friend.get().getUserName(), friend.get().getImageUrl(), chatEntity.getBlockedBy(),
+                        userStatus.getStatus(), userStatus.getLastTimeLogin(), "", null, ChatType.NORMAL.getId());
             }
-            throw new BadRequestException("Sorry you can unblock this conversation -recipientId: " + recipientId);
+            throw new BadRequestException("Sorry you can unblock this conversation -chatId: " + chatId);
         } else {
-            throw new ResourceNotFoundException("Conversation not found -recipientId:" + recipientId);
+            throw new ResourceNotFoundException("Conversation not found -chatId:" + chatId);
         }
     }
 
-    public List<StatusModel> getFriendStatusByUserId(Long userId) {
-        return chatRepository.getFriendStatusByUserId(userId);
+    @Transactional
+    public void newGroupChat(UserPrincipal userPrincipal, ChatGroupModel chatGroupModel) throws ResourceNotFoundException, NewConversationException {
+        if( chatGroupModel.getListUserName().stream().anyMatch(x -> x.equals(userPrincipal.getUsername()))){
+            throw new ResourceNotFoundException("List user name error");
+        }
+        chatGroupModel.getListUserName().add(userPrincipal.getUsername());
+        var listUsers = usersRepository.findByUserNameIn(chatGroupModel.getListUserName());
+        if (listUsers.size() != chatGroupModel.getListUserName().size()) {
+            throw new ResourceNotFoundException("List user name error");
+        }
+        var chatEntity = new Chat();
+        Date date = new Date();
+        chatEntity.setChatType(ChatType.GROUP.getId());
+        chatEntity.setCreatedAt(date);
+        chatEntity.setDisplayName(chatGroupModel.getNameChatGroup());
+        chatEntity.setCreatedBy(userPrincipal.getId());
+        chatEntity = chatRepository.save(chatEntity);
+        Chat finalChatEntity = chatEntity;
+        List<ChatGroup> chatGroupList = listUsers.stream().map(x -> new ChatGroup(finalChatEntity.getChatId(), x.getId(), date)).collect(Collectors.toList());
+        chatGroupRepository.saveAll(chatGroupList);
+        for (var user : listUsers) {
+            simpMessagingTemplate.convertAndSendToUser(String.valueOf(user.getId()), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(SocketType.USER_CONVERSATION_ADDED,
+                    new ChatModel(chatEntity.getChatId(), null, null, chatEntity.getDisplayName(),
+                            chatEntity.getImageUrl(), chatEntity.getBlockedBy(), Status.ONLINE.name(), null,
+                            null, null, ChatType.GROUP.getId())));
+        }
+    }
+
+    @Transactional
+    public ChatModel removeGroupChat(UserPrincipal userPrincipal, String userNameRecipient) throws ResourceNotFoundException, NewConversationException {
+        var friend = usersRepository.findByUserName(userNameRecipient);
+        if (friend == null) {
+            throw new ResourceNotFoundException("User email-" + userNameRecipient);
+        }
+        if (friend.getId().equals(userPrincipal.getId())) {
+            throw new NewConversationException("Can't chat for myself-" + userNameRecipient);
+        }
+
+        SocketType typeConv = SocketType.USER_CONVERSATION_UPDATED;
+        var chatEntity = chatRepository.findByUserId1AndUserId2AndChatType(userPrincipal.getId(), friend.getId(), ChatType.GROUP.getId());
+        if (chatEntity == null) {
+            chatEntity = new Chat();
+            chatEntity = chatRepository.save(chatEntity);
+            typeConv = SocketType.USER_CONVERSATION_ADDED;
+        }
+        var userStatusEntity = userStatusRepository.findByUserId(userPrincipal.getId());
+        var friendStatusEntity = userStatusRepository.findByUserId(friend.getId());
+        simpMessagingTemplate.convertAndSendToUser(String.valueOf(friend.getId()), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(typeConv,
+                new ChatModel(chatEntity.getChatId(), userPrincipal.getId(), userPrincipal.getEmail(), userPrincipal.getName(),
+                        userPrincipal.getImageUrl(), chatEntity.getBlockedBy(), userStatusEntity.getStatus(), userStatusEntity.getLastTimeLogin(),
+                        "", null, ChatType.NORMAL.getId())));
+        return new ChatModel(chatEntity.getChatId(), friend.getId(), friend.getEmail(), friend.getUserName(), friend.getImageUrl(), chatEntity.getBlockedBy(),
+                friendStatusEntity.getStatus(), friendStatusEntity.getLastTimeLogin(), "", null, ChatType.NORMAL.getId());
     }
 }
 

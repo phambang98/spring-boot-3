@@ -3,6 +3,7 @@ package com.example.springchat.listener;
 import com.example.springchat.enums.SocketType;
 import com.example.springchat.model.SocketModel;
 import com.example.springchat.security.UserPrincipal;
+import com.example.springcore.entity.Chat;
 import com.example.springcore.enums.Status;
 import com.example.springcore.model.StatusModel;
 import com.example.springcore.repository.ChatRepository;
@@ -87,15 +88,17 @@ public class WebSocketEventListener {
     }
 
     public void sendFriend(Long userId, String userName, String status) {
-        List<Long> friendIdList = chatRepository.getFriendIdByUserId(userId);
+        List<Chat> chatList = chatRepository.findByUserId(userId);
         String dateTime = DateUtils.convertDateToString(new Date(), "yyyy-MM-dd hh:mm:ss");
         StatusModel statusModel = new StatusModel();
-        for (Long friendId : friendIdList) {
+        for (Chat chat : chatList) {
+            var recipientId = chat.getUserId1().equals(userId) ? chat.getUserId2() : chat.getUserId1();
+            statusModel.setChatId(chat.getChatId());
             statusModel.setUserId(userId);
             statusModel.setUserName(userName);
             statusModel.setStatus(status);
             statusModel.setLastTimeLogin(dateTime);
-            messagingTemplate.convertAndSendToUser(String.valueOf(friendId), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(SocketType.USER_STATUS, statusModel));
+            messagingTemplate.convertAndSendToUser(String.valueOf(recipientId), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(SocketType.USER_STATUS, statusModel));
         }
     }
 }

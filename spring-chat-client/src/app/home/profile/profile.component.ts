@@ -20,12 +20,12 @@ export class ProfileComponent implements OnInit {
     this.profile = this.userService.getProfile()
     this.activatedRoute.queryParams.subscribe(params => {
       this.isFriend = Boolean(params['isFriend'])
-      let friend = this.chatService.getFriend(Number(params['friendId']))
+      let chat = this.chatService.getOneChat(Number(params['chatId']))
       if (this.isFriend) {
-        this.profile.id = friend.userId
-        this.profile.email = friend.email
-        this.profile.userName = friend.userName
-        this.profile.imageUrl = friend.imageUrl
+        this.profile.id = chat.userId
+        this.profile.email = chat.email
+        this.profile.userName = chat.userName
+        this.profile.imageUrl = chat.imageUrl
       }
     })
   }

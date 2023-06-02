@@ -5,9 +5,11 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {UserService} from 'src/app/_services/user.service';
 import {UserProfile} from 'src/app/_dtos/user/UserProfile';
 import {Observable} from 'rxjs';
-import {FriendProfile} from 'src/app/_dtos/chat/FriendProfile';
+import {ChatModel} from 'src/app/_dtos/chat/ChatModel';
 import {NewChatComponent} from './new-chat/new-chat.component';
 import {ChatService} from "../../_services/chat.service";
+import {NewGroupComponent} from "./new-group/new-group.component";
+import {ChatGroupModel} from "../../_dtos/chat/ChatGroupModel";
 
 @Component({
   selector: 'home-chat-list',
@@ -17,7 +19,7 @@ import {ChatService} from "../../_services/chat.service";
 })
 export class ChatListComponent implements OnInit, AfterViewInit {
 
-  friends: Observable<FriendProfile[]>
+  chatModels: Observable<ChatModel[]>
   menu = [
     {title: 'Profile', icon: 'person-outline'},
     {title: 'New Chat', icon: 'person-add-outline'},
@@ -32,15 +34,15 @@ export class ChatListComponent implements OnInit, AfterViewInit {
   constructor(private menuService: NbMenuService, private router: Router, private dialogService: NbDialogService,
               private userService: UserService, private chatService: ChatService, private route: ActivatedRoute) {
     this.profile = this.userService.getProfile()
-    this.friends = this.chatService.getFriendsAll()
+    this.chatModels = this.chatService.getAllChat()
   }
 
   ngAfterViewInit() {
-    this.friends['_value'].forEach(x => {
-      this.chatService.updateStatusFriend(x)
+    this.chatModels['_value'].forEach(x => {
+      this.chatService.updateStatusChat(x)
     })
-    this.chatService.friendProfiles.subscribe((fp: FriendProfile[]) => {
-      this.friends['_value'] = fp
+    this.chatService.chatModel.subscribe((fp: ChatModel[]) => {
+      this.chatModels['_value'] = fp
     })
   }
 
@@ -61,15 +63,15 @@ export class ChatListComponent implements OnInit, AfterViewInit {
             break;
           case 'New Chat':
             this.dialogService.open(NewChatComponent).onClose.subscribe((userName) => {
-              this.chatService.createFriend(userName).subscribe({
+              this.chatService.createChat(userName).subscribe({
                 complete: () => {
                   console.log("complete-createFriend");
                 },
                 next: (v) => {
-                  let newFriend = this.friends['_value'].find(x => x.userId === v.userId)
-                  newFriend.lastTimeLogin = v.lastTimeLogin
-                  newFriend.status = v.status
-                  this.chatService.updateStatusFriend(newFriend)
+                  let newChat = this.chatModels['_value'].find(x => x.userId === v.userId)
+                  newChat.lastTimeLogin = v.lastTimeLogin
+                  newChat.status = v.status
+                  this.chatService.updateStatusChat(newChat)
                 },
                 error: (err) => {
                   console.log("err-createFriend", err);
@@ -78,7 +80,22 @@ export class ChatListComponent implements OnInit, AfterViewInit {
             })
             break;
           case 'New Group':
-
+            this.dialogService.open(NewGroupComponent).onClose.subscribe((chatGroupModel) => {
+              this.chatService.createChatGroup(chatGroupModel).subscribe({
+                complete: () => {
+                  console.log("complete-group-chat");
+                },
+                next: (v) => {
+                  let newChat = this.chatModels['_value'].find(x => x.userId === v.userId)
+                  newChat.lastTimeLogin = v.lastTimeLogin
+                  newChat.status = v.status
+                  this.chatService.updateStatusChat(newChat)
+                },
+                error: (err) => {
+                  console.log("err-createFriend", err);
+                },
+              })
+            })
             break;
           case 'Settings':
             this.router.navigateByUrl("/settings")
@@ -93,8 +110,7 @@ export class ChatListComponent implements OnInit, AfterViewInit {
       })
   }
 
-  chatClicked(id: Number) {
-    this.router.navigate([id], {relativeTo: this.route, skipLocationChange: true})
+  chatClicked(chatId: Number) {
+    this.router.navigate([chatId], {relativeTo: this.route, skipLocationChange: true})
   }
-
 }

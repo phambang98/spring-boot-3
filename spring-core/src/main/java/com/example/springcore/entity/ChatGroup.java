@@ -14,19 +14,21 @@ public class ChatGroup {
     @Column(name = "CHAT_GROUP_ID")
     private Long chatGroupId;
 
-    @Column(name = "DISPLAY_NAME")
-    private Long displayName;
+    @Column(name = "CHAT_ID")
+    private Long chatId;
 
-    @Column(name = "IMAGE_URL")
-    private String imageUrl;
+    @Column(name = "USER_ID")
+    private Long userId;
 
-    @Column(name = "CREATED_BY")
-    private String createdBy;
-
-    @Column(name = "CREATED_AT")
-    private Date createdAt;
-
+    @Column(name = "JOIN_DATE")
+    private Date joinDate;
     public ChatGroup() {
+    }
+
+    public ChatGroup(Long chatId, Long userId, Date joinDate) {
+        this.chatId = chatId;
+        this.userId = userId;
+        this.joinDate = joinDate;
     }
 
     public Long getChatGroupId() {
@@ -37,35 +39,27 @@ public class ChatGroup {
         this.chatGroupId = chatGroupId;
     }
 
-    public Long getDisplayName() {
-        return displayName;
+    public Long getChatId() {
+        return chatId;
     }
 
-    public void setDisplayName(Long displayName) {
-        this.displayName = displayName;
+    public void setChatId(Long chatId) {
+        this.chatId = chatId;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public Date getJoinDate() {
+        return joinDate;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setJoinDate(Date joinDate) {
+        this.joinDate = joinDate;
     }
 }

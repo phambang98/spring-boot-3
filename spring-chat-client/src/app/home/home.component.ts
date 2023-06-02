@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   constructor(private chatService: ChatService, private router: Router) {
-    this.chatService.fetch.subscribe(v => {
+    this.chatService.myFetch.subscribe(v => {
       if (v === 0) {
         this.router.navigateByUrl("/loading")
       }
