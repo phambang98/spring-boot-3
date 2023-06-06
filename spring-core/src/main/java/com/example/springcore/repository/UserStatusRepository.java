@@ -17,6 +17,4 @@ public interface UserStatusRepository extends JpaRepository<UserStatus, Long> {
     void updateStatusAndTimeByUserName(@Param("status") String status, @Param("lastTimeLogin") String lastTimeLogin, @Param("userId") Long userId);
 
     UserStatus findByUserId(Long userId);
-
-    boolean existsByUserIdAndStatus(Long userId, String status);
 }

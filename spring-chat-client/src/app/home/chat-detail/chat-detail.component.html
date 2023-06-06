@@ -1,8 +1,8 @@
 <div class="h-100">
   <nb-chat *ngIf="chatModel" status="basic" scrollBottom="true" style="height: 90vh;">
     <ng-template nbChatTitle>
-      <div class="col-lg-1">
-        <img src="{{chatModel.imageUrl}}" width="50px"/>
+      <div class="col-lg-1 friend-image-url">
+        <img src="{{chatModel.imageUrl}}"/>
       </div>
       <div class="col-lg-9 friend-profile-name">{{chatModel.userName}}</div>
       <div class="col-lg-2">

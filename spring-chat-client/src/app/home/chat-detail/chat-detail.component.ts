@@ -64,6 +64,7 @@ export class ChatDetailComponent implements OnInit {
 
   showHideBlock() {
     if (this.chatModel.chatType === environment.CHAT_GROUP) {
+      this.menuFriend.push({id: 4, title: 'Add User From Group', icon: 'person-add-outline'})
       return
     }
     if (this.chatModel.blockedBy) {

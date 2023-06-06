@@ -101,11 +101,35 @@ export class ChatService extends WebSocketService {
   }
 
   createChatGroup(chatGroupModel: ChatGroupModel): Observable<ChatModel> {
-    return this.httpClient.post(`${environment.DOMAIN}/api/chat/group-new`, JSON.stringify(chatGroupModel),this.httpOptions)
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/create`, JSON.stringify(chatGroupModel),this.httpOptions)
       .pipe(map((chats: ChatModel) => {
       this.updateFetchChats([chats], true)
       return chats
     }))
+  }
+
+  addUserChatGroup(chatGroupModel: ChatGroupModel): Observable<ChatModel> {
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/add-user`, JSON.stringify(chatGroupModel),this.httpOptions)
+      .pipe(map((chats: ChatModel) => {
+        this.updateFetchChats([chats], true)
+        return chats
+      }))
+  }
+
+  removeUserChatGroup(chatGroupModel: ChatGroupModel): Observable<ChatModel> {
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/remove-user`, JSON.stringify(chatGroupModel),this.httpOptions)
+      .pipe(map((chats: ChatModel) => {
+        this.updateFetchChats([chats], true)
+        return chats
+      }))
+  }
+
+  leaveChatGroup(chatGroupModel: ChatGroupModel): Observable<ChatModel> {
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/leave`, JSON.stringify(chatGroupModel),this.httpOptions)
+      .pipe(map((chats: ChatModel) => {
+        this.updateFetchChats([chats], true)
+        return chats
+      }))
   }
 
 

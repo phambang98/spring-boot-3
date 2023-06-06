@@ -10,5 +10,6 @@ export class MessageRequest {
     this.content = content;
     this.messageId = messageId;
     this.chatType = chatType;
+    this.chatId = chatId;
   }
 }

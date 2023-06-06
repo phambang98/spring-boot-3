@@ -17,6 +17,8 @@ import org.springframework.context.event.EventListener;
 import org.springframework.messaging.simp.SimpMessageHeaderAccessor;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
+import org.springframework.messaging.simp.user.SimpUser;
+import org.springframework.messaging.simp.user.SimpUserRegistry;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.messaging.*;
@@ -35,9 +37,11 @@ public class WebSocketEventListener {
     @Autowired
     private ChatRepository chatRepository;
 
-
     @Autowired
     private UserStatusRepository userStatusRepository;
+
+    @Autowired
+    private SimpUserRegistry simpUserRegistry;
 
     @EventListener
     public void handleWebSocketSessionConnectEvent(SessionConnectEvent event) {
@@ -79,26 +83,23 @@ public class WebSocketEventListener {
     }
 
     public void processSession(Long userId, String userName, String status) {
-        synchronized (userId) {
-            if (!userStatusRepository.existsByUserIdAndStatus(userId, status)) {
+        var simpUser = simpUserRegistry.getUser(userName);
+        if (simpUser == null) {
+            synchronized (userId) {
                 userStatusRepository.updateStatusAndTimeByUserName(status, DateUtils.convertDateToString(new Date(), "yyyy-MM-dd hh:mm:ss"), userId);
-                sendFriend(userId, userName, status);
+                List<Chat> chatList = chatRepository.findByUserId(userId);
+                String dateTime = DateUtils.convertDateToString(new Date(), "yyyy-MM-dd hh:mm:ss");
+                StatusModel statusModel = new StatusModel();
+                statusModel.setUserId(userId);
+                statusModel.setUserName(userName);
+                statusModel.setStatus(status);
+                statusModel.setLastTimeLogin(dateTime);
+                for (Chat chat : chatList) {
+                    var recipientId = chat.getUserId1().equals(userId) ? chat.getUserId2() : chat.getUserId1();
+                    statusModel.setChatId(chat.getChatId());
+                    messagingTemplate.convertAndSendToUser(String.valueOf(recipientId), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(SocketType.USER_STATUS, statusModel));
+                }
             }
-        }
-    }
-
-    public void sendFriend(Long userId, String userName, String status) {
-        List<Chat> chatList = chatRepository.findByUserId(userId);
-        String dateTime = DateUtils.convertDateToString(new Date(), "yyyy-MM-dd hh:mm:ss");
-        StatusModel statusModel = new StatusModel();
-        for (Chat chat : chatList) {
-            var recipientId = chat.getUserId1().equals(userId) ? chat.getUserId2() : chat.getUserId1();
-            statusModel.setChatId(chat.getChatId());
-            statusModel.setUserId(userId);
-            statusModel.setUserName(userName);
-            statusModel.setStatus(status);
-            statusModel.setLastTimeLogin(dateTime);
-            messagingTemplate.convertAndSendToUser(String.valueOf(recipientId), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(SocketType.USER_STATUS, statusModel));
         }
     }
 }

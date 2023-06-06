@@ -23,7 +23,6 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -139,7 +138,7 @@ public class ChatService {
     }
 
     @Transactional
-    public void newGroupChat(UserPrincipal userPrincipal, ChatGroupModel chatGroupModel) throws ResourceNotFoundException, NewConversationException {
+    public void createGroupChat(UserPrincipal userPrincipal, ChatGroupModel chatGroupModel) throws ResourceNotFoundException, NewConversationException {
         if( chatGroupModel.getListUserName().stream().anyMatch(x -> x.equals(userPrincipal.getUsername()))){
             throw new ResourceNotFoundException("List user name error");
         }
@@ -167,7 +166,62 @@ public class ChatService {
     }
 
     @Transactional
-    public ChatModel removeGroupChat(UserPrincipal userPrincipal, String userNameRecipient) throws ResourceNotFoundException, NewConversationException {
+    public void addUserGroupChat(UserPrincipal userPrincipal, ChatGroupModel chatGroupModel) throws ResourceNotFoundException, NewConversationException {
+        if( chatGroupModel.getListUserName().stream().anyMatch(x -> x.equals(userPrincipal.getUsername()))){
+            throw new ResourceNotFoundException("List user name error");
+        }
+        chatGroupModel.getListUserName().add(userPrincipal.getUsername());
+        var listUsers = usersRepository.findByUserNameIn(chatGroupModel.getListUserName());
+        if (listUsers.size() != chatGroupModel.getListUserName().size()) {
+            throw new ResourceNotFoundException("List user name error");
+        }
+        var chatEntity = new Chat();
+        Date date = new Date();
+        chatEntity.setChatType(ChatType.GROUP.getId());
+        chatEntity.setCreatedAt(date);
+        chatEntity.setDisplayName(chatGroupModel.getNameChatGroup());
+        chatEntity.setCreatedBy(userPrincipal.getId());
+        chatEntity = chatRepository.save(chatEntity);
+        Chat finalChatEntity = chatEntity;
+        List<ChatGroup> chatGroupList = listUsers.stream().map(x -> new ChatGroup(finalChatEntity.getChatId(), x.getId(), date)).collect(Collectors.toList());
+        chatGroupRepository.saveAll(chatGroupList);
+        for (var user : listUsers) {
+            simpMessagingTemplate.convertAndSendToUser(String.valueOf(user.getId()), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(SocketType.USER_CONVERSATION_ADDED,
+                    new ChatModel(chatEntity.getChatId(), null, null, chatEntity.getDisplayName(),
+                            chatEntity.getImageUrl(), chatEntity.getBlockedBy(), Status.ONLINE.name(), null,
+                            null, null, ChatType.GROUP.getId())));
+        }
+    }
+
+    @Transactional
+    public ChatModel removeUserFromGroupChat(UserPrincipal userPrincipal, String userNameRecipient) throws ResourceNotFoundException, NewConversationException {
+        var friend = usersRepository.findByUserName(userNameRecipient);
+        if (friend == null) {
+            throw new ResourceNotFoundException("User email-" + userNameRecipient);
+        }
+        if (friend.getId().equals(userPrincipal.getId())) {
+            throw new NewConversationException("Can't chat for myself-" + userNameRecipient);
+        }
+
+        SocketType typeConv = SocketType.USER_CONVERSATION_UPDATED;
+        var chatEntity = chatRepository.findByUserId1AndUserId2AndChatType(userPrincipal.getId(), friend.getId(), ChatType.GROUP.getId());
+        if (chatEntity == null) {
+            chatEntity = new Chat();
+            chatEntity = chatRepository.save(chatEntity);
+            typeConv = SocketType.USER_CONVERSATION_ADDED;
+        }
+        var userStatusEntity = userStatusRepository.findByUserId(userPrincipal.getId());
+        var friendStatusEntity = userStatusRepository.findByUserId(friend.getId());
+        simpMessagingTemplate.convertAndSendToUser(String.valueOf(friend.getId()), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(typeConv,
+                new ChatModel(chatEntity.getChatId(), userPrincipal.getId(), userPrincipal.getEmail(), userPrincipal.getName(),
+                        userPrincipal.getImageUrl(), chatEntity.getBlockedBy(), userStatusEntity.getStatus(), userStatusEntity.getLastTimeLogin(),
+                        "", null, ChatType.NORMAL.getId())));
+        return new ChatModel(chatEntity.getChatId(), friend.getId(), friend.getEmail(), friend.getUserName(), friend.getImageUrl(), chatEntity.getBlockedBy(),
+                friendStatusEntity.getStatus(), friendStatusEntity.getLastTimeLogin(), "", null, ChatType.NORMAL.getId());
+    }
+
+    @Transactional
+    public ChatModel leaveGroupChat(UserPrincipal userPrincipal, String userNameRecipient) throws ResourceNotFoundException, NewConversationException {
         var friend = usersRepository.findByUserName(userNameRecipient);
         if (friend == null) {
             throw new ResourceNotFoundException("User email-" + userNameRecipient);

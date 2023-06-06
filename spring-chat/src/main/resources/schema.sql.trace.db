@@ -7988,3 +7988,392 @@ org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (
 	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
 	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:108)
 	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-06-05 15:49:16 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select * from (select c.chat_id as chatId,u.id as userId, u.email ,              u.user_name as userName, u.image_Url as imageUrl ,c.BLOCKED_BY as blockedBy,              case when c.BLOCKED_BY is null then us.status else null end as status,               us.last_time_login as lastTimeLogin,              (select case when CONTENT_TYPE ='file' and content is null                       then concat((case when sender_id =[*]:userId then 'Bạn:' else '' end),concat('send ',(select count(1) from file where message_id =mss.message_id)),' file')                       else concat((case when sender_id =:userId then 'Bạn:' else '' end),content) end from message mss where chat_id = c.chat_id order by CREATE_AT desc limit 1 )                       as lastMsg,               max(m.CREATE_AT) as lastTimeMsg,'NORMAL' as chatType        from chat c inner join users u on (c.user_Id1 = u.id or c.user_Id2 = u.id) and u.id !=:userId                    inner join user_status us on us.user_id = u.id                    left join message m on c.chat_id = m.chat_id        where c.user_Id1 = :userId or c.user_Id2 = :userId and c.chat_type ='NORMAL'        group by u.id, u.email ,u.user_name,u.image_Url,c.BLOCKED_BY,us.status,us.last_time_login,c.chat_id        union all       select c.chat_id as chatId,0 as userId,null as email ,              c.display_name as userName ,c.image_url as imageUrl ,              0 as blockedBy,              'ONLINE' as status,               null as lastTimeLogin,              (select case when CONTENT_TYPE ='file' and content is null                       then concat((case when sender_id =:userId then 'Bạn:' else '' end),concat('send ',(select count(1) from file where message_id =mss.message_id)),' file')                       else concat((case when sender_id =:userId then 'Bạn:' else '' end),content) end from message mss where chat_id = c.chat_id order by CREATE_AT desc limit 1 )                       as lastMsg,               max(m.CREATE_AT) as lastTimeMsg,'GROUP' as chatType        from chat c inner join chat_group cg on cg.chat_id = c.chat_id                    inner join users u on u.id =cg.user_id                    left join message m on c.chat_id = m.chat_id        where u.id = :userId and c.chat_type = 'GROUP'        group by u.id, c.image_Url, c.display_name, c.chat_id ) order by lastTimeMsg desc"; expected "ALL (, ANY (, SOME ("; SQL statement:
+select * from (select c.chat_id as chatId,u.id as userId, u.email ,              u.user_name as userName, u.image_Url as imageUrl ,c.BLOCKED_BY as blockedBy,              case when c.BLOCKED_BY is null then us.status else null end as status,               us.last_time_login as lastTimeLogin,              (select case when CONTENT_TYPE ='file' and content is null                       then concat((case when sender_id =:userId then 'Bạn:' else '' end),concat('send ',(select count(1) from file where message_id =mss.message_id)),' file')                       else concat((case when sender_id =:userId then 'Bạn:' else '' end),content) end from message mss where chat_id = c.chat_id order by CREATE_AT desc limit 1 )                       as lastMsg,               max(m.CREATE_AT) as lastTimeMsg,'NORMAL' as chatType        from chat c inner join users u on (c.user_Id1 = u.id or c.user_Id2 = u.id) and u.id !=:userId                    inner join user_status us on us.user_id = u.id                    left join message m on c.chat_id = m.chat_id        where c.user_Id1 = :userId or c.user_Id2 = :userId and c.chat_type ='NORMAL'        group by u.id, u.email ,u.user_name,u.image_Url,c.BLOCKED_BY,us.status,us.last_time_login,c.chat_id        union all       select c.chat_id as chatId,0 as userId,null as email ,              c.display_name as userName ,c.image_url as imageUrl ,              0 as blockedBy,              'ONLINE' as status,               null as lastTimeLogin,              (select case when CONTENT_TYPE ='file' and content is null                       then concat((case when sender_id =:userId then 'Bạn:' else '' end),concat('send ',(select count(1) from file where message_id =mss.message_id)),' file')                       else concat((case when sender_id =:userId then 'Bạn:' else '' end),content) end from message mss where chat_id = c.chat_id order by CREATE_AT desc limit 1 )                       as lastMsg,               max(m.CREATE_AT) as lastTimeMsg,'GROUP' as chatType        from chat c inner join chat_group cg on cg.chat_id = c.chat_id                    inner join users u on u.id =cg.user_id                    left join message m on c.chat_id = m.chat_id        where u.id = :userId and c.chat_type = 'GROUP'        group by u.id, c.image_Url, c.display_name, c.chat_id ) order by lastTimeMsg desc [42001-214]
+2023-06-05 15:50:09 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "select * from (select c.chat_id as chatId,u.id as userId, u.email ,              u.user_name as userName, u.image_Url as imageUrl ,c.BLOCKED_BY as blockedBy,              case when c.BLOCKED_BY is null then us.status else null end as status,               us.last_time_login as lastTimeLogin,              (select case when CONTENT_TYPE ='file' and content is null                       then concat((case when sender_id =[*]:userId then 'Bạn:' else '' end),concat('send ',(select count(1) from file where message_id =mss.message_id)),' file')                       else concat((case when sender_id =:userId then 'Bạn:' else '' end),content) end from message mss where chat_id = c.chat_id order by CREATE_AT desc limit 1 )                       as lastMsg,               max(m.CREATE_AT) as lastTimeMsg,'NORMAL' as chatType        from chat c inner join users u on (c.user_Id1 = u.id or c.user_Id2 = u.id) and u.id !=:userId                    inner join user_status us on us.user_id = u.id                    left join message m on c.chat_id = m.chat_id        where c.user_Id1 = :userId or c.user_Id2 = :userId and c.chat_type ='NORMAL'        group by u.id, u.email ,u.user_name,u.image_Url,c.BLOCKED_BY,us.status,us.last_time_login,c.chat_id"; expected "ALL (, ANY (, SOME ("; SQL statement:
+select * from (select c.chat_id as chatId,u.id as userId, u.email ,              u.user_name as userName, u.image_Url as imageUrl ,c.BLOCKED_BY as blockedBy,              case when c.BLOCKED_BY is null then us.status else null end as status,               us.last_time_login as lastTimeLogin,              (select case when CONTENT_TYPE ='file' and content is null                       then concat((case when sender_id =:userId then 'Bạn:' else '' end),concat('send ',(select count(1) from file where message_id =mss.message_id)),' file')                       else concat((case when sender_id =:userId then 'Bạn:' else '' end),content) end from message mss where chat_id = c.chat_id order by CREATE_AT desc limit 1 )                       as lastMsg,               max(m.CREATE_AT) as lastTimeMsg,'NORMAL' as chatType        from chat c inner join users u on (c.user_Id1 = u.id or c.user_Id2 = u.id) and u.id !=:userId                    inner join user_status us on us.user_id = u.id                    left join message m on c.chat_id = m.chat_id        where c.user_Id1 = :userId or c.user_Id2 = :userId and c.chat_type ='NORMAL'        group by u.id, u.email ,u.user_name,u.image_Url,c.BLOCKED_BY,us.status,us.last_time_login,c.chat_id [42001-214]
+2023-06-05 15:50:38 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT c.chat_id AS chatId,\000d\000a       u.id AS userId,\000d\000a       u.email,\000d\000a       u.user_name AS userName,\000d\000a       u.image_Url AS imageUrl,\000d\000a       c.BLOCKED_BY AS blockedBy,\000d\000a       CASE\000d\000a         WHEN c.BLOCKED_BY IS NULL THEN us.status\000d\000a         ELSE NULL\000d\000a       END AS status,\000d\000a       us.last_time_login AS lastTimeLogin,\000d\000a       (SELECT CASE\000d\000a                 WHEN CONTENT_TYPE = 'file' AND content IS NULL THEN concat ((\000d\000a                   CASE\000d\000a                     WHEN sender_id = [*]:userId THEN 'Bạn:'\000d\000a                     ELSE ''\000d\000a                   END ),concat ('send ',(SELECT COUNT(1) FROM FILE WHERE message_id = mss.message_id)),' file')\000d\000a                 ELSE concat ((\000d\000a                   CASE\000d\000a                     WHEN sender_id = :userId THEN 'Bạn:'\000d\000a                     ELSE ''\000d\000a                   END ),content)\000d\000a               END \000d\000a        FROM message mss\000d\000a        WHERE chat_id = c.chat_id\000d\000a        ORDER BY CREATE_AT DESC LIMIT 1) AS lastMsg,\000d\000a       MAX(m.CREATE_AT) AS lastTimeMsg,\000d\000a       'NORMAL' AS chatType\000d\000aFROM chat c\000d\000a  INNER JOIN users u\000d\000a          ON (c.user_Id1 = u.id\000d\000a          OR c.user_Id2 = u.id)\000d\000a         AND u.id != 1\000d\000a  INNER JOIN user_status us ON us.user_id = u.id\000d\000a  LEFT JOIN message m ON c.chat_id = m.chat_id\000d\000aWHERE c.user_Id1 = 1\000d\000aOR    c.user_Id2 = 1\000d\000aAND   c.chat_type = 'NORMAL'\000d\000aGROUP BY u.id,\000d\000a         u.email,\000d\000a         u.user_name,\000d\000a         u.image_Url,\000d\000a         c.BLOCKED_BY,\000d\000a         us.status,\000d\000a         us.last_time_login,\000d\000a         c.chat_id"; expected "ALL (, ANY (, SOME ("; SQL statement:
+SELECT c.chat_id AS chatId,
+       u.id AS userId,
+       u.email,
+       u.user_name AS userName,
+       u.image_Url AS imageUrl,
+       c.BLOCKED_BY AS blockedBy,
+       CASE
+         WHEN c.BLOCKED_BY IS NULL THEN us.status
+         ELSE NULL
+       END AS status,
+       us.last_time_login AS lastTimeLogin,
+       (SELECT CASE
+                 WHEN CONTENT_TYPE = 'file' AND content IS NULL THEN concat ((
+                   CASE
+                     WHEN sender_id = :userId THEN 'Bạn:'
+                     ELSE ''
+                   END ),concat ('send ',(SELECT COUNT(1) FROM FILE WHERE message_id = mss.message_id)),' file')
+                 ELSE concat ((
+                   CASE
+                     WHEN sender_id = :userId THEN 'Bạn:'
+                     ELSE ''
+                   END ),content)
+               END 
+        FROM message mss
+        WHERE chat_id = c.chat_id
+        ORDER BY CREATE_AT DESC LIMIT 1) AS lastMsg,
+       MAX(m.CREATE_AT) AS lastTimeMsg,
+       'NORMAL' AS chatType
+FROM chat c
+  INNER JOIN users u
+          ON (c.user_Id1 = u.id
+          OR c.user_Id2 = u.id)
+         AND u.id != 1
+  INNER JOIN user_status us ON us.user_id = u.id
+  LEFT JOIN message m ON c.chat_id = m.chat_id
+WHERE c.user_Id1 = 1
+OR    c.user_Id2 = 1
+AND   c.chat_type = 'NORMAL'
+GROUP BY u.id,
+         u.email,
+         u.user_name,
+         u.image_Url,
+         c.BLOCKED_BY,
+         us.status,
+         us.last_time_login,
+         c.chat_id [42001-214]
+2023-06-05 15:50:53 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT c.chat_id AS chatId,\000d\000a       u.id AS userId,\000d\000a       u.email,\000d\000a       u.user_name AS userName,\000d\000a       u.image_Url AS imageUrl,\000d\000a       c.BLOCKED_BY AS blockedBy,\000d\000a       CASE\000d\000a         WHEN c.BLOCKED_BY IS NULL THEN us.status\000d\000a         ELSE NULL\000d\000a       END AS status,\000d\000a       us.last_time_login AS lastTimeLogin,\000d\000a       (SELECT CASE\000d\000a                 WHEN CONTENT_TYPE = 'file' AND content IS NULL THEN concat ((\000d\000a                   CASE\000d\000a                     WHEN sender_id = 1 THEN 'Bạn:'\000d\000a                     ELSE ''\000d\000a                   END ),concat ('send ',(SELECT COUNT(1) FROM FILE WHERE message_id = mss.message_id)),' file')\000d\000a                 ELSE concat ((\000d\000a                   CASE\000d\000a                     WHEN sender_id = [*]:userId THEN 'Bạn:'\000d\000a                     ELSE ''\000d\000a                   END ),content)\000d\000a               END \000d\000a        FROM message mss\000d\000a        WHERE chat_id = c.chat_id\000d\000a        ORDER BY CREATE_AT DESC LIMIT 1) AS lastMsg,\000d\000a       MAX(m.CREATE_AT) AS lastTimeMsg,\000d\000a       'NORMAL' AS chatType\000d\000aFROM chat c\000d\000a  INNER JOIN users u\000d\000a          ON (c.user_Id1 = u.id\000d\000a          OR c.user_Id2 = u.id)\000d\000a         AND u.id != 1\000d\000a  INNER JOIN user_status us ON us.user_id = u.id\000d\000a  LEFT JOIN message m ON c.chat_id = m.chat_id\000d\000aWHERE c.user_Id1 = 1\000d\000aOR    c.user_Id2 = 1\000d\000aAND   c.chat_type = 'NORMAL'\000d\000aGROUP BY u.id,\000d\000a         u.email,\000d\000a         u.user_name,\000d\000a         u.image_Url,\000d\000a         c.BLOCKED_BY,\000d\000a         us.status,\000d\000a         us.last_time_login,\000d\000a         c.chat_id"; expected "ALL (, ANY (, SOME ("; SQL statement:
+SELECT c.chat_id AS chatId,
+       u.id AS userId,
+       u.email,
+       u.user_name AS userName,
+       u.image_Url AS imageUrl,
+       c.BLOCKED_BY AS blockedBy,
+       CASE
+         WHEN c.BLOCKED_BY IS NULL THEN us.status
+         ELSE NULL
+       END AS status,
+       us.last_time_login AS lastTimeLogin,
+       (SELECT CASE
+                 WHEN CONTENT_TYPE = 'file' AND content IS NULL THEN concat ((
+                   CASE
+                     WHEN sender_id = 1 THEN 'Bạn:'
+                     ELSE ''
+                   END ),concat ('send ',(SELECT COUNT(1) FROM FILE WHERE message_id = mss.message_id)),' file')
+                 ELSE concat ((
+                   CASE
+                     WHEN sender_id = :userId THEN 'Bạn:'
+                     ELSE ''
+                   END ),content)
+               END 
+        FROM message mss
+        WHERE chat_id = c.chat_id
+        ORDER BY CREATE_AT DESC LIMIT 1) AS lastMsg,
+       MAX(m.CREATE_AT) AS lastTimeMsg,
+       'NORMAL' AS chatType
+FROM chat c
+  INNER JOIN users u
+          ON (c.user_Id1 = u.id
+          OR c.user_Id2 = u.id)
+         AND u.id != 1
+  INNER JOIN user_status us ON us.user_id = u.id
+  LEFT JOIN message m ON c.chat_id = m.chat_id
+WHERE c.user_Id1 = 1
+OR    c.user_Id2 = 1
+AND   c.chat_type = 'NORMAL'
+GROUP BY u.id,
+         u.email,
+         u.user_name,
+         u.image_Url,
+         c.BLOCKED_BY,
+         us.status,
+         us.last_time_login,
+         c.chat_id [42001-214]
+2023-06-05 16:07:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1375)
+	at org.h2.jdbc.JdbcConnection.getMetaData(JdbcConnection.java:306)
+	at com.zaxxer.hikari.pool.ProxyConnection.getMetaData(ProxyConnection.java:370)
+	at com.zaxxer.hikari.pool.HikariProxyConnection.getMetaData(HikariProxyConnection.java)
+	at com.p6spy.engine.spy.P6DataSource.getConnection(P6DataSource.java:302)
+	at org.springframework.jdbc.datasource.DelegatingDataSource.getConnection(DelegatingDataSource.java:99)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.internal.NonContextualJdbcConnectionAccess.obtainConnection(NonContextualJdbcConnectionAccess.java:38)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:107)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:137)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.connection(StatementPreparerImpl.java:50)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$1.doPrepare(StatementPreparerImpl.java:90)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:176)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareStatement(StatementPreparerImpl.java:75)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:100)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:171)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:146)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.lambda$processNext$0(JdbcValuesResultSetImpl.java:89)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advance(JdbcValuesResultSetImpl.java:274)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:85)
+	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:29)
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:89)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:142)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:32)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:443)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:166)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:91)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$0(ConcreteSqmSelectQueryPlan.java:102)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:305)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:246)
+	at org.hibernate.query.sqm.internal.QuerySqmImpl.doList(QuerySqmImpl.java:546)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:363)
+	at org.hibernate.query.sqm.internal.QuerySqmImpl.list(QuerySqmImpl.java:1032)
+	at org.hibernate.query.Query.getResultList(Query.java:94)
+	at jdk.internal.reflect.GeneratedMethodAccessor120.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:401)
+	at jdk.proxy2/jdk.proxy2.$Proxy190.getResultList(Unknown Source)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$ExistsExecution.doExecute(JpaQueryExecution.java:285)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:90)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:148)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:136)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:164)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:77)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:134)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
+	at jdk.proxy2/jdk.proxy2.$Proxy158.existsByUserIdAndStatus(Unknown Source)
+	at com.example.springchat.listener.WebSocketEventListener.processSession(WebSocketEventListener.java:83)
+	at com.example.springchat.listener.WebSocketEventListener.handleWebSocketDisconnectListener(WebSocketEventListener.java:76)
+	at jdk.internal.reflect.GeneratedMethodAccessor148.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:343)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:228)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:413)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:370)
+	at org.springframework.web.socket.messaging.StompSubProtocolHandler.publishEvent(StompSubProtocolHandler.java:415)
+	at org.springframework.web.socket.messaging.StompSubProtocolHandler.afterSessionEnded(StompSubProtocolHandler.java:650)
+	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.clearSession(SubProtocolWebSocketHandler.java:530)
+	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.afterConnectionClosed(SubProtocolWebSocketHandler.java:399)
+	at org.springframework.web.socket.handler.WebSocketHandlerDecorator.afterConnectionClosed(WebSocketHandlerDecorator.java:85)
+	at org.springframework.web.socket.handler.LoggingWebSocketHandlerDecorator.afterConnectionClosed(LoggingWebSocketHandlerDecorator.java:72)
+	at org.springframework.web.socket.handler.ExceptionWebSocketHandlerDecorator.afterConnectionClosed(ExceptionWebSocketHandlerDecorator.java:78)
+	at org.springframework.web.socket.sockjs.transport.session.AbstractSockJsSession.close(AbstractSockJsSession.java:223)
+	at org.springframework.web.socket.handler.WebSocketSessionDecorator.close(WebSocketSessionDecorator.java:160)
+	at org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorator.close(ConcurrentWebSocketSessionDecorator.java:271)
+	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.stop(SubProtocolWebSocketHandler.java:288)
+	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.stop(SubProtocolWebSocketHandler.java:301)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:234)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:373)
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:206)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1043)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:173)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1001)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:139)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:108)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-06-05 16:08:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1375)
+	at org.h2.jdbc.JdbcConnection.getMetaData(JdbcConnection.java:306)
+	at com.zaxxer.hikari.pool.ProxyConnection.getMetaData(ProxyConnection.java:370)
+	at com.zaxxer.hikari.pool.HikariProxyConnection.getMetaData(HikariProxyConnection.java)
+	at com.p6spy.engine.spy.P6DataSource.getConnection(P6DataSource.java:302)
+	at org.springframework.jdbc.datasource.DelegatingDataSource.getConnection(DelegatingDataSource.java:99)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.internal.NonContextualJdbcConnectionAccess.obtainConnection(NonContextualJdbcConnectionAccess.java:38)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:107)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:137)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.connection(StatementPreparerImpl.java:50)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$1.doPrepare(StatementPreparerImpl.java:90)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl$StatementPreparationTemplate.prepareStatement(StatementPreparerImpl.java:176)
+	at org.hibernate.engine.jdbc.internal.StatementPreparerImpl.prepareStatement(StatementPreparerImpl.java:75)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.lambda$list$0(JdbcSelectExecutorStandardImpl.java:100)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.executeQuery(DeferredResultSetAccess.java:171)
+	at org.hibernate.sql.results.jdbc.internal.DeferredResultSetAccess.getResultSet(DeferredResultSetAccess.java:146)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.lambda$processNext$0(JdbcValuesResultSetImpl.java:89)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.advance(JdbcValuesResultSetImpl.java:274)
+	at org.hibernate.sql.results.jdbc.internal.JdbcValuesResultSetImpl.processNext(JdbcValuesResultSetImpl.java:85)
+	at org.hibernate.sql.results.jdbc.internal.AbstractJdbcValues.next(AbstractJdbcValues.java:29)
+	at org.hibernate.sql.results.internal.RowProcessingStateStandardImpl.next(RowProcessingStateStandardImpl.java:89)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:142)
+	at org.hibernate.sql.results.spi.ListResultsConsumer.consume(ListResultsConsumer.java:32)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.doExecuteQuery(JdbcSelectExecutorStandardImpl.java:443)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.executeQuery(JdbcSelectExecutorStandardImpl.java:166)
+	at org.hibernate.sql.exec.internal.JdbcSelectExecutorStandardImpl.list(JdbcSelectExecutorStandardImpl.java:91)
+	at org.hibernate.sql.exec.spi.JdbcSelectExecutor.list(JdbcSelectExecutor.java:31)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.lambda$new$0(ConcreteSqmSelectQueryPlan.java:102)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.withCacheableSqmInterpretation(ConcreteSqmSelectQueryPlan.java:305)
+	at org.hibernate.query.sqm.internal.ConcreteSqmSelectQueryPlan.performList(ConcreteSqmSelectQueryPlan.java:246)
+	at org.hibernate.query.sqm.internal.QuerySqmImpl.doList(QuerySqmImpl.java:546)
+	at org.hibernate.query.spi.AbstractSelectionQuery.list(AbstractSelectionQuery.java:363)
+	at org.hibernate.query.sqm.internal.QuerySqmImpl.list(QuerySqmImpl.java:1032)
+	at org.hibernate.query.Query.getResultList(Query.java:94)
+	at jdk.internal.reflect.GeneratedMethodAccessor89.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.orm.jpa.SharedEntityManagerCreator$DeferredQueryInvocationHandler.invoke(SharedEntityManagerCreator.java:401)
+	at jdk.proxy2/jdk.proxy2.$Proxy190.getResultList(Unknown Source)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution$ExistsExecution.doExecute(JpaQueryExecution.java:285)
+	at org.springframework.data.jpa.repository.query.JpaQueryExecution.execute(JpaQueryExecution.java:90)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.doExecute(AbstractJpaQuery.java:148)
+	at org.springframework.data.jpa.repository.query.AbstractJpaQuery.execute(AbstractJpaQuery.java:136)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.doInvoke(RepositoryMethodInvoker.java:136)
+	at org.springframework.data.repository.core.support.RepositoryMethodInvoker.invoke(RepositoryMethodInvoker.java:120)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.doInvoke(QueryExecutorMethodInterceptor.java:164)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.invoke(QueryExecutorMethodInterceptor.java:143)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.projection.DefaultMethodInvokingMethodInterceptor.invoke(DefaultMethodInvokingMethodInterceptor.java:77)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.transaction.interceptor.TransactionInterceptor$1.proceedWithInvocation(TransactionInterceptor.java:123)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:388)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:134)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
+	at jdk.proxy2/jdk.proxy2.$Proxy158.existsByUserIdAndStatus(Unknown Source)
+	at com.example.springchat.listener.WebSocketEventListener.processSession(WebSocketEventListener.java:87)
+	at com.example.springchat.listener.WebSocketEventListener.handleWebSocketDisconnectListener(WebSocketEventListener.java:77)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:343)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:228)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:413)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:370)
+	at org.springframework.web.socket.messaging.StompSubProtocolHandler.publishEvent(StompSubProtocolHandler.java:415)
+	at org.springframework.web.socket.messaging.StompSubProtocolHandler.afterSessionEnded(StompSubProtocolHandler.java:650)
+	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.clearSession(SubProtocolWebSocketHandler.java:530)
+	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.afterConnectionClosed(SubProtocolWebSocketHandler.java:399)
+	at org.springframework.web.socket.handler.WebSocketHandlerDecorator.afterConnectionClosed(WebSocketHandlerDecorator.java:85)
+	at org.springframework.web.socket.handler.LoggingWebSocketHandlerDecorator.afterConnectionClosed(LoggingWebSocketHandlerDecorator.java:72)
+	at org.springframework.web.socket.handler.ExceptionWebSocketHandlerDecorator.afterConnectionClosed(ExceptionWebSocketHandlerDecorator.java:78)
+	at org.springframework.web.socket.sockjs.transport.session.AbstractSockJsSession.close(AbstractSockJsSession.java:223)
+	at org.springframework.web.socket.handler.WebSocketSessionDecorator.close(WebSocketSessionDecorator.java:160)
+	at org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorator.close(ConcurrentWebSocketSessionDecorator.java:271)
+	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.stop(SubProtocolWebSocketHandler.java:288)
+	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.stop(SubProtocolWebSocketHandler.java:301)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:234)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:373)
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:206)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1043)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:173)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1001)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:139)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:108)
+	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-06-05 16:22:56 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientConnectionException: Database is already closed (to disable automatic closing at VM shutdown, add ";DB_CLOSE_ON_EXIT=FALSE" to the db URL) [90121-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:678)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.jdbc.JdbcConnection.checkClosed(JdbcConnection.java:1375)
+	at org.h2.jdbc.JdbcConnection.getMetaData(JdbcConnection.java:306)
+	at com.zaxxer.hikari.pool.ProxyConnection.getMetaData(ProxyConnection.java:370)
+	at com.zaxxer.hikari.pool.HikariProxyConnection.getMetaData(HikariProxyConnection.java)
+	at com.p6spy.engine.spy.P6DataSource.getConnection(P6DataSource.java:302)
+	at org.springframework.jdbc.datasource.DelegatingDataSource.getConnection(DelegatingDataSource.java:99)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.internal.NonContextualJdbcConnectionAccess.obtainConnection(NonContextualJdbcConnectionAccess.java:38)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.acquireConnectionIfNeeded(LogicalConnectionManagedImpl.java:107)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getPhysicalConnection(LogicalConnectionManagedImpl.java:137)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.getConnectionForTransactionManagement(LogicalConnectionManagedImpl.java:267)
+	at org.hibernate.resource.jdbc.internal.LogicalConnectionManagedImpl.begin(LogicalConnectionManagedImpl.java:275)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.begin(JdbcResourceLocalTransactionCoordinatorImpl.java:246)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.begin(TransactionImpl.java:83)
+	at org.springframework.orm.jpa.vendor.HibernateJpaDialect.beginTransaction(HibernateJpaDialect.java:164)
+	at org.springframework.orm.jpa.JpaTransactionManager.doBegin(JpaTransactionManager.java:421)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.startTransaction(AbstractPlatformTransactionManager.java:400)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.getTransaction(AbstractPlatformTransactionManager.java:373)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.createTransactionIfNecessary(TransactionAspectSupport.java:595)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:382)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:134)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:218)
+	at jdk.proxy2/jdk.proxy2.$Proxy158.updateStatusAndTimeByUserName(Unknown Source)
+	at com.example.springchat.listener.WebSocketEventListener.processSession(WebSocketEventListener.java:89)
+	at com.example.springchat.listener.WebSocketEventListener.handleWebSocketDisconnectListener(WebSocketEventListener.java:80)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.doInvoke(ApplicationListenerMethodAdapter.java:343)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.processEvent(ApplicationListenerMethodAdapter.java:228)
+	at org.springframework.context.event.ApplicationListenerMethodAdapter.onApplicationEvent(ApplicationListenerMethodAdapter.java:165)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.doInvokeListener(SimpleApplicationEventMulticaster.java:176)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.invokeListener(SimpleApplicationEventMulticaster.java:169)
+	at org.springframework.context.event.SimpleApplicationEventMulticaster.multicastEvent(SimpleApplicationEventMulticaster.java:143)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:413)
+	at org.springframework.context.support.AbstractApplicationContext.publishEvent(AbstractApplicationContext.java:370)
+	at org.springframework.web.socket.messaging.StompSubProtocolHandler.publishEvent(StompSubProtocolHandler.java:415)
+	at org.springframework.web.socket.messaging.StompSubProtocolHandler.afterSessionEnded(StompSubProtocolHandler.java:650)
+	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.clearSession(SubProtocolWebSocketHandler.java:530)
+	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.afterConnectionClosed(SubProtocolWebSocketHandler.java:399)
+	at org.springframework.web.socket.handler.WebSocketHandlerDecorator.afterConnectionClosed(WebSocketHandlerDecorator.java:85)
+	at org.springframework.web.socket.handler.LoggingWebSocketHandlerDecorator.afterConnectionClosed(LoggingWebSocketHandlerDecorator.java:72)
+	at org.springframework.web.socket.handler.ExceptionWebSocketHandlerDecorator.afterConnectionClosed(ExceptionWebSocketHandlerDecorator.java:78)
+	at org.springframework.web.socket.sockjs.transport.session.AbstractSockJsSession.close(AbstractSockJsSession.java:223)
+	at org.springframework.web.socket.handler.WebSocketSessionDecorator.close(WebSocketSessionDecorator.java:160)
+	at org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorator.close(ConcurrentWebSocketSessionDecorator.java:271)
+	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.stop(SubProtocolWebSocketHandler.java:288)
+	at org.springframework.web.socket.messaging.SubProtocolWebSocketHandler.stop(SubProtocolWebSocketHandler.java:301)
+	at org.springframework.context.support.DefaultLifecycleProcessor.doStop(DefaultLifecycleProcessor.java:234)
+	at org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.stop(DefaultLifecycleProcessor.java:373)
+	at org.springframework.context.support.DefaultLifecycleProcessor.stopBeans(DefaultLifecycleProcessor.java:206)
+	at org.springframework.context.support.DefaultLifecycleProcessor.onClose(DefaultLifecycleProcessor.java:129)
+	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1043)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:173)
+	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1001)
+	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:139)
+	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
+	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:108)
+	at java.base/java.lang.Thread.run(Thread.java:833)

@@ -46,23 +46,30 @@ public class ChatController {
         return ResponseEntity.ok(chatService.unBlockChat(chatId, user));
     }
 
-    @PostMapping("chat/group-new")
-    public ResponseEntity<Void> newGroupChat(@Valid @RequestBody ChatGroupModel chatGroupModel) throws ResourceNotFoundException, NewConversationException {
+    @PostMapping("chat-group/create")
+    public ResponseEntity<Void> createGroupChat(@Valid @RequestBody ChatGroupModel chatGroupModel) throws ResourceNotFoundException, NewConversationException {
         UserPrincipal user = SecurityUtils.getCurrentIdLogin();
-        chatService.newGroupChat(user, chatGroupModel);
+        chatService.createGroupChat(user, chatGroupModel);
         return ResponseEntity.ok().build();
     }
 
-//    @PostMapping("chat/group-add")
-//    public ResponseEntity<ChatModel> addGroupChat(@Valid @RequestBody ChatGroupModel chatGroupModel) throws ResourceNotFoundException, NewConversationException {
-//        UserPrincipal user = SecurityUtils.getCurrentIdLogin();
-//        return ResponseEntity.ok(chatService.newGroupChat(user, chatGroupModel));
-//    }
-
-    @DeleteMapping("chat/group")
-    public ResponseEntity<ChatModel> removeGroupChat(@RequestParam(value = "userName") String userName) throws ResourceNotFoundException, NewConversationException {
+    @PostMapping("chat-group/add-user")
+    public ResponseEntity<ChatModel> addUserGroupChat(@Valid @RequestBody ChatGroupModel chatGroupModel) throws ResourceNotFoundException, NewConversationException {
         UserPrincipal user = SecurityUtils.getCurrentIdLogin();
-        return ResponseEntity.ok(chatService.removeGroupChat(user, userName));
+        chatService.addUserGroupChat(user, chatGroupModel);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("chat-group/remove-user")
+    public ResponseEntity<ChatModel> removeUserFromGroupChat(@RequestParam(value = "userName") String userName) throws ResourceNotFoundException, NewConversationException {
+        UserPrincipal user = SecurityUtils.getCurrentIdLogin();
+        return ResponseEntity.ok(chatService.removeUserFromGroupChat(user, userName));
+    }
+
+    @DeleteMapping("chat-group/leave")
+    public ResponseEntity<ChatModel> leaveGroupChat(@RequestParam(value = "userName") String userName) throws ResourceNotFoundException, NewConversationException {
+        UserPrincipal user = SecurityUtils.getCurrentIdLogin();
+        return ResponseEntity.ok(chatService.leaveGroupChat(user, userName));
     }
 
 
