@@ -1,63 +1,171 @@
-nb-card {
-  padding: 0 !important;
-  height: 100%;
+.card {
+  height: 550px;
+  border-radius: 15px !important;
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
 
-  nb-card-body {
-    overflow: unset;
+.contacts_body {
+  padding: 0.75rem 0 !important;
+  overflow-y: auto;
+  white-space: nowrap;
+}
+
+.card-header {
+  border-radius: 15px 15px 0 0 !important;
+  border-bottom: 0 !important;
+}
+
+.card-footer {
+  border-radius: 0 0 15px 15px !important;
+  border-top: 0 !important;
+}
+
+.search {
+  border-radius: 15px 0 0 15px !important;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border: 0 !important;
+  color: white !important;
+}
+
+.search:focus {
+  box-shadow: none !important;
+  outline: 0px !important;
+}
+
+
+.search-btn {
+  border-radius: 0 15px 15px 0 !important;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border: 0 !important;
+  color: white !important;
+  cursor: pointer;
+}
+
+.contacts {
+  list-style: none;
+  padding: 0;
+}
+
+.contacts li {
+  width: 100% !important;
+  padding: 5px 10px;
+  margin-bottom: 15px !important;
+}
+
+.contacts li:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.user-img {
+  height: 70px;
+  width: 70px;
+  border: 1.5px solid #f5f6fa;
+}
+
+.user-img-cont {
+  position: relative;
+  height: 70px;
+  width: 70px;
+}
+.friend-online-icon {
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  background-color: #4cd137;
+  border-radius: 50%;
+  bottom: 0.2em;
+  right: 0.4em;
+  border: 1.5px solid white;
+}
+
+.offline {
+  background-color: #c23616 !important;
+}
+
+.user-info {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 15px;
+}
+
+.user-info span {
+  font-size: 20px;
+  color: white;
+}
+
+.user-info p {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#user-profile {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+
+.user-action-menu {
+  z-index: 1;
+  position: absolute;
+  padding: 15px 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border-radius: 15px;
+  top: 30px;
+  right: 15px;
+  display: none;
+}
+
+.user-action-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-action-menu ul li {
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: 5px;
+}
+
+.user-action-menu ul li i {
+  padding-right: 10px;
+}
+
+.user-action-menu ul li:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+@media(max-width: 576px) {
+  .contacts_card {
+    margin-bottom: 15px !important;
   }
+}
 
-  nb-list {
-    height: 60vh;
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
 
-    nb-list-item:hover {
-      background-color: #4C4C4C09;
-      cursor: pointer;
-    }
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
 
-    nb-list-item {
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #7F7FD5;
+  border-radius: 10px;
+}
 
-      ::ng-deep {
-
-        nb-user {
-
-          .user-picture {
-            width: 6em;
-            height: 6em;
-          }
-
-          .user-name {
-            margin-top: 10px;
-            font-size: 3em;
-          }
-
-          .user-title {
-            margin-top: 10px;
-            font-size: 2em;
-          }
-
-          .info-container {
-            height: 6em;
-          }
-
-          nb-badge {
-            height: 15px;
-            width: 15px;
-            border-radius: 50%;
-          }
-        }
-      }
-    }
-  }
-
-  nb-card-header {
-    .profile {
-      font-size: 30px;
-      padding-top: 5px;
-    }
-  }
-
-  nb-icon {
-    width: 2em;
-    height: 2em;
-  }
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #5454b6;
 }

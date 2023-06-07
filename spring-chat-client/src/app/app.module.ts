@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
-import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [

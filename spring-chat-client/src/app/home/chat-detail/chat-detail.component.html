@@ -1,37 +1,69 @@
-<div class="h-100">
-  <nb-chat *ngIf="chatModel" status="basic" scrollBottom="true" style="height: 90vh;">
-    <ng-template nbChatTitle>
-      <div class="col-lg-1 friend-image-url">
-        <img src="{{chatModel.imageUrl}}"/>
+<div class="card">
+  <div class="card-header msg-head">
+    <div class="d-flex bd-highlight">
+      <div class="friend-img-cont">
+        <img [src]="chatModel.imageUrl" class="rounded-circle friend-img">
+        <span class="friend-online-icon"></span>
       </div>
-      <div class="col-lg-9 friend-profile-name">{{chatModel.userName}}</div>
-      <div class="col-lg-2">
-        <nb-icon icon="more-vertical-outline" [nbContextMenu]="menuFriend" nbContextMenuPlacement="left"
-                 nbContextMenuTag="context-chat-more"></nb-icon>
+      <div class="friend-info">
+        <span>{{chatModel.userName}}</span>
+        <p>1767 Messages</p>
       </div>
-    </ng-template>
-    <nb-chat-message *ngFor="let msg of messages"
-                     [type]="msg.contentType"
-                     [message]="msg.content"
-                     [reply]="msg.reply"
-                     [sender]="msg.senderName"
-                     [date]="msg.createdAt"
-                     [files]="msg.files"
-                     [quote]="msg.quote"
-                     [latitude]="msg.latitude"
-                     [dateFormat]="'dd-MM-yyyy hh:mm:ss'"
-                     [longitude]="msg.longitude"
-                     [avatar]="msg.imageUrl"
-                     [nbContextMenu]=" msg.reply == true ? eventMessageMain :eventMessageSub"
-                     nbContextMenuPlacement="bottom"
-                     nbContextMenuTag="chat-detail"
-                     (click)="clickId(msg.chatId,msg.messageId)"
-                     nbContextMenuTrigger="click">
-    </nb-chat-message>
-    <nb-chat-form *ngIf="!chatModel.blockedBy" [dropFiles]="true" (send)="sendMessage($event)">
-    </nb-chat-form>
-    <nb-chat-form *ngIf="chatModel.blockedBy" [message]="'Bạn không thể gửi tin nhắn lúc này'"
-                  [showButton]=false [dropFiles]="false">
-    </nb-chat-form>
-  </nb-chat>
+      <div class="friend-video-cam">
+        <span><i class="fas fa-video"></i></span>
+        <span><i class="fas fa-phone"></i></span>
+      </div>
+    </div>
+    <span (click)="friendActionMenuBtn()" id="friend-action-menu-btn"><i class="fas fa-ellipsis-v"></i></span>
+    <div class="friend-action-menu">
+      <ul>
+        <li><i class="fas fa-user-circle"></i> View profile</li>
+        <li><i class="fas fa-users"></i> Add to close friends</li>
+        <li><i class="fas fa-plus"></i> Add to group</li>
+        <li><i class="fas fa-ban"></i> Block</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-body msg-card-body">
+    <div *ngFor="let msg of messages"
+         [ngClass]="(msg.reply == true) ?'d-flex justify-content-end mb-4' :'d-flex justify-content-start mb-4'">
+      <div *ngIf="msg.reply" class="msg-container-send">
+        <p>{{msg.content}}</p>
+        <span class="msg-time-send">{{msg.createdAt | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+      </div>
+      <div class="friend-img-cont-msg">
+        <img [src]="msg.imageUrl" class="rounded-circle friend-img-msg">
+      </div>
+      <div *ngIf="!msg.reply" class="msg-container">
+        {{msg.content}}
+        <span class="msg-time">{{msg.createdAt | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="input-group chat-form">
+      <div class="dropped-files" *ngIf="droppedFiles?.length">
+        <ng-container *ngFor="let file of droppedFiles">
+          <div *ngIf="file.urlStyle" [style.background-image]="file.urlStyle">
+            <span class="remove" (click)="removeFile(file)">&times;</span>
+          </div>
+          <div>
+            <nb-icon *ngIf="!file.urlStyle" icon="file-text-outline" pack="nebular-essentials"></nb-icon>
+            <span class="remove" (click)="removeFile(file)">&times;</span>
+          </div>
+        </ng-container>
+      </div>
+      <div class="message-row">
+        <div class="input-group-append">
+          <span class="input-group-text  attach-btn"><i class="fas fa-paperclip"></i></span>
+        </div>
+        <textarea name="" (keydown.enter)="onSendMessage()" class="form-control type-msg"
+                  placeholder="Type your message..." [(ngModel)]="message"></textarea>
+        <div class="input-group-append">
+          <span class="input-group-text send-btn"><i class="fas fa-location-arrow"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+

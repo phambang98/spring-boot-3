@@ -9,7 +9,7 @@ import {ChatModel} from 'src/app/_dtos/chat/ChatModel';
 import {NewChatComponent} from './new-chat/new-chat.component';
 import {ChatService} from "../../_services/chat.service";
 import {NewGroupComponent} from "./new-group/new-group.component";
-import {ChatGroupModel} from "../../_dtos/chat/ChatGroupModel";
+declare var $: any;
 
 @Component({
   selector: 'home-chat-list',
@@ -21,14 +21,10 @@ export class ChatListComponent implements OnInit, AfterViewInit {
 
   chatModels: Observable<ChatModel[]>
   menu = [
-    {title: 'Profile', icon: 'person-outline'},
-    {title: 'New Chat', icon: 'person-add-outline'},
-    {title: 'New Group', icon: 'plus-outline'},
-    {title: 'Settings', icon: 'settings-outline'},
-    {title: 'Log out', icon: 'unlock-outline'},
+    {title: 'View profile', icon: 'fas fa-user-circle'},
+    {title: 'Log out', icon: 'fa fa-sign-out'},
   ];
 
-  badgeText: string = ' '
   profile: UserProfile
 
   constructor(private menuService: NbMenuService, private router: Router, private dialogService: NbDialogService,
@@ -38,9 +34,6 @@ export class ChatListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.chatModels['_value'].forEach(x => {
-      this.chatService.updateStatusChat(x)
-    })
     this.chatService.chatModel.subscribe((fp: ChatModel[]) => {
       this.chatModels['_value'] = fp
     })
@@ -112,5 +105,9 @@ export class ChatListComponent implements OnInit, AfterViewInit {
 
   chatClicked(chatId: Number) {
     this.router.navigate([chatId], {relativeTo: this.route, skipLocationChange: true})
+  }
+
+  actionMenuBtn() {
+    $('.user-action-menu').toggle();
   }
 }

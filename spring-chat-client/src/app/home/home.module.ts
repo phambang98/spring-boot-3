@@ -1,12 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {SharedModule} from '../shared/shared.module';
-
 import {HomeComponent} from './home.component';
 import {ChatComponent} from './chat/chat.component';
 import {ProfileComponent} from './profile/profile.component';
 import {SettingsComponent} from './settings/settings.component';
-
 import {HomeRoutingModule} from './home-routing.module';
 import {ChatListComponent} from './chat-list/chat-list.component';
 import {UserService} from '../_services/user.service';
@@ -21,8 +19,7 @@ import {MessageService} from "../_services/message.service";
 import {WebSocketService} from "../_services/web-socket.service";
 import {NotificationService} from "../_services/notification.service";
 import {NewGroupComponent} from "./chat-list/new-group/new-group.component";
-import {ReactiveFormsModule} from "@angular/forms";
-import {TestComponent} from "./test/test.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -36,10 +33,9 @@ import {TestComponent} from "./test/test.component";
     ChatBannerComponent,
     NewChatComponent,
     NewGroupComponent,
-    TestComponent
   ],
   imports: [
-    CommonModule, HomeRoutingModule, SharedModule, MatProgressBarModule, NgOptimizedImage, ReactiveFormsModule
+    CommonModule, HomeRoutingModule, SharedModule, MatProgressBarModule, NgOptimizedImage, ReactiveFormsModule, FormsModule
   ],
   providers: [
     NbMenuService, WebSocketService, UserService, ChatService, MessageService, NotificationService

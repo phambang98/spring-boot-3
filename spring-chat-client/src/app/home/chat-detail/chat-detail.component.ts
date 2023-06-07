@@ -1,4 +1,6 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component, HostListener,
   OnInit
 } from '@angular/core';
@@ -11,22 +13,29 @@ import {MessageDetail} from 'src/app/_dtos/chat/MessageDetail';
 import {MessageRequest} from "../../_dtos/chat/MessageRequest";
 import {MessageService} from "../../_services/message.service";
 import {ErrorService} from "../../_services/error.service";
-import {NbMenuService} from "@nebular/theme";
 import {environment} from "../../../environments/environment";
+import {NbChatFormComponent, NbMenuService} from "@nebular/theme";
+import {DomSanitizer} from "@angular/platform-browser";
+
+declare var $: any;
 
 @Component({
-  selector: 'app-chat-detail',
+  selector: 'home-chat-detail',
   templateUrl: './chat-detail.component.html',
-  styleUrls: ['./chat-detail.component.scss']
+  styleUrls: ['./chat-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatDetailComponent implements OnInit {
-
   messages: MessageDetail[] = []
   chatModel: ChatModel
   myProfile: UserProfile
   subscription: any
   private messageId: number
   private chatId: number
+  imgDropTypes = ['image/png', 'image/jpeg', 'image/gif']
+  droppedFiles: any[] = []
+  message: string = ''
+
   menuFriend = [
     {id: 1, title: 'Profile Friend', icon: 'person-outline'},
   ]
@@ -42,8 +51,7 @@ export class ChatDetailComponent implements OnInit {
 
   constructor(private chatService: ChatService, private messageService: MessageService, private router: Router,
               private route: ActivatedRoute, private userService: UserService, private errorService: ErrorService,
-              private menuService: NbMenuService) {
-
+              private menuService: NbMenuService, protected cd: ChangeDetectorRef, protected domSanitizer: DomSanitizer) {
     (async () => {
       this.route.params.subscribe(params => {
         if (this.subscription) this.subscription.unsubscribe()
@@ -146,18 +154,57 @@ export class ChatDetailComponent implements OnInit {
     })
   }
 
-  sendMessage(event) {
-    const files = !event.files ? [] : event.files;
-    let messageRequest = new MessageRequest(this.chatModel.userId, event.message, null, this.chatModel.chatType,this.chatModel.chatId);
+  onSendMessage() {
+    if (!this.message) {
+      return
+    }
+    const files = !this.droppedFiles.length ? [] : this.droppedFiles;
+    let messageRequest = new MessageRequest(this.chatModel.userId, this.message, null, this.chatModel.chatType, this.chatModel.chatId);
     this.messageService.createMessage(messageRequest, files)
+    if (this.droppedFiles.length) {
+      this.droppedFiles = []
+    }
+    this.message = ''
+    this.cd.detectChanges()
   }
 
-  @HostListener('keydown', ['$event'])
-  @HostListener('paste', ['$event'])
-  @HostListener('cut', ['$event'])
-  onEvent(event) {
-    if (this.chatModel.blockedBy) {
-      event.preventDefault()
+  friendActionMenuBtn() {
+    $('.friend-action-menu').toggle()
+  }
+
+
+  @HostListener('drop', ['$event'])
+  onDrop(event: any) {
+    event.preventDefault()
+    event.stopPropagation()
+    if (event.dataTransfer && event.dataTransfer.files) {
+      for (const file of event.dataTransfer.files) {
+        const res = file
+        if (this.imgDropTypes.includes(file.type)) {
+          const fr = new FileReader();
+          fr.onload = (e: any) => {
+            res.src = e.target.result
+            res.urlStyle = this.domSanitizer.bypassSecurityTrustStyle(`url(${res.src})`)
+            this.cd.detectChanges()
+          }
+          fr.readAsDataURL(file)
+        }
+        this.droppedFiles.push(res)
+      }
     }
+  }
+
+  removeFile(file) {
+    const index = this.droppedFiles.indexOf(file)
+    if (index >= 0) {
+      this.droppedFiles.splice(index, 1)
+    }
+  }
+
+  @HostListener('dragover', ['$event'])
+  @HostListener('dragleave', ['$event'])
+  onWindowDragEnter(event: any): void {
+    event.preventDefault()
+    event.stopPropagation()
   }
 }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {MessageService} from "../../_services/message.service";
 
 @Component({
   selector: 'home-chat',
