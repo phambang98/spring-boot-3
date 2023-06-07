@@ -23,11 +23,11 @@
       </div>
     </div>
   </div>
-  <div class="card-body contacts_body">
+  <div class="card-body contacts-body">
     <ul class="contacts">
       <li *ngFor="let chat of chatModels | async" (click)="chatClicked(chat.chatId)">
         <div class="d-flex bd-highlight">
-          <div class="user-img-cont">
+          <div class="img-cont">
             <img [src]="chat.imageUrl" class="rounded-circle user-img">
             <span class="friend-online-icon"></span>
           </div>

@@ -4,7 +4,7 @@
   background-color: rgba(0, 0, 0, 0.4) !important;
 }
 
-.contacts_body {
+.contacts-body {
   padding: 0.75rem 0 !important;
   overflow-y: auto;
   white-space: nowrap;
@@ -39,6 +39,7 @@
   border: 0 !important;
   color: white !important;
   cursor: pointer;
+  height: 100%;
 }
 
 .contacts {
@@ -64,10 +65,17 @@
 }
 
 .user-img-cont {
+  height: 70px;
+  width: 70px;
+  margin-bottom: 5px;
+}
+
+img-cont {
   position: relative;
   height: 70px;
   width: 70px;
 }
+
 .friend-online-icon {
   position: absolute;
   height: 15px;

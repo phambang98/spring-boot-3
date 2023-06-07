@@ -22,8 +22,7 @@ declare var $: any;
 @Component({
   selector: 'home-chat-detail',
   templateUrl: './chat-detail.component.html',
-  styleUrls: ['./chat-detail.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./chat-detail.component.scss']
 })
 export class ChatDetailComponent implements OnInit {
   messages: MessageDetail[] = []
@@ -67,7 +66,7 @@ export class ChatDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.menuChatDetail()
+    // this.menuChatDetail()
   }
 
   showHideBlock() {
