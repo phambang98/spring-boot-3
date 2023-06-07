@@ -385,3 +385,11 @@ d
 4spring-chat-client/src/app/_services/chat.service.ts,a\f\af1a2a9e7e30ac4ac683f8036345792eb2f7fc54
 g
 7spring-chat-client/src/app/_dtos/chat/MessageRequest.ts,e\8\e8aabe7fe48390bfd6032b33961c68b17a1e550e
+l
+<spring-chat-client/src/app/_services/notification.service.ts,f\0\f05b612cc11a36368599b4c1828db12d0e6c651a
+t
+Dspring-chat-client/src/app/home/chat-detail/chat-detail.component.ts,8\a\8a5146deb5d6217ba2fc865048be38649a866032
+
+Ospring-chat/src/main/java/com/example/springchat/controller/ChatController.java,c\b\cbae93f95275bcc69adccdd4c6629f776677a7cc
+g
+7spring-chat-client/src/app/_services/message.service.ts,7\d\7d07aa2323a9bb0b16d1fbf0802c9280ba659fd5

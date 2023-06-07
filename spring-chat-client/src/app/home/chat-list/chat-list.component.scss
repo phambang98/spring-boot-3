@@ -1,10 +1,15 @@
+.chat {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .card {
-  height: 550px;
+  height: 500px;
   border-radius: 15px !important;
   background-color: rgba(0, 0, 0, 0.4) !important;
 }
 
-.contacts-body {
+.contacts_body {
   padding: 0.75rem 0 !important;
   overflow-y: auto;
   white-space: nowrap;
@@ -15,9 +20,17 @@
   border-bottom: 0 !important;
 }
 
+.profile_user {
+  margin-bottom: 5px;
+}
+
 .card-footer {
   border-radius: 0 0 15px 15px !important;
   border-top: 0 !important;
+}
+
+.container {
+  align-content: center;
 }
 
 .search {
@@ -32,14 +45,13 @@
   outline: 0px !important;
 }
 
-
-.search-btn {
+.search_btn {
+  height: 100%;
   border-radius: 0 15px 15px 0 !important;
   background-color: rgba(0, 0, 0, 0.3) !important;
   border: 0 !important;
   color: white !important;
   cursor: pointer;
-  height: 100%;
 }
 
 .contacts {
@@ -53,30 +65,20 @@
   margin-bottom: 15px !important;
 }
 
-.contacts li:hover {
-  background-color: rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-}
-
-.user-img {
+.user_img {
   height: 70px;
   width: 70px;
   border: 1.5px solid #f5f6fa;
+
 }
 
-.user-img-cont {
-  height: 70px;
-  width: 70px;
-  margin-bottom: 5px;
-}
-
-img-cont {
+.img_cont {
   position: relative;
   height: 70px;
   width: 70px;
 }
 
-.friend-online-icon {
+.online_icon {
   position: absolute;
   height: 15px;
   width: 15px;
@@ -91,23 +93,23 @@ img-cont {
   background-color: #c23616 !important;
 }
 
-.user-info {
+.user_info {
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 15px;
 }
 
-.user-info span {
+.user_info span {
   font-size: 20px;
   color: white;
 }
 
-.user-info p {
+.user_info p {
   font-size: 10px;
   color: rgba(255, 255, 255, 0.6);
 }
 
-#user-profile {
+#action_menu_btn {
   position: absolute;
   right: 10px;
   top: 10px;
@@ -116,8 +118,7 @@ img-cont {
   font-size: 20px;
 }
 
-
-.user-action-menu {
+.action_menu {
   z-index: 1;
   position: absolute;
   padding: 15px 0;
@@ -129,23 +130,24 @@ img-cont {
   display: none;
 }
 
-.user-action-menu ul {
+.action_menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.user-action-menu ul li {
+.action_menu ul li {
   width: 100%;
   padding: 10px 15px;
   margin-bottom: 5px;
 }
 
-.user-action-menu ul li i {
+.action_menu ul li i {
   padding-right: 10px;
+
 }
 
-.user-action-menu ul li:hover {
+.action_menu ul li:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.2);
 }
@@ -154,26 +156,4 @@ img-cont {
   .contacts_card {
     margin-bottom: 15px !important;
   }
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #7F7FD5;
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #5454b6;
 }

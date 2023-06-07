@@ -108,6 +108,6 @@ export class ChatListComponent implements OnInit, AfterViewInit {
   }
 
   actionMenuBtn() {
-    $('.user-action-menu').toggle();
+    $('.action_menu').toggle();
   }
 }

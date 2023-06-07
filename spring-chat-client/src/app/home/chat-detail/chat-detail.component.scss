@@ -1,10 +1,11 @@
+
 .card {
-  height: 550px;
+  height: 500px;
   border-radius: 15px !important;
   background-color: rgba(0, 0, 0, 0.4) !important;
 }
 
-.msg-card-body {
+.msg_card_body {
   overflow-y: auto;
 }
 
@@ -18,7 +19,8 @@
   border-top: 0 !important;
 }
 
-.type-msg {
+
+.type_msg {
   background-color: rgba(0, 0, 0, 0.3) !important;
   border: 0 !important;
   color: white !important;
@@ -26,12 +28,12 @@
   overflow-y: auto;
 }
 
-.type-msg:focus {
+.type_msg:focus {
   box-shadow: none !important;
   outline: 0px !important;
 }
 
-.attach-btn {
+.attach_btn {
   height: 100%;
   border-radius: 15px 0 0 15px !important;
   background-color: rgba(0, 0, 0, 0.3) !important;
@@ -40,39 +42,49 @@
   cursor: pointer;
 }
 
-.send-btn {
+.send_btn {
+  height: 100%;
   border-radius: 0 15px 15px 0 !important;
   background-color: rgba(0, 0, 0, 0.3) !important;
   border: 0 !important;
   color: white !important;
   cursor: pointer;
-  height: 100%;
 }
 
-.friend-img {
+.search_btn {
+  border-radius: 0 15px 15px 0 !important;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  border: 0 !important;
+  color: white !important;
+  cursor: pointer;
+}
+
+.user_img {
   height: 70px;
   width: 70px;
   border: 1.5px solid #f5f6fa;
+
 }
 
-.friend-img-msg {
+.user_img_msg {
   height: 40px;
   width: 40px;
   border: 1.5px solid #f5f6fa;
+
 }
 
-.friend-img-cont {
+.img_cont {
   position: relative;
   height: 70px;
   width: 70px;
 }
 
-.friend-img-cont-msg {
+.img_cont_msg {
   height: 40px;
   width: 40px;
 }
 
-.friend-online-icon {
+.online_icon {
   position: absolute;
   height: 15px;
   width: 15px;
@@ -83,35 +95,39 @@
   border: 1.5px solid white;
 }
 
-.friend-info {
+.offline {
+  background-color: #c23616 !important;
+}
+
+.user_info {
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 15px;
 }
 
-.friend-info span {
+.user_info span {
   font-size: 20px;
   color: white;
 }
 
-.friend-info p {
+.user_info p {
   font-size: 10px;
   color: rgba(255, 255, 255, 0.6);
 }
 
-.friend-video-cam {
+.video_cam {
   margin-left: 50px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
-.friend-video-cam span {
+.video_cam span {
   color: white;
   font-size: 20px;
   cursor: pointer;
   margin-right: 20px;
 }
 
-.msg-container {
+.msg_cotainer {
   margin-top: auto;
   margin-bottom: auto;
   margin-left: 10px;
@@ -122,7 +138,7 @@
   max-width: 75%;
 }
 
-.msg-container-send {
+.msg_cotainer_send {
   margin-top: auto;
   margin-bottom: auto;
   margin-right: 10px;
@@ -133,11 +149,11 @@
   max-width: 75%;
 }
 
-.msg-container-send p {
-  margin: 0px;
+.msg_content {
+  margin-bottom: 0;
 }
 
-.msg-time {
+.msg_time {
   position: absolute;
   left: 0;
   bottom: -15px;
@@ -145,21 +161,20 @@
   font-size: 10px;
 }
 
-.msg-time-send {
+.msg_time_send {
   position: absolute;
   right: 0;
   bottom: -15px;
   color: rgba(255, 255, 255, 0.5);
   font-size: 10px;
-  width: 70px;
-  height: 11px;
+  width: 100px;
 }
 
-.msg-head {
+.msg_head {
   position: relative;
 }
 
-#friend-action-menu-btn {
+#action_menu_btn_detail {
   position: absolute;
   right: 10px;
   top: 10px;
@@ -168,7 +183,7 @@
   font-size: 20px;
 }
 
-.friend-action-menu {
+.action_menu_detail {
   z-index: 1;
   position: absolute;
   padding: 15px 0;
@@ -180,66 +195,43 @@
   display: none;
 }
 
-.friend-action-menu ul {
+.action_menu_detail ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.friend-action-menu ul li {
+.action_menu_detail ul li {
   width: 100%;
   padding: 10px 15px;
   margin-bottom: 5px;
 }
 
-.friend-action-menu ul li i {
+.action_menu_detail ul li i {
   padding-right: 10px;
+
 }
 
-.friend-action-menu ul li:hover {
+.action_menu_detail ul li:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey;
-  border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #7F7FD5;
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #5454b6;
-}
-
-
-.chat-form {
+.chat_form {
   display: flex;
   flex-direction: column;
   padding: var(--chat-padding);
   border-top: var(--chat-divider-width) var(--chat-divider-style) var(--chat-divider-color);
 }
 
-.chat-form .dropped-files {
+.chat_form .dropped_files {
   display: flex;
   flex-direction: row;
   margin-bottom: 0.5rem;
   flex-wrap: wrap;
 }
 
-.chat-form .dropped-files div {
+.chat_form .dropped_files div {
   background-size: cover;
   width: 3rem;
   height: 3rem;
@@ -252,7 +244,7 @@
   margin-right: 0.5rem;
 }
 
-.chat-form .dropped-files div .remove {
+.chat_form .dropped_files div .remove {
   position: absolute;
   right: -0.5rem;
   top: -0.8rem;
@@ -261,11 +253,7 @@
   cursor: pointer;
 }
 
-.chat-form .message-row {
+.chat_form .message_row {
   flex-direction: row;
   display: flex;
 }
-
-
-
-

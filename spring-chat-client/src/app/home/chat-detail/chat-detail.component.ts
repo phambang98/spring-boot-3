@@ -167,8 +167,8 @@ export class ChatDetailComponent implements OnInit {
     this.cd.detectChanges()
   }
 
-  friendActionMenuBtn() {
-    $('.friend-action-menu').toggle()
+  actionMenuBtnDetail() {
+    $('.action_menu_detail').toggle()
   }
 
 

@@ -1,21 +1,21 @@
 <div class="card">
-  <div class="card-header msg-head">
+  <div class="card-header msg_head">
     <div class="d-flex bd-highlight">
-      <div class="friend-img-cont">
-        <img [src]="chatModel.imageUrl" class="rounded-circle friend-img">
-        <span class="friend-online-icon"></span>
+      <div class="img_cont">
+        <img [src]="chatModel.imageUrl" class="rounded-circle user_img">
+        <span class="online_icon"></span>
       </div>
-      <div class="friend-info">
-        <span>{{chatModel.userName}}</span>
+      <div class="user_info">
+        <span>Chat with Khalid</span>
         <p>1767 Messages</p>
       </div>
-      <div class="friend-video-cam">
+      <div class="video_cam">
         <span><i class="fas fa-video"></i></span>
         <span><i class="fas fa-phone"></i></span>
       </div>
     </div>
-    <span (click)="friendActionMenuBtn()" id="friend-action-menu-btn"><i class="fas fa-ellipsis-v"></i></span>
-    <div class="friend-action-menu">
+    <span id="action_menu_btn_detail" (click)="actionMenuBtnDetail()"><i class="fas fa-ellipsis-v"></i></span>
+    <div class="action_menu_detail">
       <ul>
         <li><i class="fas fa-user-circle"></i> View profile</li>
         <li><i class="fas fa-users"></i> Add to close friends</li>
@@ -24,25 +24,26 @@
       </ul>
     </div>
   </div>
-  <div class="card-body msg-card-body">
+  <div class="card-body msg_card_body">
     <div *ngFor="let msg of messages"
          [ngClass]="(msg.reply == true) ?'d-flex justify-content-end mb-4' :'d-flex justify-content-start mb-4'">
-      <div *ngIf="msg.reply" class="msg-container-send">
-        <p>{{msg.content}}</p>
-        <span class="msg-time-send">{{msg.createdAt | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+      <div *ngIf="msg.reply" class="msg_cotainer_send">
+        <p class="msg_content">{{msg.content}}</p>
+        <span class="msg_time_send">{{msg.createdAt | date:'dd/MM/yyyy HH:mm:ss'}}</span>
       </div>
-      <div class="friend-img-cont-msg">
-        <img [src]="msg.imageUrl" class="rounded-circle friend-img-msg">
+      <div class="img_cont_msg">
+        <img [src]="msg.imageUrl" class="rounded-circle user_img_msg">
       </div>
-      <div *ngIf="!msg.reply" class="msg-container">
+      <div *ngIf="!msg.reply" class="msg_cotainer">
         {{msg.content}}
-        <span class="msg-time">{{msg.createdAt | date:'dd/MM/yyyy HH:mm:ss'}}</span>
+        <span class="msg_time">{{msg.createdAt | date:'dd/MM/yyyy HH:mm:ss'}}</span>
       </div>
     </div>
   </div>
+
   <div class="card-footer">
-    <div class="input-group chat-form">
-      <div class="dropped-files" *ngIf="droppedFiles?.length">
+    <div class="input-group chat_form">
+      <div class="dropped_files" *ngIf="droppedFiles?.length">
         <ng-container *ngFor="let file of droppedFiles">
           <div *ngIf="file.urlStyle" [style.background-image]="file.urlStyle">
             <span class="remove" (click)="removeFile(file)">&times;</span>
@@ -53,14 +54,14 @@
           </div>
         </ng-container>
       </div>
-      <div class="message-row">
+      <div class="message_row">
         <div class="input-group-append">
-          <span class="input-group-text  attach-btn"><i class="fas fa-paperclip"></i></span>
+          <span class="input-group-text  attach_btn"><i class="fas fa-paperclip"></i></span>
         </div>
-        <textarea name="" (keydown.enter)="onSendMessage()" class="form-control type-msg"
+        <textarea name="" (keydown.enter)="onSendMessage()" class="form-control type_msg"
                   placeholder="Type your message..." [(ngModel)]="message"></textarea>
         <div class="input-group-append">
-          <span class="input-group-text send-btn"><i class="fas fa-location-arrow"></i></span>
+          <span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
         </div>
       </div>
     </div>

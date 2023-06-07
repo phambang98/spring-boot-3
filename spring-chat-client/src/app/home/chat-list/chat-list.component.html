@@ -1,15 +1,17 @@
 <div class="card mb-sm-3 mb-md-0 contacts_card">
-  <div class="card-header">
-    <div class="d-flex bd-highlight">
-      <div class="user-img-cont">
-        <img [src]="profile.imageUrl" class="rounded-circle user-img">
+  <div class="card-header msg_head">
+    <div class="d-flex bd-highlight profile_user">
+      <div class="img_cont">
+        <img [src]="profile.imageUrl" class="rounded-circle user_img">
+        <span class="online_icon"></span>
       </div>
-      <div class="user-info">
+      <div class="user_info">
         <span>{{profile.userName}}</span>
+        <p>1767 Messages</p>
       </div>
     </div>
-    <span (click)="actionMenuBtn()" id="user-profile"><i class="fas fa-ellipsis-v"></i></span>
-    <div class="user-action-menu">
+    <span id="action_menu_btn" (click)="actionMenuBtn()"><i class="fas fa-ellipsis-v"></i></span>
+    <div class="action_menu">
       <ul>
         <li *ngFor="let i of menu">
           <i [class]="i.icon"></i> {{i.title}}
@@ -19,19 +21,19 @@
     <div class="input-group">
       <input type="text" placeholder="Search..." name="" class="form-control search">
       <div class="input-group-prepend">
-        <span class="input-group-text search-btn"><i class="fas fa-search"></i></span>
+        <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
       </div>
     </div>
   </div>
-  <div class="card-body contacts-body">
+  <div class="card-body contacts_body">
     <ul class="contacts">
       <li *ngFor="let chat of chatModels | async" (click)="chatClicked(chat.chatId)">
         <div class="d-flex bd-highlight">
-          <div class="img-cont">
-            <img [src]="chat.imageUrl" class="rounded-circle user-img">
-            <span class="friend-online-icon"></span>
+          <div class="img_cont">
+            <img [src]="chat.imageUrl" class="rounded-circle user_img">
+            <span class="online_icon"></span>
           </div>
-          <div class="user-info">
+          <div class="user_info">
             <span>{{chat.userName}}</span>
             <p>Kalid is online</p>
           </div>
