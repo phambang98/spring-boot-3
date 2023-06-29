@@ -23,7 +23,7 @@ public class TokenProvider {
         String secret = "MWU2ODZkZGM1MTYyY2Y1NmQ2YmYyMzg2NmRmODk1MjY3MTMyMDg2ZmU4YjRmMmZlY2MzMzAzZTkzNzA1ZTc1YmE0MDIzODM5ZmZhNmE1ZmEyNTIwMjhmNjFkZDUxNjIxZmM4YjQ2ZWZjYzAyMmI1N2JhODYwZTQwY2UyOGVlMDE";
         keyBytes = secret.getBytes(StandardCharsets.UTF_8);
         key = Keys.hmacShaKeyFor(keyBytes);
-        this.tokenValidityInMillisecondsForRememberMe = 1000 * 60 * 10l;
+        this.tokenValidityInMillisecondsForRememberMe = 1000 * 60 * 1l;
     }
 
     public String createToken(Authentication authentication) {

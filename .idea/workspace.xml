@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f358e88c-6661-4414-8c17-e78c688f2271" name="Changes" comment="cuu a">
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-detail/chat-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-detail/chat-detail.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-detail/chat-detail.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-detail/chat-detail.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-list/chat-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-list/chat-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-list/chat-list.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat-client/src/app/home/chat-list/chat-list.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/security/jwt/TokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/security/jwt/TokenProvider.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-chat/src/main/resources/schema.sql.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-chat/src/main/resources/schema.sql.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/version17/JavaNewVersion.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/version17/JavaNewVersion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,59 +107,59 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JPA.DatabaseSchemaImportDialog": "fa14310f-0dac-4404-971c-0896d3c9d313",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelOrder2": "2",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RequestMappingsPanelWidth2": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "ToolWindowDebug.ShowToolbar": "false",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "jdk.selected.JAVA_MODULE": "azul-17",
-    "last_opened_file_path": "E:/spring-boot-3/spring-chat-client/src/app/shared/dialog/dialog-alert",
-    "list.type.of.created.stylesheet": "SCSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "cn.yiiguxing.plugin.translate",
-    "spring.configuration.checksum": "0becb58bcfec85bfeecebf74aa91d354",
-    "ts.external.directory.path": "D:\\spring-boot-3\\spring-chat-client\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;fa14310f-0dac-4404-971c-0896d3c9d313&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelOrder2&quot;: &quot;2&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth2&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;ToolWindowDebug.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;azul-17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/bangpt/Desktop/New folder/berry-free-angular-admin-template&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;cn.yiiguxing.plugin.translate&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;a5153bc642f254e1c735c932638e1a45&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;E:\\custom-code\\spring-boot-3\\spring-chat-client\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "h2"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;h2&quot;
     ],
-    "com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect": [
-      "H2"
+    &quot;com.intellij.ide.scratch.LRUPopupBuilder$1/SQL Dialect&quot;: [
+      &quot;H2&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\custom-code\spring-boot-3\spring-chat-client\src\app\auth\signup" />
+      <recent name="E:\custom-code\spring-boot-3\spring-chat-client\src\assets" />
+      <recent name="E:\custom-code\spring-boot-3\spring-chat-client\src\app\auth\signin" />
       <recent name="E:\spring-boot-3\spring-chat-client\src\app\shared\dialog\dialog-alert" />
       <recent name="E:\spring-boot-3\spring-chat\src\main\resources" />
-      <recent name="E:\spring-boot-3\spring-chat-client" />
-      <recent name="E:\spring-boot-3\spring-chat-client\src" />
-      <recent name="E:\spring-boot-3\spring-mvc\src\main\java\com\example\springmvc\security" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\spring-boot-3\spring-chat\src\main\resources\templates\html" />
@@ -206,7 +202,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringChatApplication">
+  <component name="RunManager" selected="Spring Boot.SpringApiApplication">
     <configuration name="JavaNewVersion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.springcore.version17.JavaNewVersion" />
       <module name="spring-core" />
@@ -232,9 +228,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="Angular Application (spring-chat-client)" type="JavascriptDebugType" uri="http://localhost:4200">
-      <method v="2" />
     </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="spring-boot-3" />
@@ -304,19 +297,17 @@
     <list>
       <item itemvalue="Application.JavaNewVersion" />
       <item itemvalue="Application.TreeList" />
-      <item itemvalue="JavaScript Debug.Angular Application (spring-chat-client)" />
       <item itemvalue="npm.Angular CLI Server (spring-chat-client)" />
-      <item itemvalue="Spring Boot.SpringChatApplication" />
-      <item itemvalue="Spring Boot.SpringMqApplication" />
-      <item itemvalue="Spring Boot.SpringWebServicesApplication" />
       <item itemvalue="Spring Boot.SpringApiApplication" />
       <item itemvalue="Spring Boot.SpringBatchApplication" />
+      <item itemvalue="Spring Boot.SpringChatApplication" />
+      <item itemvalue="Spring Boot.SpringMqApplication" />
       <item itemvalue="Spring Boot.SpringMvcApplication" />
+      <item itemvalue="Spring Boot.SpringWebServicesApplication" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.JavaNewVersion" />
-        <item itemvalue="Application.TreeList" />
       </list>
     </recent_temporary>
   </component>
@@ -419,6 +410,13 @@
       <workItem from="1685947852474" duration="351000" />
       <workItem from="1685954544787" duration="13162000" />
       <workItem from="1686149521941" duration="630000" />
+      <workItem from="1686642965921" duration="32000" />
+      <workItem from="1686643007377" duration="4071000" />
+      <workItem from="1686648205971" duration="62000" />
+      <workItem from="1686709753860" duration="64000" />
+      <workItem from="1686726455353" duration="262000" />
+      <workItem from="1686727067687" duration="1092000" />
+      <workItem from="1687493758964" duration="311000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679381899693</created>
@@ -590,12 +588,16 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="7862b114-38c6-4c3a-85c5-c3b9e805d369" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="7862b114-38c6-4c3a-85c5-c3b9e805d369">
           <value>
             <State>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -614,6 +616,7 @@
                   </entry>
                 </map>
               </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
             </State>
           </value>
         </entry>
@@ -622,11 +625,6 @@
             <State />
           </value>
         </entry>
-      </map>
-    </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="7862b114-38c6-4c3a-85c5-c3b9e805d369" value="TOOL_WINDOW" />
       </map>
     </option>
   </component>
@@ -642,98 +640,8 @@
     <MESSAGE value="cuu a" />
     <option name="LAST_COMMIT_MESSAGE" value="cuu a" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/org/springframework/spring-test/6.0.2/spring-test-6.0.2.jar!/org/springframework/test/web/reactive/server/DefaultWebTestClient.class</url>
-          <line>138</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/org/springframework/security/spring-security-oauth2-client/6.0.0/spring-security-oauth2-client-6.0.0.jar!/org/springframework/security/oauth2/client/web/OAuth2AuthorizationCodeGrantFilter.class</url>
-          <line>80</line>
-          <option name="timeStamp" value="46" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/org/springframework/batch/spring-batch-core/5.0.0/spring-batch-core-5.0.0.jar!/org/springframework/batch/core/job/flow/State.class</url>
-          <line>7</line>
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/soap/springbootsoapservice/StudentEndpoint.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/spring-api/src/main/java/com/example/springapi/security/authentication/Oauth2SuccessHandler.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="124" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/org/apache/cxf/cxf-rt-frontend-jaxrs/4.0.0/cxf-rt-frontend-jaxrs-4.0.0.jar!/org/apache/cxf/jaxrs/validation/ValidationExceptionMapper.class</url>
-          <line>30</line>
-          <option name="timeStamp" value="140" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/org/apache/cxf/cxf-rt-frontend-jaxrs/4.0.0/cxf-rt-frontend-jaxrs-4.0.0.jar!/org/apache/cxf/jaxrs/validation/JAXRSBeanValidationOutInterceptor.class</url>
-          <line>38</line>
-          <option name="timeStamp" value="143" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/org/apache/cxf/cxf-rt-ws-policy/4.0.0/cxf-rt-ws-policy-4.0.0.jar!/org/apache/cxf/ws/policy/EndpointPolicyImpl.class</url>
-          <line>285</line>
-          <option name="timeStamp" value="169" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/org/apache/cxf/cxf-rt-ws-policy/4.0.0/cxf-rt-ws-policy-4.0.0.jar!/org/apache/cxf/ws/policy/EndpointPolicyImpl.class</url>
-          <line>49</line>
-          <option name="timeStamp" value="170" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>jar://$MAVEN_REPOSITORY$/org/apache/cxf/cxf-core/4.0.0/cxf-core-4.0.0.jar!/org/apache/cxf/interceptor/LoggingInInterceptor.class</url>
-          <line>60</line>
-          <option name="timeStamp" value="174" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/spring-web-services/src/main/java/com/example/springwebservices/services/AnimalServices.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="175" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/spring-mq/src/main/java/com/example/springmq/constants/KeyMQ.java</url>
-          <line>13</line>
-          <option name="timeStamp" value="222" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/version17/TreeListDto.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="223" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/version17/TreeList.java</url>
-          <line>12</line>
-          <option name="timeStamp" value="224" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/spring-mvc/src/main/java/com/example/springmvc/security/jwt/JWTFilter.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="261" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/spring_boot_3$SpringMqApplication.ic" NAME="SpringMqApplication Coverage Results" MODIFIED="1682394588438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/spring_boot_3$SpringBatchApplication.ic" NAME="SpringBatchApplication Coverage Results" MODIFIED="1681121050513" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/spring_boot_3$DemoApplication.ic" NAME="DemoApplication Coverage Results" MODIFIED="1680766437115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.example.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/spring_boot_3$SpringMvcApplication.ic" NAME="SpringMvcApplication Coverage Results" MODIFIED="1681179558487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/spring_boot_3$SpringApiApplication.ic" NAME="SpringApiApplication Coverage Results" MODIFIED="1681359933810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
