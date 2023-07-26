@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class SignUpRequest {\n  constructor(name, email, password) {\n    this.email = email;\n    this.name = name;\n    this.password = password;\n  }\n}","map":null,"metadata":{},"sourceType":"module","externalDependencies":[]}

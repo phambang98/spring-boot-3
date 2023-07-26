@@ -1,0 +1,33 @@
+package com.example.spring.web.services.model.response;
+
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "Dog")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DogResBean {
+
+    @XmlElement(name = "Name")
+    private String name;
+
+    @XmlElement(name = "Description")
+    private String description;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+}

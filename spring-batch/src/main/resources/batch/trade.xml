@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trades>
+    <trade xmlns="https://springframework.org/batch/sample/io/oxm/domain">
+        <isin>XYZ0001</isin>
+        <quantity>5</quantity>
+        <price>11.39</price>
+        <customer>Customer1</customer>
+    </trade>
+    <trade xmlns="https://springframework.org/batch/sample/io/oxm/domain">
+        <isin>XYZ0002</isin>
+        <quantity>2</quantity>
+        <price>72.99</price>
+        <customer>Customer2c</customer>
+    </trade>
+    <trade xmlns="https://springframework.org/batch/sample/io/oxm/domain">
+        <isin>XYZ0003</isin>
+        <quantity>9</quantity>
+        <price>99.99</price>
+        <customer>Customer3</customer>
+    </trade>
+    <trade xmlns="https://springframework.org/batch/sample/io/oxm/domain">
+        <isin>XYZ0004</isin>
+        <quantity>14</quantity>
+        <price>1234.44</price>
+        <customer>Customer4</customer>
+    </trade>
+    <trade xmlns="https://springframework.org/batch/sample/io/oxm/domain">
+        <isin>XYZ0005</isin>
+        <quantity>5</quantity>
+        <price>5555</price>
+        <customer>Customer5</customer>
+    </trade>
+    <trade xmlns="https://springframework.org/batch/sample/io/oxm/domain">
+        <isin>XYZ0006</isin>
+        <quantity>5666</quantity>
+        <price>6</price>
+        <customer>666asdas</customer>
+    </trade>
+</trades>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="core" />
+        <module name="spring-mvc" />
+        <module name="spring-mq" />
+        <module name="spring-rest-api" />
+        <module name="spring-batch" />
+        <module name="spring-web-services" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring-api" target="17" />
+      <module name="spring-boot-custom-starter" target="1.5" />
+      <module name="spring-chat-client" target="17" />
+      <module name="spring-film" target="17" />
+      <module name="spring-music" target="17" />
+      <module name="spring-web-servies" target="17" />
+      <module name="spring-webflux" target="17" />
+      <module name="spring-webservies" target="17" />
+      <module name="Srping-Boot-3" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Srping-Boot-3" options="-parameters" />
+      <module name="core" options="" />
+      <module name="spring-api" options="" />
+      <module name="spring-batch" options="" />
+      <module name="spring-chat-client" options="-parameters" />
+      <module name="spring-film" options="" />
+      <module name="spring-mq" options="" />
+      <module name="spring-music" options="" />
+      <module name="spring-mvc" options="" />
+      <module name="spring-rest-api" options="" />
+      <module name="spring-web-services" options="" />
+      <module name="spring-web-servies" options="-parameters" />
+      <module name="spring-webflux" options="-parameters" />
+      <module name="spring-webservies" options="-parameters" />
+    </option>
+  </component>
+</project>

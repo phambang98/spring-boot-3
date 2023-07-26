@@ -1,0 +1,24 @@
+nb-chat {
+  ::ng-deep {
+    .header {
+      padding: 0px;
+
+      .friend-image-url {
+        width: 50px;
+        height: 50px;
+      }
+
+      .friend-profile-name {
+        height: 100%;
+        padding-top: 15px;
+        font-size: 2em;
+      }
+
+      nb-icon {
+        width: 2em;
+        height: 2em;
+      }
+    }
+  }
+}
+

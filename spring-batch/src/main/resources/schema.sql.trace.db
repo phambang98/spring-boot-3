@@ -1,0 +1,6 @@
+2023-07-26 10:31:05 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MENU" not found; SQL statement:
+select m1_0.id,m1_0.batch_no,m1_0.description,m1_0.last_approve_by,m1_0.last_approve_date,m1_0.last_update_by,m1_0.last_update_date,m2_0.id_menu,m2_0.id,m2_0.description,m2_0.on_click from menu m1_0 left join menu_detail m2_0 on m1_0.id=m2_0.id_menu where m1_0.id=? [42102-214]
+2023-07-26 10:32:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "MENU" not found; SQL statement:
+select m1_0.id,m1_0.batch_no,m1_0.description,m1_0.last_approve_by,m1_0.last_approve_date,m1_0.last_update_by,m1_0.last_update_date,m2_0.id_menu,m2_0.id,m2_0.description,m2_0.on_click from menu m1_0 left join menu_detail m2_0 on m1_0.id=m2_0.id_menu where m1_0.id=? [42102-214]

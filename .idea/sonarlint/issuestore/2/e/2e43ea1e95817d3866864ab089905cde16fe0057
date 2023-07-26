@@ -1,0 +1,7 @@
+
+a
+java:S2184-"FCast one of the operands of this multiplication operation to a "long".(‚ûçøøÿÿÿÿ
+\
+java:S2184."FCast one of the operands of this multiplication operation to a "long".(ìŒœ
+h
+java:S6204L"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
