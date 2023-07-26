@@ -51,7 +51,7 @@ public class FileUtils {
         if (!Files.exists(path)) {
             new File(directory).mkdirs();
         }
-        return directory;
+        return Path.of(System.getProperty("user.dir")).getParent() + File.separator + directory;
     }
 
     public static boolean existsFile(String filePathString) {

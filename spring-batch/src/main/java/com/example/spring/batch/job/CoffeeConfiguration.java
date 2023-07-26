@@ -2,6 +2,7 @@ package com.example.spring.batch.job;
 
 import com.example.spring.batch.mapper.CustomLineMapper;
 import com.example.spring.batch.partitioner.CoffeePartitioner;
+import com.example.spring.batch.process.CoffeeItemProcessor;
 import com.example.spring.batch.tasklet.CoffeeRemoveTasklet;
 import com.example.spring.batch.tasklet.FileInputTasklet;
 import com.example.spring.batch.validator.CoffeeBeanValidator;
@@ -46,9 +47,12 @@ public class CoffeeConfiguration extends BatchConfiguration {
 
     @Autowired
     private CoffeeBeanValidator coffeeBeanValidator;
+
     @Autowired
     private CoffeeWriter coffeeWriter;
 
+    @Autowired
+    private CoffeeItemProcessor coffeeItemProcessor;
 
     @Autowired
     private ErrorUploadFileWriter errorUploadFileWriter;
@@ -64,7 +68,8 @@ public class CoffeeConfiguration extends BatchConfiguration {
                 .from(checkExistsFileCoffeeStep).on("COMPLETED")
                 .to(coffeeUploadFileStep)
                 .next(coffeePreStep)
-                .next(removeCoffeeUploadFileStep).end()
+                .next(removeCoffeeUploadFileStep)
+                .end()
                 .listener(jobNotificationListener)
                 .build();
     }
@@ -163,7 +168,6 @@ public class CoffeeConfiguration extends BatchConfiguration {
             return new MapSqlParameterSource(params);
         });
         itemWriter.afterPropertiesSet();
-        itemWriter.setAssertUpdates(false);
         return itemWriter;
     }
 
@@ -185,7 +189,7 @@ public class CoffeeConfiguration extends BatchConfiguration {
         return new StepBuilder("coffeePreStep", jobRepository)
                 .partitioner(coffeeNextStep(jobRepository, transactionManager).getName(), coffeePartitioner(null))
                 .step(coffeeNextStep(jobRepository, transactionManager))
-                .gridSize(10)
+                .gridSize(3)
                 .taskExecutor(batchTaskExecutor())
                 .build();
     }
@@ -195,6 +199,7 @@ public class CoffeeConfiguration extends BatchConfiguration {
         return new StepBuilder("coffeeNextStep", jobRepository)
                 .<CoffeeBean, CoffeeBean>chunk(chunkSize, transactionManager)
                 .reader(coffeePreReader(null, null, null))
+                .processor(coffeeItemProcessor)
                 .writer(coffeeWriter)
                 .faultTolerant()
                 .skip(Exception.class)

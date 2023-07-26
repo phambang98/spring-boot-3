@@ -25,7 +25,10 @@ public class CoffeeWriter implements ItemWriter<CoffeeBean> {
     public void write(Chunk<? extends CoffeeBean> chunk) {
         ModelMapper modelMapper = new ModelMapper();
         List<Coffee> coffeeList = Arrays.asList(modelMapper.map(chunk.getItems(), Coffee[].class));
+        coffeeList.forEach(x -> x.setCoffeeIdd(coffeeRepository.getSequenceDb("SEQ_Coffee")));
         coffeeRepository.saveAll(coffeeList);
         logger.info("writer :{},{},{}", chunk.getItems().size(), chunk.getItems().get(0).getBrand(), chunk.getItems().get(chunk.getItems().size() - 1).getBrand());
     }
+
+
 }

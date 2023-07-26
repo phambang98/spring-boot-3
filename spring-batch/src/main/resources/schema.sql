@@ -17,9 +17,13 @@ CREATE TABLE Users
     IMAGE_URL           varchar2(250),
     blocked_by          varchar2(250)
 );
+
+CREATE SEQUENCE SEQ_Coffee
+    INCREMENT BY 1;
+
 CREATE TABLE Coffee
 (
-    coffee_id       INT AUTO_INCREMENT PRIMARY KEY,
+    coffee_id       INT  PRIMARY KEY,
     brand           VARCHAR(20),
     origin          VARCHAR(20),
     characteristics VARCHAR(30)

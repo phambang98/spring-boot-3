@@ -5,32 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f358e88c-6661-4414-8c17-e78c688f2271" name="Changes" comment="cuu a">
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/SeqGeneratorRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/impl/SeqGeneratorRepositoryImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/PreDestroyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/PreDestroyApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/config/DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/config/DataSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/controller/BatchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/controller/BatchController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/AutowiringSpringBeanJobFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/AutowiringSpringBeanJobFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/CoffeeQuartzJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/CoffeeQuartzJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/MenuExportJsonQuartzJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/MenuExportJsonQuartzJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/MultiFileImportQuartzJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/MultiFileImportQuartzJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/SchedulerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/SchedulerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/StudentImportQuartzJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/StudentImportQuartzJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/TradeExportQuartzJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/TradeExportQuartzJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/TradeImportQuartzJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/TradeImportQuartzJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/UsersQuartzJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/UsersQuartzJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/Coffee.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/Coffee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/utils/FileUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/utils/FileUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/job/CoffeeConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/job/CoffeeConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/process/CoffeeItemProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/process/CoffeeItemProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/writer/CoffeeWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/writer/CoffeeWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/resources/data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-batch/src/main/resources/quartz.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/resources/quartz.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-mvc/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-mvc/src/main/resources/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-web-services/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-web-services/src/main/resources/schema.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +35,8 @@
         <option value="CSS File" />
         <option value="SCSS File" />
         <option value="JavaScript File" />
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -223,7 +211,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringRestApiApplication">
+  <component name="RunManager" selected="Spring Boot.SpringBatchApplication">
     <configuration name="Angular Application (angular-movies)" type="JavascriptDebugType" uri="http://localhost:4200">
       <method v="2" />
     </configuration>
@@ -430,7 +418,9 @@
       <workItem from="1690334222640" duration="25000" />
       <workItem from="1690336508740" duration="866000" />
       <workItem from="1690338077273" duration="407000" />
-      <workItem from="1690341349610" duration="2072000" />
+      <workItem from="1690341349610" duration="2168000" />
+      <workItem from="1690358052832" duration="4084000" />
+      <workItem from="1690362373010" duration="2235000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679381899693</created>
