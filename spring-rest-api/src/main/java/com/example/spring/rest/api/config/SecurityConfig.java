@@ -20,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
@@ -66,8 +67,8 @@ public class SecurityConfig {
                         AntPathRequestMatcher.antMatcher("/*/*.css"), AntPathRequestMatcher.antMatcher("/*/*.js"),
                         AntPathRequestMatcher.antMatcher("/api/account/*"), AntPathRequestMatcher.antMatcher("/api/docs"),
                         AntPathRequestMatcher.antMatcher("/login/oauth2/code/*"), AntPathRequestMatcher.antMatcher("/ws/**"),
-                        AntPathRequestMatcher.antMatcher("/swagger-ui/**"), AntPathRequestMatcher.antMatcher( "/v3/api-docs"),
-                        AntPathRequestMatcher.antMatcher( "/v3/api-docs/**"), AntPathRequestMatcher.antMatcher("/api/authenticate"),
+                        AntPathRequestMatcher.antMatcher("/swagger-ui/**"), AntPathRequestMatcher.antMatcher("/v3/api-docs"),
+                        AntPathRequestMatcher.antMatcher("/v3/api-docs/**"), AntPathRequestMatcher.antMatcher("/api/authenticate"),
                         AntPathRequestMatcher.antMatcher("/api/file/**")).permitAll()
                 .requestMatchers(PathRequest.toH2Console()).permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/api/image2")).hasAuthority("dog")
@@ -81,7 +82,6 @@ public class SecurityConfig {
                 .headers().frameOptions().disable().and()
                 .addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class).build();
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {

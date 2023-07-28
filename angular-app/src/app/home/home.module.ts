@@ -22,7 +22,7 @@ import {WebSocketService} from "../_services/web-socket.service";
 import {NotificationService} from "../_services/notification.service";
 import {NewGroupComponent} from "./chat-list/new-group/new-group.component";
 import {ReactiveFormsModule} from "@angular/forms";
-import {TestComponent} from "./test/test.component";
+import {LuckyWheelComponent} from "./lucky-wheel/lucky-wheel.component";
 
 @NgModule({
   declarations: [
@@ -36,7 +36,7 @@ import {TestComponent} from "./test/test.component";
     ChatBannerComponent,
     NewChatComponent,
     NewGroupComponent,
-    TestComponent
+    LuckyWheelComponent
   ],
   imports: [
     CommonModule, HomeRoutingModule, SharedModule, MatProgressBarModule, NgOptimizedImage, ReactiveFormsModule

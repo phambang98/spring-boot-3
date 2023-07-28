@@ -153,3 +153,5 @@ Uspring-mvc/src/main/java/com/example/spring/mvc/security/FormLoginSuccessHandle
 Rspring-mvc/src/main/java/com/example/spring/mvc/security/Oauth2FailureHandler.java,f\0\f001793be424595eb0d0aa9149dbf6b0c82abbe5
 s
 Ccore/src/main/java/com/example/core/repository/UsersRepository.java,5\c\5cd7e90441f84b468a48797cfc0ae24a1ef54bcd
+„
+Tspring-rest-api/src/main/java/com/example/spring/rest/api/config/SecurityConfig.java,5\9\5907f90388c4d06bae5c3d6bdb9382a5da7c6222

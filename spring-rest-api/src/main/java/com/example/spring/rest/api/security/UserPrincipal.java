@@ -7,10 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserPrincipal implements UserDetails, OAuth2User {
@@ -108,4 +105,16 @@ public class UserPrincipal implements UserDetails, OAuth2User {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserPrincipal that = (UserPrincipal) o;
+        return Objects.equals(id, that.id) && Objects.equals(mEmail, that.mEmail) && Objects.equals(mPassword, that.mPassword) && Objects.equals(mAuthorities, that.mAuthorities) && Objects.equals(mAttributes, that.mAttributes) && Objects.equals(mUserName, that.mUserName) && Objects.equals(mImageUrl, that.mImageUrl);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, mEmail, mPassword, mAuthorities, mAttributes, mUserName, mImageUrl);
+    }
 }

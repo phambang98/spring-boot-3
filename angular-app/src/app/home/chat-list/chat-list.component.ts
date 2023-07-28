@@ -26,6 +26,7 @@ export class ChatListComponent implements OnInit, AfterViewInit {
     {title: 'New Group', icon: 'plus-outline'},
     {title: 'Settings', icon: 'settings-outline'},
     {title: 'Log out', icon: 'unlock-outline'},
+    {title: 'Lucky-wheel', icon: 'settings-outline'},
   ];
 
   badgeText: string = ' '
@@ -99,6 +100,9 @@ export class ChatListComponent implements OnInit, AfterViewInit {
             break;
           case 'Settings':
             this.router.navigateByUrl("/settings")
+            break;
+          case 'Lucky-wheel':
+            this.router.navigateByUrl("/lucky-wheel")
             break;
           case 'Log out':
             this.userService.logout()

@@ -673,3 +673,9 @@ select SEQ_Coffee.nextval from dual [42122-214]
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
+2023-07-28 16:33:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRIZES" not found; SQL statement:
+select p1_0.id,p1_0.description,p1_0.display_number,p1_0.image_url,p1_0.last_approve_by,p1_0.last_approve_date,p1_0.last_update_by,p1_0.last_update_date,p1_0.lucky_number,p1_0.prize_group_id,p1_0.quantity,p1_0.status,p1_0.type from prizes p1_0 join prize_group p2_0 on p1_0.prize_group_id=p2_0.id where p1_0.prize_group_id=1 and p1_0.lucky_number=50 [42102-214]
+2023-07-28 16:33:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRIZES" not found; SQL statement:
+select p1_0.id,p1_0.description,p1_0.display_number,p1_0.image_url,p1_0.last_approve_by,p1_0.last_approve_date,p1_0.last_update_by,p1_0.last_update_date,p1_0.lucky_number,p1_0.prize_group_id,p1_0.quantity,p1_0.status,p1_0.type from prizes p1_0 join prize_group p2_0 on p1_0.prize_group_id=p2_0.id where p1_0.prize_group_id=1 and p1_0.lucky_number=50 [42102-214]
