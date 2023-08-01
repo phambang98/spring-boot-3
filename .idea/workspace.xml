@@ -5,39 +5,74 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f358e88c-6661-4414-8c17-e78c688f2271" name="Changes" comment="cuu a">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/LuckyResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/PrizeGroup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/Prizes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/LuckyResultRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/PrizeGroupRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/PrizeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/PrizeRepositoryCustom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/impl/PrizeRepositoryCustomImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/LuckyWheelController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/model/ResultData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/LuckyWheelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fa14310f-0dac-4404-971c-0896d3c9d313.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fa14310f-0dac-4404-971c-0896d3c9d313/storage_v2/_src_/database/SCHEMA.SQL.4ZsqAg.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fa14310f-0dac-4404-971c-0896d3c9d313/storage_v2/_src_/database/SCHEMA.SQL.4ZsqAg/schema/INFORMATION_SCHEMA.NBgcMw.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular-app/src/app/_dtos/lucky-wheel/LuckyWheelModel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular-app/src/app/_dtos/lucky-wheel/PrizeModel.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular-app/src/app/_services/lucky-wheel.service.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular-app/src/app/_services/lucky-wheel.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-banner/chat-banner.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/model/LuckyWheelModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/9/5907f90388c4d06bae5c3d6bdb9382a5da7c6222" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/5/9/5907f90388c4d06bae5c3d6bdb9382a5da7c6222" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/d/0db939e8b879b9ae6acf41985f67c33477b56cd0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_services/chat.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_services/chat.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_services/message.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_services/message.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_services/web-socket.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_services/web-socket.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-banner/chat-banner.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-banner/chat-banner.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-banner/chat-banner.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/0/d/0db939e8b879b9ae6acf41985f67c33477b56cd0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-banner/chat-banner.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-banner/chat-banner.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-banner/chat-banner.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-detail/chat-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-detail/chat-detail.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-detail/chat-detail.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-detail/chat-detail.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-detail/chat-detail.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-detail/chat-detail.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-detail/chat-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-detail/chat-detail.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-list/chat-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-list/chat-list.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-list/chat-list.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-list/chat-list.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-list/chat-list.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-list/chat-list.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-list/chat-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-list/chat-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-list/new-chat/new-chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/new-chat/new-chat.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-list/new-group/new-group.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/new-group/new-group.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat-list/new-group/new-group.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/new-group/new-group.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat/chat.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat/chat.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat/chat.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/chat/chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/home-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/home/home-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/home/home.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/home.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/home/home.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/test/test.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/test/test.component.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/test/test.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/test/test.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/GENRES.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/Genres.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/security/UserPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/security/UserPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/security/jwt/TokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/security/jwt/TokenProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/loading/loading.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/loading/loading.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/loading/loading.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/loading/loading.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-banner/chat-banner.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/lucky-wheel/lucky-wheel.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/lucky-wheel/lucky-wheel.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/lucky-wheel/lucky-wheel.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/lucky-wheel/lucky-wheel.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/profile/profile.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/profile/profile.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/profile/profile.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/profile/profile.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/profile/profile.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/profile/profile.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/profile/profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/settings/settings.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/settings/settings.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_dtos/lucky-wheel/PrizeGroup.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/settings/settings.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/settings/settings.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/assets/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/PrizeGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/PrizeGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/enums/SocketType.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/enums/SocketType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/PrizeGroupRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/PrizeGroupRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/PrizeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/PrizeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/utils/WebSocketKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/utils/WebSocketKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/LuckyWheelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/LuckyWheelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/model/ResultData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/ChatService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/LuckyWheelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/LuckyWheelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/MessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +176,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;azul-17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/custom-code/spring-boot-3/angular-movie&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/custom-code/spring-boot-3/angular-app/src/assets/home&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -171,18 +206,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\custom-code\spring-boot-3\angular-app\src\assets\home" />
       <recent name="E:\custom-code\spring-boot-3" />
       <recent name="E:\custom-code\spring-boot-3\spring-chat\src\main\resources" />
       <recent name="E:\custom-code\spring-boot-3\spring-chat\src\main\java\com\example\springchat\controller" />
       <recent name="E:\custom-code\spring-boot-3\spring-music-client\src\app" />
-      <recent name="E:\custom-code\spring-boot-3\spring-music\src\main\java\com\example\springmusic" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\custom-code\spring-boot-3\angular-app\src\assets" />
+      <recent name="E:\custom-code\spring-boot-3\angular-app\src\app\home\chat" />
+      <recent name="E:\custom-code\spring-boot-3\angular-app\src\app\home" />
       <recent name="E:\spring-boot-3\spring-chat\src\main\resources\templates\html" />
       <recent name="E:\spring-boot-3\spring-chat-server\src\main\resources\static\js" />
-      <recent name="E:\spring-boot-3\spring-webflux\src\main\resources\templates" />
-      <recent name="E:\spring-boot-3\src\main\resources\templates" />
-      <recent name="E:\spring-boot-3\src\main\resources\templates\html" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="com.example.springchat.security.jwt" />
@@ -225,9 +260,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.SpringRestApiApplication">
-    <configuration name="Angular Application (angular-movies)" type="JavascriptDebugType" uri="http://localhost:4200">
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <module name="angular-movies" />
       <method v="2">
@@ -292,19 +324,7 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="Angular CLI Server (angular-movie)" type="js.build_tools.npm">
-      <package-json value="$PROJECT_DIR$/angular-movie/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="JavaScript Debug.Angular Application (angular-movies)" />
-      <item itemvalue="npm.Angular CLI Server (angular-movie)" />
       <item itemvalue="npm.Angular CLI Server (angular-app)" />
       <item itemvalue="Spring Boot.SpringBatchApplication" />
       <item itemvalue="Spring Boot.SpringMqApplication" />
@@ -437,7 +457,9 @@
       <workItem from="1690364910099" duration="646000" />
       <workItem from="1690513248983" duration="4117000" />
       <workItem from="1690526025481" duration="1559000" />
-      <workItem from="1690528368537" duration="9759000" />
+      <workItem from="1690528368537" duration="11871000" />
+      <workItem from="1690769113288" duration="14500000" />
+      <workItem from="1690855230216" duration="9451000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679381899693</created>

@@ -8,11 +8,11 @@ import {ChatModel} from 'src/app/_dtos/chat/ChatModel';
 import {UserProfile} from 'src/app/_dtos/user/UserProfile';
 import {UserService} from 'src/app/_services/user.service';
 import {MessageDetail} from 'src/app/_dtos/chat/MessageDetail';
-import {MessageRequest} from "../../_dtos/chat/MessageRequest";
+import {NbMenuService} from "@nebular/theme";
 import {MessageService} from "../../_services/message.service";
 import {ErrorService} from "../../_services/error.service";
-import {NbMenuService} from "@nebular/theme";
 import {environment} from "../../../environments/environment";
+import {MessageRequest} from "../../_dtos/chat/MessageRequest";
 
 @Component({
   selector: 'app-chat-detail',

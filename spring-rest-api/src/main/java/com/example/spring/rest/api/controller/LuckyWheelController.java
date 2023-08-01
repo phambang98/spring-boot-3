@@ -1,13 +1,11 @@
 package com.example.spring.rest.api.controller;
 
+import com.example.core.entity.PrizeGroup;
 import com.example.core.entity.Prizes;
-import com.example.spring.rest.api.model.ResultData;
+import com.example.spring.rest.api.model.LuckyWheelModel;
 import com.example.spring.rest.api.service.LuckyWheelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,13 +18,13 @@ public class LuckyWheelController {
 
 
     @RequestMapping("")
-    public List<Prizes> getAllPrizeByCurrentDate() {
-        return luckyWheelService.getAllPrizeByCurrentDate();
+    public PrizeGroup findFirstByCurrentDateTime() {
+        return luckyWheelService.findFirstByCurrentDateTime();
     }
 
 
-    @PostMapping("spin")
-    public ResultData spinWheel(@RequestParam("prizeGroupId") Long prizeGroupId) {
+    @PostMapping("spin/{prizeGroupId}")
+    public LuckyWheelModel spinWheel(@PathVariable("prizeGroupId") Long prizeGroupId) {
         return luckyWheelService.spinWheel(prizeGroupId);
     }
 

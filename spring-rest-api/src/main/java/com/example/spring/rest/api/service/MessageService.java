@@ -129,9 +129,7 @@ public class MessageService {
                 messageModel.setImageUrl(user.getImageUrl());
                 messageModel.setRecipientId(messageRequest.getRecipientId());
                 if (CollectionUtils.isNotEmpty(messageModel.getFiles())) {
-                    messageModel.getFiles().forEach(x -> {
-                        x.setUrl(CommonKey.API_GET_FILE_CHAT + x.getFileName());
-                    });
+                    messageModel.getFiles().forEach(x -> x.setUrl(CommonKey.API_GET_FILE_CHAT + x.getFileName()));
                 }
                 if (chat.getChatType().equals(ChatType.GROUP.getId())) {
                     for (var friendId : chatGroupRepository.getUserIdByChatId(messageModel.getChatId())) {

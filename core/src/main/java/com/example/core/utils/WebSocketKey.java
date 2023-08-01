@@ -5,4 +5,6 @@ public class WebSocketKey {
 
     public static final String DESTINATION_STATUS = "/queue/status";
 
+    public static final String LUCKY_WHEEL = "/lucky-wheel";
+
 }

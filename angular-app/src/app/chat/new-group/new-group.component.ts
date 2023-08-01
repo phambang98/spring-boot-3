@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NbDialogRef} from '@nebular/theme';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {UserService} from "../../../_services/user.service";
-import {ErrorService} from "../../../_services/error.service";
-import {ChatGroupModel} from "../../../_dtos/chat/ChatGroupModel";
+import {UserService} from "../../_services/user.service";
+import {ErrorService} from "../../_services/error.service";
+import {ChatGroupModel} from "../../_dtos/chat/ChatGroupModel";
 
 @Component({
   template: `

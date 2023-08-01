@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class ChatService {
 
     @Autowired
@@ -50,7 +51,6 @@ public class ChatService {
     }
 
 
-    @Transactional
     public ChatModel newConversation(UserPrincipal userPrincipal, String userName) throws ResourceNotFoundException, NewConversationException {
         var friend = usersRepository.findByUserName(userName);
         if (friend == null) {
@@ -137,8 +137,7 @@ public class ChatService {
         }
     }
 
-    @Transactional
-    public void createGroupChat(UserPrincipal userPrincipal, ChatGroupModel chatGroupModel) throws ResourceNotFoundException, NewConversationException {
+    public void createGroupChat(UserPrincipal userPrincipal, ChatGroupModel chatGroupModel) throws ResourceNotFoundException {
         if( chatGroupModel.getListUserName().stream().anyMatch(x -> x.equals(userPrincipal.getUsername()))){
             throw new ResourceNotFoundException("List user name error");
         }
@@ -165,8 +164,7 @@ public class ChatService {
         }
     }
 
-    @Transactional
-    public void addUserGroupChat(UserPrincipal userPrincipal, ChatGroupModel chatGroupModel) throws ResourceNotFoundException, NewConversationException {
+    public void addUserGroupChat(UserPrincipal userPrincipal, ChatGroupModel chatGroupModel) throws ResourceNotFoundException {
         if( chatGroupModel.getListUserName().stream().anyMatch(x -> x.equals(userPrincipal.getUsername()))){
             throw new ResourceNotFoundException("List user name error");
         }
@@ -193,7 +191,6 @@ public class ChatService {
         }
     }
 
-    @Transactional
     public ChatModel removeUserFromGroupChat(UserPrincipal userPrincipal, String userNameRecipient) throws ResourceNotFoundException, NewConversationException {
         var friend = usersRepository.findByUserName(userNameRecipient);
         if (friend == null) {
@@ -220,7 +217,6 @@ public class ChatService {
                 friendStatusEntity.getStatus(), friendStatusEntity.getLastTimeLogin(), "", null, ChatType.NORMAL.getId());
     }
 
-    @Transactional
     public ChatModel leaveGroupChat(UserPrincipal userPrincipal, String userNameRecipient) throws ResourceNotFoundException, NewConversationException {
         var friend = usersRepository.findByUserName(userNameRecipient);
         if (friend == null) {

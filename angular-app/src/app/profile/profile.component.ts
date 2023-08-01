@@ -2,7 +2,7 @@ import {Component, OnInit, Input} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from 'src/app/_services/user.service';
 import {UserProfile} from 'src/app/_dtos/user/UserProfile';
-import {ChatService} from "../../_services/chat.service";
+import {ChatService} from "../_services/chat.service";
 
 @Component({
   selector: 'app-profile',

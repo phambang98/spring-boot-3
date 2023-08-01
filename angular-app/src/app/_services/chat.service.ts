@@ -12,17 +12,9 @@ import {ChatGroupModel} from "../_dtos/chat/ChatGroupModel";
 @Injectable()
 export class ChatService extends WebSocketService {
 
-  private fetch: BehaviorSubject<number> = new BehaviorSubject(0);
-  public readonly myFetch: Observable<number> = this.fetch.asObservable();
 
   public chatModel: Observable<ChatModel[]>
   private myChatModel: BehaviorSubject<ChatModel[]> = new BehaviorSubject([])
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
 
   constructor(private httpClient: HttpClient, protected tokenStorageService: TokenStorageService) {
     super(tokenStorageService)
@@ -139,10 +131,6 @@ export class ChatService extends WebSocketService {
 
   getOneChat(chatId: number): ChatModel {
     return this.myChatModel.value.find(x => x.chatId === chatId)
-  }
-
-  updateFetch(value) {
-    this.fetch.next(value)
   }
 
   fetchChat(value: ChatModel[]) {

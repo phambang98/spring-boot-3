@@ -6,9 +6,9 @@ import {UserService} from 'src/app/_services/user.service';
 import {UserProfile} from 'src/app/_dtos/user/UserProfile';
 import {Observable} from 'rxjs';
 import {ChatModel} from 'src/app/_dtos/chat/ChatModel';
-import {NewChatComponent} from './new-chat/new-chat.component';
+import {NewChatComponent} from '../new-chat/new-chat.component';
 import {ChatService} from "../../_services/chat.service";
-import {NewGroupComponent} from "./new-group/new-group.component";
+import {NewGroupComponent} from "../new-group/new-group.component";
 import {ChatGroupModel} from "../../_dtos/chat/ChatGroupModel";
 
 @Component({

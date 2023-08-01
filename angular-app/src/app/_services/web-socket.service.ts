@@ -3,6 +3,7 @@ import {Stomp} from "@stomp/stompjs";
 import * as SockJS from "sockjs-client";
 import {environment} from "../../environments/environment";
 import {TokenStorageService} from "./token-storage.service";
+import {HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,12 @@ import {TokenStorageService} from "./token-storage.service";
 export class WebSocketService {
 
   stompClient: any
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  };
 
   constructor(protected tokenStorageService: TokenStorageService) {
     this.onConnect()
@@ -32,6 +39,9 @@ export class WebSocketService {
           _this.stompClient.subscribe(`/notifications/${_this.tokenStorageService.getUser().id}/queue/status`, function (sdkEvent) {
             _this.onStatusReceived(sdkEvent);
           });
+          _this.stompClient.subscribe(`/notifications/lucky-wheel`, function (sdkEvent) {
+            _this.onStatusReceived(sdkEvent);
+          });
         }, function (error) {
           setTimeout(() => _this.onConnect(), 5000);
         });
@@ -43,6 +53,10 @@ export class WebSocketService {
   }
 
   onStatusReceived(status: any) {
+
+  }
+
+  onLuckyWheelReceived(luckyWheel: any) {
 
   }
 }

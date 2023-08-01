@@ -17,7 +17,6 @@ public interface PrizeRepository extends JpaRepository<Prizes, Long> {
             "where p.prizeGroupId = :prizeGroupId  and p.luckNumber =:luckNumber")
     Prizes getPrizeGroupIdAndLuckNumber(@Param("prizeGroupId") Long prizeGroupId, @Param("luckNumber") Long luckNumber);
 
-    @Query("select p from Prizes p inner join PrizeGroup pg on p.prizeGroupId = pg.id " +
-            "where trunc(pg.dateTime) = trunc(CURRENT_DATE) order by p.displayNumber ")
-    List<Prizes> getAllPrizeByCurrentDate();
+    @Query("select p from Prizes p inner join PrizeGroup pg on p.prizeGroupId = pg.id order by p.displayNumber ")
+    List<Prizes> getAllPrizeByPrizeGroupId();
 }

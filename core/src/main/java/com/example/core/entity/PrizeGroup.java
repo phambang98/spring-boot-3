@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -20,4 +21,7 @@ public class PrizeGroup extends AbstractEntity {
 
     @Column(name = "DATE_TIME")
     private Date dateTime;
+
+    @Transient
+    private List<Prizes> prizeList;
 }

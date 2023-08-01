@@ -1,31 +1,26 @@
-import {Component, OnInit} from '@angular/core';
-import {ChatService} from 'src/app/_services/chat.service';
-import {Router} from '@angular/router';
-import {UserService} from 'src/app/_services/user.service';
+import { Component, OnInit } from '@angular/core';
 import {ChatModel} from "../../_dtos/chat/ChatModel";
+import {ChatService} from "../../_services/chat.service";
+import {Router} from "@angular/router";
+import {UserService} from "../../_services/user.service";
 import {MessageService} from "../../_services/message.service";
 import {ErrorService} from "../../_services/error.service";
 
 @Component({
-  selector: 'app-loading',
-  templateUrl: './loading.component.html',
-  styleUrls: ['./loading.component.scss']
+  selector: 'app-chat-banner',
+  templateUrl: './chat-banner.component.html',
+  styleUrls: ['./chat-banner.component.scss']
 })
-export class LoadingComponent implements OnInit {
-  progress = 0;
+export class ChatBannerComponent implements OnInit {
 
   constructor(private chatService: ChatService, private router: Router, private userService: UserService,
               private messageService: MessageService, private errorService: ErrorService) {
   }
 
-
   ngOnInit(): void {
-    this.progress = 10;
-    this.chatService.updateFetch(10)
     this.userService.fetchProfile().subscribe({
       complete: () => {
-        this.progress = 20;
-        this.chatService.updateFetch(20)
+      console.log("a1")
       },
       error: (e) => {
         this.errorService.errorFetch(e)
@@ -33,10 +28,6 @@ export class LoadingComponent implements OnInit {
     })
 
     this.chatService.fetchChats().subscribe({
-      complete: () => {
-        this.progress = 80;
-        this.chatService.updateFetch(80)
-      },
       next: (chatModels: ChatModel[]) => {
         (async () => {
           if (chatModels.length != 0) {
@@ -47,8 +38,6 @@ export class LoadingComponent implements OnInit {
               },
             })
           }
-          this.progress = 100;
-          this.chatService.updateFetch(100)
         })();
       },
       error: (e) => {
@@ -56,6 +45,5 @@ export class LoadingComponent implements OnInit {
       },
     })
   }
-
 
 }

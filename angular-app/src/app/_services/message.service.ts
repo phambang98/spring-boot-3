@@ -19,12 +19,6 @@ export class MessageService extends WebSocketService {
   nbMessages: Observable<Map<number, MessageDetail[]>>
   private myNbMessages: BehaviorSubject<Map<number, MessageDetail[]>> = new BehaviorSubject(new Map())
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
   myProfile: UserProfile;
 
   constructor(private httpClient: HttpClient, private chatService: ChatService, private userService: UserService,
