@@ -7,6 +7,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { TokenComponent } from './token/token.component';
+import {HomeComponent} from "../home/home.component";
 
 const routes: Routes = [
   {path: 'auth', component: AuthComponent, children:[
@@ -15,7 +16,7 @@ const routes: Routes = [
       {path: 'forgot', component: ForgotPasswordComponent},
       {path: 'reset', component: ResetPasswordComponent},
       {path: 'token', component: TokenComponent},
-      {path: '', redirectTo:'signin', pathMatch: 'full'}
+      {path: '', component:HomeComponent, pathMatch: 'full'}
   ]}
 ];
 

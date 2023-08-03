@@ -16,7 +16,7 @@ export class SigninComponent implements OnInit {
   signInFrom: FormGroup
   redirect = "/"
 
-  constructor(private _authService: AuthService, private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) {
     this.signInFrom = this.fb.group({
       userName: [],
       password: []
@@ -41,7 +41,7 @@ export class SigninComponent implements OnInit {
     if (this.signInFrom.valid) {
       let data = this.signInFrom.value
       this.loading = true
-      this._authService.login(new SignInRequest(data['userName'], data['password'])).subscribe({
+      this.authService.login(new SignInRequest(data['userName'], data['password'])).subscribe({
         complete: () => {
           this.router.navigateByUrl(this.redirect)
           this.loading = false

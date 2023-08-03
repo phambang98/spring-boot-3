@@ -18,10 +18,6 @@ export class ChatService extends WebSocketService {
 
   constructor(private httpClient: HttpClient, protected tokenStorageService: TokenStorageService) {
     super(tokenStorageService)
-    this.httpOptions.headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
-    })
     this.chatModel = this.myChatModel.asObservable()
   }
 
@@ -77,7 +73,7 @@ export class ChatService extends WebSocketService {
 
 
   fetchChats(): Observable<ChatModel[]> {
-    return this.httpClient.get(`${environment.DOMAIN}/api/chat`, this.httpOptions)
+    return this.httpClient.get(`${environment.DOMAIN}/api/chat`)
       .pipe(map((chats: ChatModel[]) => {
         this.updateFetchChats(chats, false)
         return chats
@@ -85,7 +81,7 @@ export class ChatService extends WebSocketService {
   }
 
   createChat(userName: String): Observable<ChatModel> {
-    return this.httpClient.post(`${environment.DOMAIN}/api/chat?userName=${userName}`, this.httpOptions)
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat?userName=${userName}`, null)
       .pipe(map((chats: ChatModel) => {
         this.updateFetchChats([chats], true)
         return chats
@@ -93,15 +89,15 @@ export class ChatService extends WebSocketService {
   }
 
   createChatGroup(chatGroupModel: ChatGroupModel): Observable<ChatModel> {
-    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/create`, JSON.stringify(chatGroupModel),this.httpOptions)
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/create`, JSON.stringify(chatGroupModel))
       .pipe(map((chats: ChatModel) => {
-      this.updateFetchChats([chats], true)
-      return chats
-    }))
+        this.updateFetchChats([chats], true)
+        return chats
+      }))
   }
 
   addUserChatGroup(chatGroupModel: ChatGroupModel): Observable<ChatModel> {
-    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/add-user`, JSON.stringify(chatGroupModel),this.httpOptions)
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/add-user`, JSON.stringify(chatGroupModel))
       .pipe(map((chats: ChatModel) => {
         this.updateFetchChats([chats], true)
         return chats
@@ -109,7 +105,7 @@ export class ChatService extends WebSocketService {
   }
 
   removeUserChatGroup(chatGroupModel: ChatGroupModel): Observable<ChatModel> {
-    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/remove-user`, JSON.stringify(chatGroupModel),this.httpOptions)
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/remove-user`, JSON.stringify(chatGroupModel))
       .pipe(map((chats: ChatModel) => {
         this.updateFetchChats([chats], true)
         return chats
@@ -117,7 +113,7 @@ export class ChatService extends WebSocketService {
   }
 
   leaveChatGroup(chatGroupModel: ChatGroupModel): Observable<ChatModel> {
-    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/leave`, JSON.stringify(chatGroupModel),this.httpOptions)
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/leave`, JSON.stringify(chatGroupModel))
       .pipe(map((chats: ChatModel) => {
         this.updateFetchChats([chats], true)
         return chats
@@ -160,7 +156,7 @@ export class ChatService extends WebSocketService {
   }
 
   blockChat(chatId: number): Observable<any> {
-    return this.httpClient.post(`${environment.DOMAIN}/api/chat/block/${chatId}`, this.httpOptions)
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat/block/${chatId}`, null)
       .pipe(map((chat: ChatModel) => {
         this.updateStatusChat(chat)
         this.updateFetchChats([chat], true)
@@ -169,7 +165,7 @@ export class ChatService extends WebSocketService {
   }
 
   unblockChat(chatId: number): Observable<any> {
-    return this.httpClient.post(`${environment.DOMAIN}/api/chat/unblock/${chatId}`, this.httpOptions)
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat/unblock/${chatId}`, null)
       .pipe(map((chat: ChatModel) => {
         this.updateStatusChat(chat)
         this.updateFetchChats([chat], true)

@@ -12,12 +12,6 @@ export class WebSocketService {
 
   stompClient: any
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  };
-
   constructor(protected tokenStorageService: TokenStorageService) {
     this.onConnect()
   }

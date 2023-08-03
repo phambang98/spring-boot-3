@@ -1,12 +1,10 @@
 package com.example.spring.rest.api.security;
 
 import com.example.spring.rest.api.security.jwt.TokenProvider;
-import com.example.spring.rest.api.service.UsersService;
 import com.example.spring.rest.api.ultis.OAuth2RequestRepository;
 import com.example.core.error.BadRequestException;
 import com.example.core.utils.AuthenticationKey;
 import com.example.core.utils.CookieUtils;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +20,13 @@ import java.io.IOException;
 public class Oauth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     @Autowired
-    private UsersService usersService;
-
-    @Autowired
     private TokenProvider tokenProvider;
 
     @Autowired
     private OAuth2RequestRepository oAuth2RequestRepository;
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         var targetUrl = determineTargetUrl(request, response, authentication);
 
         if (response.isCommitted()) {
@@ -59,7 +54,8 @@ public class Oauth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         }
 
         return UriComponentsBuilder.fromUriString(redirectUrl)
-                .queryParam("token", tokenProvider.createToken(authentication))
+                .queryParam("accessToken", tokenProvider.createToken(authentication))
+                .queryParam("refreshToken", tokenProvider.createRefreshToken(((UserPrincipal) authentication.getPrincipal()).getId()))
                 .build().toUriString();
     }
 

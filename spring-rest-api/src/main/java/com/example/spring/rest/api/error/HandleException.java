@@ -33,4 +33,11 @@ public class HandleException {
         logger.error("", ex);
         return new ResponseEntity<>(new FieldError(ex.getMessage(), ex.getLocalizedMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(TokenRefreshException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ResponseEntity<FieldError> handleTokenRefreshException(HttpServletRequest request, TokenRefreshException ex) {
+        logger.error("", ex);
+        return new ResponseEntity<>(new FieldError(ex.getMessage(), ex.getLocalizedMessage()), HttpStatus.FORBIDDEN);
+    }
 }

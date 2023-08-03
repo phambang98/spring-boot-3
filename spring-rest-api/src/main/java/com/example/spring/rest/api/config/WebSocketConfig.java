@@ -1,7 +1,5 @@
 package com.example.spring.rest.api.config;
 
-import com.example.spring.rest.api.security.jwt.TokenProvider;
-import com.example.spring.rest.api.service.UsersService;
 import com.example.spring.rest.api.ultis.CustomChannelInterceptor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -18,15 +18,6 @@ export class ChatBannerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.fetchProfile().subscribe({
-      complete: () => {
-      console.log("a1")
-      },
-      error: (e) => {
-        this.errorService.errorFetch(e)
-      },
-    })
-
     this.chatService.fetchChats().subscribe({
       next: (chatModels: ChatModel[]) => {
         (async () => {

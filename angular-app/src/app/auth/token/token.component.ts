@@ -14,18 +14,21 @@ export class TokenComponent implements OnInit {
 
   loading: Boolean = true
   profile: UserProfile
-  token: string
-  redirect = "/loading"
+  accessToken: string
+  refreshToken: string
+  redirect = "/"
 
   constructor(private route: ActivatedRoute, private authService: AuthService, private userService: UserService, private router: Router) {
     this.route.queryParams.subscribe(params => {
-      this.token = params['token'];
-      if (!this.token) {
+      this.accessToken = params['accessToken'];
+      this.refreshToken = params['refreshToken'];
+      if (!this.accessToken) {
         if (!this.userService.getProfile()) {
           this.router.navigateByUrl("/auth/signin")
         }
       } else {
-        this.authService.setToken(this.token)
+        this.authService.setToken(this.accessToken)
+        this.authService.setRefreshToken(this.refreshToken)
       }
     });
   }

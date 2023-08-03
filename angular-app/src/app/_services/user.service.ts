@@ -17,11 +17,7 @@ export class UserService {
   }
 
   fetchProfile(): Observable<UserProfile> {
-    this.httpOptions.headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
-    })
-    return this.httpClient.get(`${environment.DOMAIN}/api/user/me`, this.httpOptions)
+    return this.httpClient.get(`${environment.DOMAIN}/api/user/me`)
       .pipe(map((user: UserProfile) => {
         this.tokenStorageService.saveUser(user)
         return user
@@ -39,8 +35,6 @@ export class UserService {
 
   existsByUserName(userName: string): Observable<Boolean> {
     let params = new HttpParams().set("userName", userName)
-    return this.httpClient.get(`${environment.DOMAIN}/api/user/exists`, {
-      headers: this.httpOptions.headers, params
-    }) as Observable<Boolean>;
+    return this.httpClient.get(`${environment.DOMAIN}/api/user/exists`, {params}) as Observable<Boolean>;
   }
 }

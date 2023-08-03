@@ -17,6 +17,15 @@ CREATE TABLE Users
     IMAGE_URL           varchar2(250),
     blocked_by          varchar2(250)
 );
+
+CREATE TABLE REFRESH_TOKEN
+(
+    ID            INT AUTO_INCREMENT PRIMARY KEY,
+    USER_ID       NUMBER(15),
+    REFRESH_TOKEN VARCHAR(50),
+    EXPIRY_DATE   TIMESTAMP(6)
+);
+
 CREATE TABLE Coffee
 (
     coffee_id       INT AUTO_INCREMENT PRIMARY KEY,

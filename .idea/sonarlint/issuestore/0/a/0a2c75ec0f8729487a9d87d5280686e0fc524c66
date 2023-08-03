@@ -1,0 +1,7 @@
+
+v
+java:S4144b"[Update this method so that its implementation is not identical to "getUsername" on line 56.(ú›Šøøÿÿÿÿ
+C
+java:S1948"-Make "mAttributes" transient or serializable.(²ä£˜
+m
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ƒ²ºõýÿÿÿÿ

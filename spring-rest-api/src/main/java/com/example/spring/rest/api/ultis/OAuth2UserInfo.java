@@ -105,7 +105,7 @@ public abstract class OAuth2UserInfo {
         }
     }
 
-    public class OAuth2UserInfoFactory {
+    public static class OAuth2UserInfoFactory {
         public static OAuth2UserInfo getOAuth2UserInfo(String registrationId, Map<String, Object> attributes) throws OAuth2AuthenticationProcessingException {
             if (registrationId.equals(AuthProvider.google.toString())) {
                 return new GoogleOAuth2UserInfo(attributes);

@@ -24,10 +24,6 @@ export class MessageService extends WebSocketService {
   constructor(private httpClient: HttpClient, private chatService: ChatService, private userService: UserService,
               protected tokenStorageService: TokenStorageService, protected notificationService: NotificationService) {
     super(tokenStorageService)
-    this.httpOptions.headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
-    })
     this.nbMessages = this.myNbMessages.asObservable()
     this.myProfile = this.userService.getProfile()
   }
@@ -78,7 +74,7 @@ export class MessageService extends WebSocketService {
   }
 
   fetchMessages(chatId: number): Observable<MessageDetail[]> {
-    return this.httpClient.get(`${environment.DOMAIN}/api/message/${chatId}`, this.httpOptions)
+    return this.httpClient.get(`${environment.DOMAIN}/api/message/${chatId}`)
       .pipe(map((msg: MessageDetail[]) => {
         this.onUpdateMessage(msg, false)
         return msg
@@ -116,7 +112,7 @@ export class MessageService extends WebSocketService {
   }
 
   deleteMessage(chatId: number, messageId: number) {
-    this.httpClient.delete(`${environment.DOMAIN}/api/message/${messageId}`, this.httpOptions).subscribe({
+    this.httpClient.delete(`${environment.DOMAIN}/api/message/${messageId}`).subscribe({
       complete: () => {
         this.onDeleteMessage(chatId, messageId)
       },
