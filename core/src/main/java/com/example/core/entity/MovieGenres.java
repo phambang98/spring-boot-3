@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "MOVIE_GENRES")
-public class MOVIE_GENRES extends AbstractEntity {
+public class MovieGenres extends AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")

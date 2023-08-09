@@ -8,6 +8,8 @@ import com.example.core.error.BadRequestException;
 import com.example.core.error.NewConversationException;
 import com.example.core.error.ResourceNotFoundException;
 import com.example.core.model.ChatModel;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api")
+@SecurityRequirements({@SecurityRequirement(name = "GoogleOauth2"),
+        @SecurityRequirement(name = "bearerAuth")}
+)
 public class ChatController {
 
     @Autowired

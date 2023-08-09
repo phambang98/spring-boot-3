@@ -7,6 +7,8 @@ import com.example.spring.rest.api.service.MessageService;
 import com.example.core.error.BadRequestException;
 import com.example.core.error.ResourceNotFoundException;
 import com.example.core.model.MessageModel;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityRequirements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api")
+@SecurityRequirements({@SecurityRequirement(name = "GoogleOauth2"),
+        @SecurityRequirement(name = "bearerAuth")}
+)
 public class MessageController {
 
     @Autowired

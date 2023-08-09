@@ -18,7 +18,10 @@ public class SwaggerConfig {
     public OpenAPI springShopOpenAPI() {
         return new OpenAPI()
                 .info(new Info().title("Spring-Boot-3")
-                        .description("Spring-Boot-3")
+                        .description("Spring-Boot-3 " +
+                                "</br>Login with Google  " +
+                                "</br>Client_Id : 207014711701-e7t8h5o098gf7mma6b1438p83q4hc6tu.apps.googleusercontent.com" +
+                                "</br>Client_Secret : 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")
                         .version("v1.0")
                         .license(new License().name("Apache 2.0").url("http://springdoc.org")))
                 .externalDocs(new ExternalDocumentation()
@@ -28,6 +31,7 @@ public class SwaggerConfig {
                 .schemaRequirement("basicAuth", securitySchemeBasic())
                 .schemaRequirement("GoogleOauth2", securitySchemeOauth2Google());
     }
+
 
     private SecurityScheme securitySchemeJwt() {
         return new SecurityScheme()
@@ -46,7 +50,7 @@ public class SwaggerConfig {
         oAuthFlowObject
                 .setAuthorizationUrl("https://accounts.google.com/o/oauth2/v2/auth");
         oAuthFlowObject.setTokenUrl("https://oauth2.googleapis.com/token");
-        oAuthFlowObject.setScopes(new Scopes().addString("email", "").addString("profile",""));
+        oAuthFlowObject.setScopes(new Scopes().addString("email", "email").addString("profile","profile"));
 
         OAuthFlows oAuthFlows = new OAuthFlows();
         oAuthFlows.authorizationCode(oAuthFlowObject);

@@ -25,7 +25,7 @@ public class RunApp {
         calendar.set(Calendar.HOUR_OF_DAY, 23);
         calendar.set(Calendar.MINUTE, 59);
         calendar.set(Calendar.SECOND, 59);
-        System.out.println(convertMoneyToText("100000000000000000"));
+        System.out.println(convertMoneyToText("100060000010000000"));
 
     }
 

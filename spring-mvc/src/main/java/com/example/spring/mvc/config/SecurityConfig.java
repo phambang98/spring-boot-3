@@ -48,7 +48,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, HandlerMappingIntrospector introspection) throws Exception {
         MvcRequestMatcher.Builder mvcRequestMatchers = new MvcRequestMatcher.Builder(introspection);
         return http
-                .csrf(AbstractHttpConfigurer::disable)
+//                .csrf(AbstractHttpConfigurer::disable)
+                .csrf().and()
                 .authorizeHttpRequests()
                 .requestMatchers(PathRequest.toH2Console()).permitAll()
                 .requestMatchers(

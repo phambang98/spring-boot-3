@@ -38,7 +38,7 @@ public class TokenProvider {
         String secret = tokenSecret;
         keyBytes = secret.getBytes(StandardCharsets.UTF_8);
         key = Keys.hmacShaKeyFor(keyBytes);
-        this.tokenValidityInMillisecondsForRememberMe = 1000 * 6 * 1L;
+        this.tokenValidityInMillisecondsForRememberMe = 1000 * 60 * 1L;
     }
 
     public String createToken(Authentication authentication) {

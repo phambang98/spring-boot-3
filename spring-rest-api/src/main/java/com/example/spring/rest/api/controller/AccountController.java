@@ -2,7 +2,6 @@ package com.example.spring.rest.api.controller;
 
 import com.example.spring.rest.api.model.TokenRefreshRequest;
 import com.example.spring.rest.api.model.TokenRefreshResponse;
-import com.example.spring.rest.api.security.SecurityUtils;
 import com.example.spring.rest.api.security.UserPrincipal;
 import com.example.spring.rest.api.security.jwt.TokenProvider;
 import com.example.spring.rest.api.service.UsersService;
@@ -18,10 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/account")

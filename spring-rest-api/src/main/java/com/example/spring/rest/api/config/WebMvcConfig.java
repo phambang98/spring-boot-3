@@ -13,20 +13,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    @Autowired
-    private SwaggerIndexTransformer swaggerIndexTransformer;
+//    @Autowired
+//    private SwaggerIndexTransformer swaggerIndexTransformer;
 
-    @Override
-    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/swagger-ui*/*swagger-initializer.js")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/","/resources/**")
-                .setCachePeriod(0).resourceChain(false)
-                .addTransformer(this.swaggerIndexTransformer);
-        registry.addResourceHandler("/swagger-ui*/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/","/resources/")
-                .resourceChain(false)
-                .addTransformer(this.swaggerIndexTransformer);
-    }
+//    @Override
+//    public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/swagger-ui*/*swagger-initializer.js")
+//                .addResourceLocations("classpath:/META-INF/resources/webjars/","/resources/**")
+//                .setCachePeriod(0).resourceChain(false)
+//                .addTransformer(this.swaggerIndexTransformer);
+//        registry.addResourceHandler("/swagger-ui*/**")
+//                .addResourceLocations("classpath:/META-INF/resources/webjars/","/resources/")
+//                .resourceChain(false)
+//                .addTransformer(this.swaggerIndexTransformer);
+//    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
