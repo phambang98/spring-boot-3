@@ -22,6 +22,7 @@ import {LuckyWheelComponent} from "../lucky-wheel/lucky-wheel.component";
 import {ChatDetailComponent} from "../chat/chat-detail/chat-detail.component";
 import {LuckyWheelService} from "../_services/lucky-wheel.service";
 import {MatTabsModule} from "@angular/material/tabs";
+import {AddUserGroupComponent} from "../chat/add-user-group/add-user-group.component";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {MatTabsModule} from "@angular/material/tabs";
     ChatBannerComponent,
     NewChatComponent,
     NewGroupComponent,
+    AddUserGroupComponent,
     LuckyWheelComponent
   ],
   imports: [

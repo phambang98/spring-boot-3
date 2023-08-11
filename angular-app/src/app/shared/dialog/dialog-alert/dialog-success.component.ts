@@ -3,7 +3,7 @@ import { NbDialogRef } from '@nebular/theme';
 
 @Component({
     template: `
-    <nb-card class="dialog-card">
+    <nb-card>
       <nb-card-header>{{ title }}</nb-card-header>
       <nb-card-body class="text-center">
           <p>

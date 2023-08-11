@@ -17,7 +17,7 @@
     <input nbInput fullWidth name="search" placeholder="Search">
   </nb-card-body>
   <nb-list>
-    <nb-list-item *ngFor="let chat of chatModels | async" (click)="chatClicked(chat.chatId)">
+    <nb-list-item *ngFor="let chat of chatModels " (click)="chatClicked(chat.chatId)">
       <nb-user [name]="chat.userName" [title]="chat.lastMsg" size="giant" [picture]="chat.imageUrl"
                shape="round" [badgeText]="badgeText" [badgeStatus]="chat.status" badgePosition="bottom right">
 

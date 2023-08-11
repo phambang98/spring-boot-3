@@ -14,6 +14,7 @@ import com.example.spring.rest.api.model.SocketModel;
 import com.example.spring.rest.api.security.SecurityUtils;
 import com.example.spring.rest.api.security.UserPrincipal;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,10 @@ public class LuckyWheelService {
     public PrizeGroup findFirstByCurrentDateTime() {
         var prizeGroup = prizeGroupRepository.findFirstByCurrentDateTime();
         prizeGroup.setPrizeList(prizeRepository.getAllPrizeByPrizeGroupId());
+        if (prizeGroup.getPrizeList().size() < 12) {
+            int addCount = 12 - prizeGroup.getPrizeList().size();
+            prizeGroup.getPrizeList().addAll(prizeRepository.getAllPrizeByPrizeGroupIdDefault(addCount));
+        }
         return prizeGroup;
     }
 

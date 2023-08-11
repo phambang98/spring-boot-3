@@ -1,18 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Inject, Injectable, Input, OnInit} from '@angular/core';
 import {NbDialogRef} from '@nebular/theme';
 import {UserService} from "../../_services/user.service";
 import {ChatGroupModel} from "../../_dtos/chat/ChatGroupModel";
+import {UserChatGroupModel} from "../../_dtos/chat/UserChatGroupModel";
+import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {CloseDialog} from "../../_dtos/chat/CloseDialog";
 
 @Component({
   selector: 'nb-dialog-showcase',
   template: `
     <nb-card>
-      <nb-card-header>Nhập tên nhóm mới</nb-card-header>
+      <nb-card-header>Thêm thành viên vào nhóm {{ title }}</nb-card-header>
       <nb-card-body>
-        <div class="form-group">
-          <input #nameChatGroup nbInput placeholder="Tên nhóm chat" type="text">
-        </div>
         <div class="form-group">
           <input #userName (keydown)="processKeyDown()" (keyup.enter)="keydownInput($event)" nbInput
                  placeholder="User Name" class="input-user-name" type="text">
@@ -37,21 +36,25 @@ import {CloseDialog} from "../../_dtos/chat/CloseDialog";
         </div>
       </nb-card-body>
       <nb-card-footer class="text-center">
-        <button nbButton (click)="submit(nameChatGroup.value)" status="primary" class="m-2">
+        <button nbButton (click)="submit()" status="primary" class="m-2">
           Submit
         </button>
         <button nbButton (click)="dismiss()" status="danger" class="m-2">Close</button>
       </nb-card-footer>
     </nb-card>
   `,
-  styleUrls: ['./new-group.component.scss']
+  styleUrls: ['./add-user-group.component.scss']
 })
-export class NewGroupComponent implements OnInit {
 
-  constructor(protected ref: NbDialogRef<NewGroupComponent>, private userService: UserService) {
+export class AddUserGroupComponent implements OnInit {
+
+  @Input() title: string;
+
+  constructor(protected ref: NbDialogRef<AddUserGroupComponent>, private userService: UserService) {
   }
 
   listItems = []
+
 
   ngOnInit() {
 
@@ -93,11 +96,13 @@ export class NewGroupComponent implements OnInit {
     this.listItems.splice(item, 1);
   }
 
-  submit(nameChatGroup: string) {
+  submit() {
     if (this.listItems.length == 0) {
       this.existsListItem = false
     } else {
-      this.ref.close(new CloseDialog(true, new ChatGroupModel(this.listItems, nameChatGroup)));
+      this.ref.close(new CloseDialog(true, this.listItems));
     }
   }
+
+
 }

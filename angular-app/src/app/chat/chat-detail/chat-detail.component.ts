@@ -8,11 +8,14 @@ import {ChatModel} from 'src/app/_dtos/chat/ChatModel';
 import {UserProfile} from 'src/app/_dtos/user/UserProfile';
 import {UserService} from 'src/app/_services/user.service';
 import {MessageDetail} from 'src/app/_dtos/chat/MessageDetail';
-import {NbMenuService} from "@nebular/theme";
+import {NbDialogService, NbMenuService} from "@nebular/theme";
 import {MessageService} from "../../_services/message.service";
 import {ErrorService} from "../../_services/error.service";
 import {environment} from "../../../environments/environment";
 import {MessageRequest} from "../../_dtos/chat/MessageRequest";
+import {UserChatGroupModel} from "../../_dtos/chat/UserChatGroupModel";
+import {AddUserGroupComponent} from "../add-user-group/add-user-group.component";
+import {CloseDialog} from "../../_dtos/chat/CloseDialog";
 
 @Component({
   selector: 'app-chat-detail',
@@ -42,7 +45,7 @@ export class ChatDetailComponent implements OnInit {
 
   constructor(private chatService: ChatService, private messageService: MessageService, private router: Router,
               private route: ActivatedRoute, private userService: UserService, private errorService: ErrorService,
-              private menuService: NbMenuService) {
+              private menuService: NbMenuService, private dialogService: NbDialogService) {
 
     (async () => {
       this.route.params.subscribe(params => {
@@ -125,6 +128,29 @@ export class ChatDetailComponent implements OnInit {
             }
           });
           break;
+        case 'Add User From Group' :
+          this.dialogService.open(AddUserGroupComponent, {
+            context: this.chatModel.userName
+          }).onClose.subscribe((closeDialog: CloseDialog) => {
+            if (closeDialog?.submit) {
+              this.chatService.addUserChatGroup(new UserChatGroupModel(closeDialog.data, this.chatId)).subscribe({
+                complete: () => {
+                  console.log("add-user-chat-group-complete");
+                },
+                // next: (v) => {
+                //   let newChat = this.chatModels['_value'].find(x => x.userId === v.userId)
+                //   newChat.lastTimeLogin = v.lastTimeLogin
+                //   newChat.status = v.status
+                //   this.chatService.updateStatusChat(newChat)
+                // },
+                error: (err) => {
+                  console.log("err-createFriend", err);
+                },
+              })
+            }
+
+          })
+          break
         default:
           break;
       }
@@ -136,19 +162,19 @@ export class ChatDetailComponent implements OnInit {
     this.subscription = this.messageService.fetchMessages(this.chatModel.chatId).subscribe({
       next: (arrayMsg: MessageDetail[]) => {
 
-        this.messages.push(...arrayMsg.slice(this.messages.length, arrayMsg.length))
+        this.messages.push(...arrayMsg?.slice(this.messages.length, arrayMsg.length))
         this.messageService.nbMessages.subscribe((mapMessage: Map<number, MessageDetail[]>) => {
           this.messages = mapMessage.get(this.chatModel.chatId)
         })
       }, error: (e) => {
-        this.errorService.errorFetch(e)
+        console.log("error", e)
       }
     })
   }
 
   sendMessage(event) {
     const files = !event.files ? [] : event.files;
-    let messageRequest = new MessageRequest(this.chatModel.userId, event.message, null, this.chatModel.chatType,this.chatModel.chatId);
+    let messageRequest = new MessageRequest(this.chatModel.userId, event.message, null, this.chatModel.chatType, this.chatModel.chatId);
     this.messageService.createMessage(messageRequest, files)
   }
 

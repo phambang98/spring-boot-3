@@ -64,7 +64,7 @@
   }
 
   $slices-colors-list: #16a085 #962bc0 #34495e #d35400 #f39c12 #c02b58 #2980b9 #50c556 #d31313 #800055 #c2b503 #008000;
-  $slice-degrees-step: -30deg;
+  $slice-degrees-step-list: -30deg;
 
   @each $color in $slices-colors-list {
     $i: index($slices-colors-list, $color);
@@ -72,7 +72,7 @@
 
     .slice:nth-child(#{$i}) {
       border-color: $color transparent;
-      transform: rotate(#{$slice-degrees-step * ($i - $k)});
+      transform: rotate(#{-30deg * ($i - $k)});
     }
   }
 

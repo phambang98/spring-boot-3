@@ -207,3 +207,7 @@ espring-rest-api/src/main/java/com/example/spring/rest/api/security/jwt/TokenAut
 \spring-rest-api/src/main/java/com/example/spring/rest/api/security/Oauth2SuccessHandler.java,e\f\ef779c496fd47e3e7ea6c1001a07c7b0e9dc2b12
 Œ
 \spring-rest-api/src/main/java/com/example/spring/rest/api/security/OAuth2FailureHandler.java,f\2\f24ce4ad0127a60ff91e8ca602f742936e0799eb
+i
+9spring-rest-api/src/main/resources/application.properties,1\3\13d3d121cbe7c2a3ab2f1256c6163c868e026065
+~
+Nspring-batch/src/main/java/com/example/spring/batch/tasklet/PersonTasklet.java,5\8\5896aa24674b74624118d034d11e3c573525e7d8

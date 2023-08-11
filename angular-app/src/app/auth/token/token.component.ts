@@ -16,12 +16,11 @@ export class TokenComponent implements OnInit {
   profile: UserProfile
   accessToken: string
   refreshToken: string
-  redirect = "/"
 
   constructor(private route: ActivatedRoute, private authService: AuthService, private userService: UserService, private router: Router) {
     this.route.queryParams.subscribe(params => {
-      this.accessToken = params['accessToken'];
-      this.refreshToken = params['refreshToken'];
+      this.accessToken = params['accessToken']
+      this.refreshToken = params['refreshToken']
       if (!this.accessToken) {
         if (!this.userService.getProfile()) {
           this.router.navigateByUrl("/auth/signin")
@@ -49,6 +48,6 @@ export class TokenComponent implements OnInit {
   }
 
   continue() {
-    this.router.navigateByUrl(this.redirect)
+    this.router.navigateByUrl("/")
   }
 }

@@ -1,5 +1,7 @@
 package com.example.spring.batch.tasklet;
 
+import com.example.core.enums.SocketType;
+import com.example.core.utils.WebSocketKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.ExitStatus;

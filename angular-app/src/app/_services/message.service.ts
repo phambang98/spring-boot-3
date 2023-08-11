@@ -61,6 +61,8 @@ export class MessageService extends WebSocketService {
       let messages = this.myNbMessages.value.get(messageDetails[0].chatId)
       if (messages) {
         this.myNbMessages.value.set(messageDetails[0].chatId, messages.concat(messageDetails))
+      }else{
+        this.myNbMessages.value.set(messageDetails[0].chatId, messageDetails)
       }
     } else {
       if (messageDetails && messageDetails.length != 0) {
@@ -124,7 +126,7 @@ export class MessageService extends WebSocketService {
 
   onDeleteMessage(chatId: number, messageId: number) {
     this.myNbMessages.value.set(chatId, this.myNbMessages.value.get(chatId).filter(obj => obj.messageId !== messageId))
-    this.myNbMessages.next(this.myNbMessages.value);
-    this.chatService.onShowLastMsg(this.myNbMessages.value[this.myNbMessages.value.get(chatId).length - 1], chatId)
+    this.myNbMessages.next(this.myNbMessages.value)
+    this.chatService.onShowLastMsg(this.myNbMessages.value.get(chatId)[this.myNbMessages.value.get(chatId).length - 1], chatId)
   }
 }

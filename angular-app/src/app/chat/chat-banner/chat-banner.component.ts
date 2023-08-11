@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ChatModel} from "../../_dtos/chat/ChatModel";
 import {ChatService} from "../../_services/chat.service";
 import {Router} from "@angular/router";
@@ -14,7 +14,7 @@ import {ErrorService} from "../../_services/error.service";
 export class ChatBannerComponent implements OnInit {
 
   constructor(private chatService: ChatService, private router: Router, private userService: UserService,
-              private messageService: MessageService, private errorService: ErrorService) {
+              private messageService: MessageService) {
   }
 
   ngOnInit(): void {
@@ -25,14 +25,14 @@ export class ChatBannerComponent implements OnInit {
             this.chatService.fetchChat(chatModels)
             this.messageService.fetchMessages(chatModels[0].chatId).subscribe({
               error: (e) => {
-                this.errorService.errorFetch(e)
+                console.log("error", e)
               },
             })
           }
         })();
       },
       error: (e) => {
-        this.errorService.errorFetch(e)
+        console.log("error", e)
       },
     })
   }

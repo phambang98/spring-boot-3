@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface ChatRepositoryCustom {
 
-    @Cacheable(value = "users", key = "T(java.lang.String).format('%s', #p0)")
     List<ChatModel> getFriendList(Long userId);
 
     List<StatusModel> getFriendStatusByUserId(Long userId);

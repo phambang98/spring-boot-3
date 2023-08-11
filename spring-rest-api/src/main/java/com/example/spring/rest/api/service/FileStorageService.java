@@ -49,7 +49,7 @@ public class FileStorageService {
 
     public FileModel readFileByName(String fileName) throws IOException {
         com.example.core.entity.File fileEntity = fileRepository.findByFileName(fileName);
-        Path cwd = Path.of("").toAbsolutePath().getRoot();
+        Path cwd = Path.of(System.getProperty("user.dir")).getParent();
         MediaType mediaType;
         if (fileEntity.getType().contains("image")) {
             mediaType = MediaType.IMAGE_JPEG;

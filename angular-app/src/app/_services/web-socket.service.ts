@@ -34,7 +34,7 @@ export class WebSocketService {
             _this.onStatusReceived(sdkEvent);
           });
           _this.stompClient.subscribe(`/notifications/lucky-wheel`, function (sdkEvent) {
-            _this.onStatusReceived(sdkEvent);
+            _this.onLuckyWheelReceived(sdkEvent);
           });
         }, function (error) {
           setTimeout(() => _this.onConnect(), 5000);

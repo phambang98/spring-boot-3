@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit ,AfterViewInit{
       complete: () => {
       },
       error: (e) => {
-        this.errorService.errorFetch(e)
+        console.log("error", e)
       },
     })
   }

@@ -6,8 +6,10 @@ import com.example.core.model.ChatModel;
 import com.example.core.model.StatusModel;
 import com.example.core.repository.ChatRepositoryCustom;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.List;
 
@@ -87,23 +89,27 @@ public class ChatRepositoryCustomImpl implements ChatRepositoryCustom {
 
     @Override
     public Chat findByUserId1AndUserId2AndChatType(Long senderId, Long recipientId, String chatType) {
-        StringBuilder sqlBuilder = new StringBuilder();
-        sqlBuilder.append("select c.* from chat c  ");
+        try {
+            StringBuilder sqlBuilder = new StringBuilder();
+            sqlBuilder.append("select c.* from chat c  ");
 
-        if (chatType.equals(ChatType.NORMAL.getId())) {
-            sqlBuilder.append("where ((c.user_id1 = :senderId and c.user_id2 = :recipientId) ");
-            sqlBuilder.append("       or(c.user_id1 = :recipientId and c.user_id2 = :senderId)) ");
-        } else {
-            sqlBuilder.append("inner join chat_group cg on c.chat_id =cg.chat_id ");
-            sqlBuilder.append("where cg.user_id =:senderId ");
+            if (chatType.equals(ChatType.NORMAL.getId())) {
+                sqlBuilder.append("where ((c.user_id1 = :senderId and c.user_id2 = :recipientId) ");
+                sqlBuilder.append("       or(c.user_id1 = :recipientId and c.user_id2 = :senderId)) ");
+            } else {
+                sqlBuilder.append("inner join chat_group cg on c.chat_id =cg.chat_id ");
+                sqlBuilder.append("where cg.user_id =:senderId ");
+            }
+            sqlBuilder.append("and c.chat_type =:chatType limit 1");
+            Query query = em.createNativeQuery(sqlBuilder.toString(), Chat.class);
+            query.setParameter("senderId", senderId);
+            if (chatType.equals(ChatType.NORMAL.getId())) {
+                query.setParameter("recipientId", recipientId);
+            }
+            query.setParameter("chatType", chatType);
+            return (Chat) query.getSingleResult();
+        } catch (EmptyResultDataAccessException | NoResultException ex) {
+            return null;
         }
-        sqlBuilder.append("and c.chat_type =:chatType limit 1");
-        Query query = em.createNativeQuery(sqlBuilder.toString(), Chat.class);
-        query.setParameter("senderId", senderId);
-        if (chatType.equals(ChatType.NORMAL.getId())) {
-            query.setParameter("recipientId", recipientId);
-        }
-        query.setParameter("chatType", chatType);
-        return (Chat) query.getSingleResult();
     }
 }

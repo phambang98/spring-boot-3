@@ -8,6 +8,7 @@ import {TokenStorageService} from "./token-storage.service";
 import {WebSocketService} from "./web-socket.service";
 import {MessageDetail} from "../_dtos/chat/MessageDetail";
 import {ChatGroupModel} from "../_dtos/chat/ChatGroupModel";
+import {UserChatGroupModel} from "../_dtos/chat/UserChatGroupModel";
 
 @Injectable()
 export class ChatService extends WebSocketService {
@@ -50,7 +51,7 @@ export class ChatService extends WebSocketService {
       if (messageDetail.content) {
         myChat.lastMsg = msg + messageDetail.content
       } else {
-        myChat.lastMsg = msg + messageDetail.files.length
+        myChat.lastMsg = "send " + msg + messageDetail.files.length + " file"
       }
       myChat.lastTimeMsg = new Date(messageDetail.createdAt)
     }
@@ -83,7 +84,7 @@ export class ChatService extends WebSocketService {
   createChat(userName: String): Observable<ChatModel> {
     return this.httpClient.post(`${environment.DOMAIN}/api/chat?userName=${userName}`, null)
       .pipe(map((chats: ChatModel) => {
-        this.updateFetchChats([chats], true)
+        // this.updateFetchChats([chats], true)
         return chats
       }))
   }
@@ -91,15 +92,13 @@ export class ChatService extends WebSocketService {
   createChatGroup(chatGroupModel: ChatGroupModel): Observable<ChatModel> {
     return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/create`, JSON.stringify(chatGroupModel))
       .pipe(map((chats: ChatModel) => {
-        this.updateFetchChats([chats], true)
         return chats
       }))
   }
 
-  addUserChatGroup(chatGroupModel: ChatGroupModel): Observable<ChatModel> {
-    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/add-user`, JSON.stringify(chatGroupModel))
+  addUserChatGroup(userChatGroupModel: UserChatGroupModel): Observable<ChatModel> {
+    return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/add-user`, JSON.stringify(userChatGroupModel))
       .pipe(map((chats: ChatModel) => {
-        this.updateFetchChats([chats], true)
         return chats
       }))
   }
@@ -107,7 +106,6 @@ export class ChatService extends WebSocketService {
   removeUserChatGroup(chatGroupModel: ChatGroupModel): Observable<ChatModel> {
     return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/remove-user`, JSON.stringify(chatGroupModel))
       .pipe(map((chats: ChatModel) => {
-        this.updateFetchChats([chats], true)
         return chats
       }))
   }
@@ -115,7 +113,6 @@ export class ChatService extends WebSocketService {
   leaveChatGroup(chatGroupModel: ChatGroupModel): Observable<ChatModel> {
     return this.httpClient.post(`${environment.DOMAIN}/api/chat-group/leave`, JSON.stringify(chatGroupModel))
       .pipe(map((chats: ChatModel) => {
-        this.updateFetchChats([chats], true)
         return chats
       }))
   }

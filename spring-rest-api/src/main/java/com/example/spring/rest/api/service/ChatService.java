@@ -1,5 +1,7 @@
 package com.example.spring.rest.api.service;
 
+import com.example.spring.rest.api.model.UserChatGroupModel;
+import com.example.spring.rest.api.security.SecurityUtils;
 import com.example.spring.rest.api.security.UserPrincipal;
 import com.example.spring.rest.api.model.ChatGroupModel;
 import com.example.core.entity.ChatGroup;
@@ -138,7 +140,7 @@ public class ChatService {
     }
 
     public void createGroupChat(UserPrincipal userPrincipal, ChatGroupModel chatGroupModel) throws ResourceNotFoundException {
-        if( chatGroupModel.getListUserName().stream().anyMatch(x -> x.equals(userPrincipal.getUsername()))){
+        if (chatGroupModel.getListUserName().stream().anyMatch(x -> x.equals(userPrincipal.getUsername()))) {
             throw new ResourceNotFoundException("List user name error");
         }
         chatGroupModel.getListUserName().add(userPrincipal.getUsername());
@@ -164,83 +166,70 @@ public class ChatService {
         }
     }
 
-    public void addUserGroupChat(UserPrincipal userPrincipal, ChatGroupModel chatGroupModel) throws ResourceNotFoundException {
-        if( chatGroupModel.getListUserName().stream().anyMatch(x -> x.equals(userPrincipal.getUsername()))){
+    public void addUserGroupChat(UserChatGroupModel userChatGroupModel) throws ResourceNotFoundException {
+        UserPrincipal userPrincipal = SecurityUtils.getCurrentIdLogin();
+        if (userChatGroupModel.getListUserName().stream().anyMatch(x -> x.equals(userPrincipal.getUsername()))) {
             throw new ResourceNotFoundException("List user name error");
         }
-        chatGroupModel.getListUserName().add(userPrincipal.getUsername());
-        var listUsers = usersRepository.findByUserNameIn(chatGroupModel.getListUserName());
-        if (listUsers.size() != chatGroupModel.getListUserName().size()) {
+        var listUsers = usersRepository.findByUserNameIn(userChatGroupModel.getListUserName());
+        if (listUsers.size() != userChatGroupModel.getListUserName().size()) {
             throw new ResourceNotFoundException("List user name error");
         }
-        var chatEntity = new Chat();
+        var chatEntity = chatRepository.findByChatId(userChatGroupModel.getChatId());
+        if (chatEntity == null) {
+            throw new ResourceNotFoundException("Chat Id does not exist");
+        }
         Date date = new Date();
-        chatEntity.setChatType(ChatType.GROUP.getId());
-        chatEntity.setCreatedAt(date);
-        chatEntity.setDisplayName(chatGroupModel.getNameChatGroup());
-        chatEntity.setCreatedBy(userPrincipal.getId());
-        chatEntity = chatRepository.save(chatEntity);
-        Chat finalChatEntity = chatEntity;
-        List<ChatGroup> chatGroupList = listUsers.stream().map(x -> new ChatGroup(finalChatEntity.getChatId(), x.getId(), date)).collect(Collectors.toList());
-        chatGroupRepository.saveAll(chatGroupList);
-        for (var user : listUsers) {
-            simpMessagingTemplate.convertAndSendToUser(String.valueOf(user.getId()), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(SocketType.USER_CONVERSATION_ADDED,
+        List<ChatGroup> chatGroupList = listUsers.stream().map(x -> new ChatGroup(chatEntity.getChatId(), x.getId(), date)).collect(Collectors.toList());
+        chatGroupRepository.saveAllAndFlush(chatGroupList);
+        for (var userId : chatGroupRepository.getUserIdByChatId(chatEntity.getChatId())) {
+            simpMessagingTemplate.convertAndSendToUser(String.valueOf(userId), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(SocketType.USER_CONVERSATION_GROUP_ADDED,
                     new ChatModel(chatEntity.getChatId(), null, null, chatEntity.getDisplayName(),
                             chatEntity.getImageUrl(), chatEntity.getBlockedBy(), Status.ONLINE.name(), null,
                             null, null, ChatType.GROUP.getId())));
         }
     }
 
-    public ChatModel removeUserFromGroupChat(UserPrincipal userPrincipal, String userNameRecipient) throws ResourceNotFoundException, NewConversationException {
-        var friend = usersRepository.findByUserName(userNameRecipient);
-        if (friend == null) {
-            throw new ResourceNotFoundException("User email-" + userNameRecipient);
+    public void removeUserFromGroupChat(UserChatGroupModel userChatGroupModel) throws ResourceNotFoundException {
+        var chatEntity = chatRepository.findByChatId(userChatGroupModel.getChatId());
+        if (chatEntity == null) {
+            throw new ResourceNotFoundException("Chat Id does not exist");
         }
-        if (friend.getId().equals(userPrincipal.getId())) {
-            throw new NewConversationException("Can't chat for myself-" + userNameRecipient);
+        var listUsers = usersRepository.findByUserNameIn(userChatGroupModel.getListUserName());
+        if (listUsers.size() != userChatGroupModel.getListUserName().size()) {
+            throw new ResourceNotFoundException("List user name error");
+        }
+        int countDelete = chatGroupRepository.deleteByChatIdAndUserNameIn(userChatGroupModel.getChatId(), userChatGroupModel.getListUserName());
+        if (countDelete == 0) {
+            throw new ResourceNotFoundException("Chat Id And User Name does not exist");
+        }
+        for (var userId : chatGroupRepository.getUserIdByChatId(chatEntity.getChatId())) {
+            simpMessagingTemplate.convertAndSendToUser(String.valueOf(userId), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(SocketType.USER_CONVERSATION_GROUP_REMOVE_USER,
+                    new ChatModel(chatEntity.getChatId(), null, null, chatEntity.getDisplayName(),
+                            chatEntity.getImageUrl(), chatEntity.getBlockedBy(), Status.ONLINE.name(), null,
+                            null, null, ChatType.GROUP.getId())));
         }
 
-        SocketType typeConv = SocketType.USER_CONVERSATION_UPDATED;
-        var chatEntity = chatRepository.findByUserId1AndUserId2AndChatType(userPrincipal.getId(), friend.getId(), ChatType.GROUP.getId());
-        if (chatEntity == null) {
-            chatEntity = new Chat();
-            chatEntity = chatRepository.save(chatEntity);
-            typeConv = SocketType.USER_CONVERSATION_ADDED;
-        }
-        var userStatusEntity = userStatusRepository.findByUserId(userPrincipal.getId());
-        var friendStatusEntity = userStatusRepository.findByUserId(friend.getId());
-        simpMessagingTemplate.convertAndSendToUser(String.valueOf(friend.getId()), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(typeConv,
-                new ChatModel(chatEntity.getChatId(), userPrincipal.getId(), userPrincipal.getEmail(), userPrincipal.getName(),
-                        userPrincipal.getImageUrl(), chatEntity.getBlockedBy(), userStatusEntity.getStatus(), userStatusEntity.getLastTimeLogin(),
-                        "", null, ChatType.NORMAL.getId())));
-        return new ChatModel(chatEntity.getChatId(), friend.getId(), friend.getEmail(), friend.getUserName(), friend.getImageUrl(), chatEntity.getBlockedBy(),
-                friendStatusEntity.getStatus(), friendStatusEntity.getLastTimeLogin(), "", null, ChatType.NORMAL.getId());
     }
 
-    public ChatModel leaveGroupChat(UserPrincipal userPrincipal, String userNameRecipient) throws ResourceNotFoundException, NewConversationException {
-        var friend = usersRepository.findByUserName(userNameRecipient);
-        if (friend == null) {
-            throw new ResourceNotFoundException("User email-" + userNameRecipient);
+    public void leaveGroupChat(Long chatId) throws ResourceNotFoundException {
+        UserPrincipal userPrincipal = SecurityUtils.getCurrentIdLogin();
+        var chatEntity = chatRepository.findByChatId(chatId);
+        if (chatEntity == null) {
+            throw new ResourceNotFoundException("Chat Id does not exist");
         }
-        if (friend.getId().equals(userPrincipal.getId())) {
-            throw new NewConversationException("Can't chat for myself-" + userNameRecipient);
+        int countDelete = chatGroupRepository.deleteByChatIdAndUserId(chatId, userPrincipal.getId());
+        chatGroupRepository.flush();
+        if (countDelete == 0) {
+            throw new ResourceNotFoundException("Chat Id And User Id does not exist");
         }
 
-        SocketType typeConv = SocketType.USER_CONVERSATION_UPDATED;
-        var chatEntity = chatRepository.findByUserId1AndUserId2AndChatType(userPrincipal.getId(), friend.getId(), ChatType.GROUP.getId());
-        if (chatEntity == null) {
-            chatEntity = new Chat();
-            chatEntity = chatRepository.save(chatEntity);
-            typeConv = SocketType.USER_CONVERSATION_ADDED;
+        for (var userId : chatGroupRepository.getUserIdByChatId(chatEntity.getChatId())) {
+            simpMessagingTemplate.convertAndSendToUser(String.valueOf(userId), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(SocketType.USER_CONVERSATION_GROUP_LEAVE,
+                    new ChatModel(chatEntity.getChatId(), null, null, chatEntity.getDisplayName(),
+                            chatEntity.getImageUrl(), chatEntity.getBlockedBy(), Status.ONLINE.name(), null,
+                            null, null, ChatType.GROUP.getId())));
         }
-        var userStatusEntity = userStatusRepository.findByUserId(userPrincipal.getId());
-        var friendStatusEntity = userStatusRepository.findByUserId(friend.getId());
-        simpMessagingTemplate.convertAndSendToUser(String.valueOf(friend.getId()), WebSocketKey.DESTINATION_STATUS, new SocketModel<>(typeConv,
-                new ChatModel(chatEntity.getChatId(), userPrincipal.getId(), userPrincipal.getEmail(), userPrincipal.getName(),
-                        userPrincipal.getImageUrl(), chatEntity.getBlockedBy(), userStatusEntity.getStatus(), userStatusEntity.getLastTimeLogin(),
-                        "", null, ChatType.NORMAL.getId())));
-        return new ChatModel(chatEntity.getChatId(), friend.getId(), friend.getEmail(), friend.getUserName(), friend.getImageUrl(), chatEntity.getBlockedBy(),
-                friendStatusEntity.getStatus(), friendStatusEntity.getLastTimeLogin(), "", null, ChatType.NORMAL.getId());
     }
 }
 

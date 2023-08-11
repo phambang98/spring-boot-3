@@ -65,6 +65,9 @@ public class CustomChannelInterceptor implements ChannelInterceptor {
                 throw new RuntimeException(e);
             }
         }
+        if (StompCommand.SEND == accessor.getCommand()) {
+
+        }
         return message;
     }
 

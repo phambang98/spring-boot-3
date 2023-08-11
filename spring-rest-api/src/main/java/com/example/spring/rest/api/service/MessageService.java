@@ -16,6 +16,7 @@ import com.example.core.repository.*;
 import com.example.core.utils.CommonKey;
 import com.example.core.utils.WebSocketKey;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +85,7 @@ public class MessageService {
         if (messageEntity != null) {
             Chat chatEntity = chatRepository.findByChatId(messageEntity.getChatId());
             if (chatEntity != null) {
-                Long friendId = chatEntity.getUserId1().equals(userId) ? chatEntity.getUserId2() : chatEntity.getUserId1();
+                Long friendId = StringUtils.equals(String.valueOf(chatEntity.getUserId1()), String.valueOf(userId)) ? chatEntity.getUserId2() : chatEntity.getUserId1();
                 messageRepository.deleteById(messageId);
                 simpMessagingTemplate.convertAndSendToUser(
                         String.valueOf(friendId), WebSocketKey.DESTINATION_MESSAGE, new SocketModel<>(SocketType.USER_MESSAGE_DELETE, new DeleteMessageModel(userId, messageId)));

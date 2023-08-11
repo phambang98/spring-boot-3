@@ -3,8 +3,8 @@ export class ChatGroupModel {
   nameChatGroup: string
 
 
-  constructor(listItems: any[], nameChatGroup: string) {
-    this.listUserName = listItems;
-    this.nameChatGroup = nameChatGroup;
+  constructor(listUserName: any[], nameChatGroup: string) {
+    this.listUserName = listUserName
+    this.nameChatGroup = nameChatGroup
   }
 }

@@ -17,5 +17,6 @@ export class MessageDetail {
   latitude: number = 0
   longitude: number = 0
   read: string
+  lastMsg: string
 
 }

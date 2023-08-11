@@ -1,6 +1,11 @@
 nb-chat {
+  ng-template {
+    width: 370px;
+  }
+
   ::ng-deep {
     .header {
+      height: 84px;
       padding: 0px;
 
       .friend-image-url {

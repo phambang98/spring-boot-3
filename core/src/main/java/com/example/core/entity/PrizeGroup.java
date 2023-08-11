@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 @Data
@@ -23,5 +24,5 @@ public class PrizeGroup extends AbstractEntity {
     private Date dateTime;
 
     @Transient
-    private List<Prizes> prizeList;
+    private List<Prizes> prizeList = new LinkedList<>();
 }

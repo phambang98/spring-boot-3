@@ -17,6 +17,10 @@ public interface PrizeRepository extends JpaRepository<Prizes, Long> {
             "where p.prizeGroupId = :prizeGroupId  and p.luckNumber =:luckNumber")
     Prizes getPrizeGroupIdAndLuckNumber(@Param("prizeGroupId") Long prizeGroupId, @Param("luckNumber") Long luckNumber);
 
-    @Query("select p from Prizes p inner join PrizeGroup pg on p.prizeGroupId = pg.id order by p.displayNumber ")
+    @Query("select p from Prizes p inner join PrizeGroup pg on p.prizeGroupId = pg.id and pg.id != 2 order by p.displayNumber ")
     List<Prizes> getAllPrizeByPrizeGroupId();
+
+
+    @Query(value = "select p.* from Prizes p  inner join Prize_Group pg on p.prize_Group_Id = pg.id and pg.id = 2 order by p.display_Number limit :number",nativeQuery = true)
+    List<Prizes> getAllPrizeByPrizeGroupIdDefault(@Param("number") int number);
 }

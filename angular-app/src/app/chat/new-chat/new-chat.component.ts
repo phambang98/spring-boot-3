@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
-import { NbDialogRef } from '@nebular/theme';
+import {Component, Input} from '@angular/core';
+import {NbDialogRef} from '@nebular/theme';
+import {CloseDialog} from "../../_dtos/chat/CloseDialog";
 
 @Component({
-    template: `
-    <nb-card class="dialog-card">
+  template: `
+    <nb-card>
       <nb-card-header>Enter Your Friend User Name</nb-card-header>
       <nb-card-body>
         <input #userName nbInput placeholder="User Name" type="text">
@@ -13,18 +14,18 @@ import { NbDialogRef } from '@nebular/theme';
         <button nbButton (click)="dismiss()" status="danger" class="m-2">Close</button>
       </nb-card-footer>
     </nb-card>
-    `,
+  `,
 })
 export class NewChatComponent {
 
-    constructor(protected ref: NbDialogRef<NewChatComponent>) {
-    }
+  constructor(protected ref: NbDialogRef<NewChatComponent>) {
+  }
 
-    dismiss() {
-        this.ref.close();
-    }
+  dismiss() {
+    this.ref.close();
+  }
 
-    submit(userName: string){
-        this.ref.close(userName);
-    }
+  submit(userName: string) {
+    this.ref.close(new CloseDialog(true, userName));
+  }
 }

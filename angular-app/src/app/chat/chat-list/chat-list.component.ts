@@ -10,6 +10,7 @@ import {NewChatComponent} from '../new-chat/new-chat.component';
 import {ChatService} from "../../_services/chat.service";
 import {NewGroupComponent} from "../new-group/new-group.component";
 import {ChatGroupModel} from "../../_dtos/chat/ChatGroupModel";
+import {CloseDialog} from "../../_dtos/chat/CloseDialog";
 
 @Component({
   selector: 'home-chat-list',
@@ -19,7 +20,7 @@ import {ChatGroupModel} from "../../_dtos/chat/ChatGroupModel";
 })
 export class ChatListComponent implements OnInit, AfterViewInit {
 
-  chatModels: Observable<ChatModel[]>
+  chatModels: ChatModel[]
   menu = [
     {title: 'Profile', icon: 'person-outline'},
     {title: 'New Chat', icon: 'person-add-outline'},
@@ -35,13 +36,17 @@ export class ChatListComponent implements OnInit, AfterViewInit {
   constructor(private menuService: NbMenuService, private router: Router, private dialogService: NbDialogService,
               private userService: UserService, private chatService: ChatService, private route: ActivatedRoute) {
     this.profile = this.userService.getProfile()
-    this.chatModels = this.chatService.getAllChat()
   }
 
   ngAfterViewInit() {
-    this.chatModels['_value'].forEach(x => {
-      this.chatService.updateStatusChat(x)
-    })
+    this.chatService.chatModel.subscribe(
+      (models: ChatModel[]) => {
+        this.chatModels = models
+        this.chatModels.forEach(x => {
+          this.chatService.updateStatusChat(x)
+        })
+      }
+    )
     this.chatService.chatModel.subscribe((fp: ChatModel[]) => {
       this.chatModels['_value'] = fp
     })
@@ -63,39 +68,43 @@ export class ChatListComponent implements OnInit, AfterViewInit {
             this.router.navigateByUrl("/profile")
             break;
           case 'New Chat':
-            this.dialogService.open(NewChatComponent).onClose.subscribe((userName) => {
-              this.chatService.createChat(userName).subscribe({
-                complete: () => {
-                  console.log("complete-createFriend");
-                },
-                next: (v) => {
-                  let newChat = this.chatModels['_value'].find(x => x.userId === v.userId)
-                  newChat.lastTimeLogin = v.lastTimeLogin
-                  newChat.status = v.status
-                  this.chatService.updateStatusChat(newChat)
-                },
-                error: (err) => {
-                  console.log("err-createFriend", err);
-                },
-              })
+            this.dialogService.open(NewChatComponent).onClose.subscribe((closeDialog: CloseDialog) => {
+              if (closeDialog?.submit) {
+                this.chatService.createChat(closeDialog.data).subscribe({
+                  complete: () => {
+                    console.log("complete-createFriend");
+                  },
+                  // next: (v) => {
+                  //   let newChat = this.chatModels['_value'].find(x => x.userId === v.userId)
+                  //   newChat.lastTimeLogin = v.lastTimeLogin
+                  //   newChat.status = v.status
+                  //   this.chatService.updateStatusChat(newChat)
+                  // },
+                  error: (err) => {
+                    console.log("err-createFriend", err);
+                  },
+                })
+              }
             })
             break;
           case 'New Group':
-            this.dialogService.open(NewGroupComponent).onClose.subscribe((chatGroupModel) => {
-              this.chatService.createChatGroup(chatGroupModel).subscribe({
-                complete: () => {
-                  console.log("complete-group-chat");
-                },
-                next: (v) => {
-                  let newChat = this.chatModels['_value'].find(x => x.userId === v.userId)
-                  newChat.lastTimeLogin = v.lastTimeLogin
-                  newChat.status = v.status
-                  this.chatService.updateStatusChat(newChat)
-                },
-                error: (err) => {
-                  console.log("err-createFriend", err);
-                },
-              })
+            this.dialogService.open(NewGroupComponent).onClose.subscribe((closeDialog: CloseDialog) => {
+              if (closeDialog?.submit) {
+                this.chatService.createChatGroup(closeDialog.data).subscribe({
+                  complete: () => {
+                    console.log("complete-group-chat");
+                  },
+                  // next: (v) => {
+                  //   let newChat = this.chatModels['_value'].find(x => x.userId === v.userId)
+                  //   newChat.lastTimeLogin = v.lastTimeLogin
+                  //   newChat.status = v.status
+                  //   this.chatService.updateStatusChat(newChat)
+                  // },
+                  error: (err) => {
+                    console.log("err-createFriend", err);
+                  },
+                })
+              }
             })
             break;
           case 'Settings':

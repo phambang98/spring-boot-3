@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 
 @Component({
   template: `
-    <nb-card class="dialog-card" size="medium">
+    <nb-card size="medium">
       <nb-card-header>{{ title }}</nb-card-header>
       <nb-card-body class="text-center">
         <p>
