@@ -7,7 +7,7 @@ import {UserProfile} from '../_dtos/user/UserProfile';
 export class TokenStorageService {
   TOKEN_KEY = 'auth-token';
   USER_KEY = 'auth-user'
-  REFRESH_TOKEN_KEY = 'auth-refresh-token';
+  // REFRESH_TOKEN_KEY = 'auth-refresh-token';
 
   constructor() {
   }
@@ -29,15 +29,15 @@ export class TokenStorageService {
     localStorage.removeItem(this.USER_KEY);
     localStorage.setItem(this.USER_KEY, JSON.stringify(user));
   }
+  //
+  // public saveRefreshToken(refreshToken: string): void {
+  //   localStorage.removeItem(this.REFRESH_TOKEN_KEY);
+  //   localStorage.setItem(this.REFRESH_TOKEN_KEY, refreshToken);
+  // }
 
-  public saveRefreshToken(refreshToken: string): void {
-    localStorage.removeItem(this.REFRESH_TOKEN_KEY);
-    localStorage.setItem(this.REFRESH_TOKEN_KEY, refreshToken);
-  }
-
-  public getRefreshToken(): string {
-    return localStorage.getItem(this.REFRESH_TOKEN_KEY);
-  }
+  // public getRefreshToken(): string {
+  //   return localStorage.getItem(this.REFRESH_TOKEN_KEY);
+  // }
 
 
   public getUser(): UserProfile {

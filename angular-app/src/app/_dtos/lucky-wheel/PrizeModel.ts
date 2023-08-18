@@ -7,4 +7,5 @@ export class PrizeModel {
   type: string;
   displayNumber: number;
   quantity: number;
+  deg: number
 }

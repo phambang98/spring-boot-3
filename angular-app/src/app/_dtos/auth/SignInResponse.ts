@@ -6,4 +6,5 @@ export class SignInResponse {
   email: string
   imageUrl: string
   id: number
+  returnUrl: string
 }

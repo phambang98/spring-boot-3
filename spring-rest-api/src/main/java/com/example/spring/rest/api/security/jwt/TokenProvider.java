@@ -30,8 +30,8 @@ public class TokenProvider {
 
     private final long tokenValidityInMillisecondsForRememberMe;
 
-    @Autowired
-    private RefreshTokenRepository refreshTokenRepository;
+//    @Autowired
+//    private RefreshTokenRepository refreshTokenRepository;
 
     public TokenProvider(@Value("${token.secret}") String tokenSecret) {
         byte[] keyBytes;
@@ -71,35 +71,35 @@ public class TokenProvider {
 
     }
 
-    public TokenRefreshResponse refreshToken(String refreshToken) {
-        RefreshToken entity = refreshTokenRepository.findByRefreshToken(refreshToken);
-        if (entity == null) {
-            throw new TokenRefreshException(refreshToken, "Refresh token not found");
-        }
-        if (entity.getExpiryDate().compareTo(new Date()) < 0) {
-            refreshTokenRepository.delete(entity);
-            refreshTokenRepository.flush();
-            throw new TokenRefreshException(refreshToken, "Refresh token was expired. Please make a new signin request");
-        }
-        return new TokenRefreshResponse(generateToken(entity.getUserId()), createRefreshToken(entity.getUserId()));
-    }
-
-    public String createRefreshToken(Long userId) {
-        RefreshToken entity = refreshTokenRepository.findByUserId(userId);
-        if (entity == null) {
-            return generateRefreshToken(userId);
-        }
-        return entity.getRefreshToken();
-    }
-
-    public String generateRefreshToken(Long userId) {
-        RefreshToken refreshToken = new RefreshToken();
-        refreshToken.setUserId(userId);
-        refreshToken.setExpiryDate(DateUtils.addHours(new Date(), 2));
-        refreshToken.setRefreshToken(UUID.randomUUID().toString());
-        refreshToken = refreshTokenRepository.save(refreshToken);
-        return refreshToken.getRefreshToken();
-    }
+//    public TokenRefreshResponse refreshToken(String refreshToken) {
+//        RefreshToken entity = refreshTokenRepository.findByRefreshToken(refreshToken);
+//        if (entity == null) {
+//            throw new TokenRefreshException(refreshToken, "Refresh token not found");
+//        }
+//        if (entity.getExpiryDate().compareTo(new Date()) < 0) {
+//            refreshTokenRepository.delete(entity);
+//            refreshTokenRepository.flush();
+//            throw new TokenRefreshException(refreshToken, "Refresh token was expired. Please make a new signin request");
+//        }
+//        return new TokenRefreshResponse(generateToken(entity.getUserId()), createRefreshToken(entity.getUserId()));
+//    }
+//
+//    public String createRefreshToken(Long userId) {
+//        RefreshToken entity = refreshTokenRepository.findByUserId(userId);
+//        if (entity == null) {
+//            return generateRefreshToken(userId);
+//        }
+//        return entity.getRefreshToken();
+//    }
+//
+//    public String generateRefreshToken(Long userId) {
+//        RefreshToken refreshToken = new RefreshToken();
+//        refreshToken.setUserId(userId);
+//        refreshToken.setExpiryDate(DateUtils.addHours(new Date(), 2));
+//        refreshToken.setRefreshToken(UUID.randomUUID().toString());
+//        refreshToken = refreshTokenRepository.save(refreshToken);
+//        return refreshToken.getRefreshToken();
+//    }
 
 }
 

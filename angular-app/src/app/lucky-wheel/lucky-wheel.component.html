@@ -1,20 +1,44 @@
-<div id="lucky-wheel">
-  <div class="wheel">
-    <div class="inner" #inner>
-      <div class="slice"  *ngFor="let prize of prizes">
-        <span class="prize">{{prize.description}}</span>
+<div class="row">
+  <div class="col-3">
+    <div class="rule">
+      <div class="rule__content" *ngFor="let prize of prizes;let i = index">
+        <div [ngClass]="'rule__color color-' + (i+1) "></div>
+        <div class="rule__text">
+          {{prize.description}}
+        </div>
       </div>
     </div>
   </div>
-  <div class="wheel-outer"></div>
-  <svg id="svg-dotted" viewBox="0 0 100 100">
-    <circle id="circle-dotted" cx="50" cy="50" r="40"/>
-  </svg>
-  <svg id="svg-arrow" xmlns="http://www.w3.org/2000/svg">
-    <path
-      style="fill:#ff2e52; stroke:#012e52; stroke-width:4; stroke-linejoin:round"
-      d="M 81.540414,49.378716 H 121.51935 L 101.4866,69.420346 Z"
-    />
-  </svg>
-  <button (click)="spin()" [disabled]="activeBtn">SPIN</button>
+  <div class="col-6 item-wheel">
+    <div class="wheel">
+      <div class="wheel__inner" #wheel__inner>
+        <div class="wheel__sec" *ngFor="let prize of prizes">
+        </div>
+      </div>
+      <div class="wheel__arrow">
+        <button class="wheel__button" (click)="spin()" [disabled]="!activeBtn">SPIN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3 div-text-wheel scrollbar">
+    <div class="text-wheel">
+      <div class="alert alert-success alert-dismissible">
+        <strong>Well done!</strong> You successfully
+      </div>
+      <div class="alert alert-danger alert-dismissible">
+        <strong>Oh snap!</strong> Change a
+      </div>
+      <div class="alert alert-success alert-dismissible">
+        <strong>Well done!</strong> You successfully
+      </div>
+      <div class="alert alert-danger alert-dismissible">
+        <strong>Oh snap!</strong> Change a
+      </div>
+    </div>
+  </div>
+
 </div>
+
+
+

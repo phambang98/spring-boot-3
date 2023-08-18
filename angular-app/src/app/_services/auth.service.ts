@@ -7,7 +7,7 @@ import {map} from 'rxjs/operators';
 import {SignInResponse} from '../_dtos/auth/SignInResponse';
 import {SignInRequest} from '../_dtos/auth/SignInRequest';
 import {SignUpRequest} from '../_dtos/auth/SignUpRequest';
-import {ApiResponse} from '../_dtos/common/ApiResponse';
+import {ResultData} from '../_dtos/common/ResultData';
 import {UserProfile} from '../_dtos/user/UserProfile';
 import {TokenVerify} from "../_dtos/auth/TokenVerify";
 import {TokenStorageService} from "./token-storage.service";
@@ -30,39 +30,33 @@ export class AuthService {
     return this.tokenStorage.getToken()
   }
 
-  getRefreshToken(): string {
-    return this.tokenStorage.getRefreshToken()
-  }
+  // getRefreshToken(): string {
+  //   return this.tokenStorage.getRefreshToken()
+  // }
 
   setToken(token: string) {
     this.tokenStorage.saveToken(token)
   }
 
-  setRefreshToken(refreshToken: string) {
-    this.tokenStorage.saveRefreshToken(refreshToken)
+  // setRefreshToken(refreshToken: string) {
+  //   this.tokenStorage.saveRefreshToken(refreshToken)
+  // }
+
+  login(model: SignInRequest): Observable<ResultData> {
+    return this.http.post(`${environment.DOMAIN}/api/account/signin`, model)as Observable<ResultData>
   }
 
-  login(model: SignInRequest): Observable<SignInResponse> {
-    return this.http.post(`${environment.DOMAIN}/api/account/signin`, model)
-      .pipe(map((response: SignInResponse) => {
-        this.tokenStorage.saveToken(response.accessToken)
-        this.tokenStorage.saveRefreshToken(response.refreshToken)
-        this.tokenStorage.saveUser(new UserProfile(response.id, response.email, response.userName, response.imageUrl))
-        return response
-      }));
+  register(model: SignUpRequest): Observable<ResultData> {
+    return this.http.post(`${environment.DOMAIN}/api/account/signup`, model) as Observable<ResultData>
   }
 
-  register(model: SignUpRequest): Observable<ApiResponse> {
-    return this.http.post(`${environment.DOMAIN}/api/account/signup`, model) as Observable<ApiResponse>;
+  verifyToken(model: TokenVerify): Observable<ResultData> {
+    return this.http.post(`${environment.DOMAIN}/api/account/verify`, model) as Observable<ResultData>
   }
 
-  verifyToken(model: TokenVerify): Observable<ApiResponse> {
-    return this.http.post(`${environment.DOMAIN}/api/account/verify`, model) as Observable<ApiResponse>;
-  }
-
-  refreshToken(refreshToken: string): Observable<SignInResponse> {
-    return this.http.post(`${environment.DOMAIN}/api/account/refresh-token`, new RefreshTokenRequest(refreshToken), this.httpOptions) as Observable<SignInResponse>;
-  }
+  // refreshToken(refreshToken: string): Observable<SignInResponse> {
+  //   return this.http.post(`${environment.DOMAIN}/api/account/refresh-token`, new RefreshTokenRequest(refreshToken), this.httpOptions) as Observable<SignInResponse>
+  // }
 
   logout() {
     this.tokenStorage.signOut()

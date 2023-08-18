@@ -33,7 +33,9 @@ export class JwtInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       (catchError(err => {
           if (err.status === 401) {
-            return this.handle401Error(request, next);
+            this.authService.logout()
+            this.router.navigateByUrl("/auth/signin")
+            // return this.handle401Error(request, next);
           }
           const error = err.error.message || err.statusText;
           return throwError(error);
@@ -41,23 +43,23 @@ export class JwtInterceptor implements HttpInterceptor {
       )));
   }
 
-  private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
-    if (this.authService.getRefreshToken()) {
-      return this.authService.refreshToken(this.authService.getRefreshToken()).pipe(
-        switchMap((res: SignInResponse) => {
-          this.tokenStorageServices.saveToken(res.accessToken)
-          this.tokenStorageServices.saveRefreshToken(res.refreshToken)
-          return next.handle(request.clone({headers: request.headers.set("Authorization", "Bearer " + res.accessToken)}));
-        }),
-        catchError((err) => {
-          this.authService.logout()
-          this.router.navigateByUrl("/auth/signin")
-          return throwError(err);
-        })
-      );
-    } else {
-      this.authService.logout()
-      this.router.navigateByUrl("/auth/signin")
-    }
-  }
+  // private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
+      // if (this.authService.getRefreshToken()) {
+      // return this.authService.refreshToken(this.authService.getRefreshToken()).pipe(
+      //   switchMap((res: SignInResponse) => {
+      //     this.tokenStorageServices.saveToken(res.accessToken)
+          // this.tokenStorageServices.saveRefreshToken(res.refreshToken)
+          // return next.handle(request.clone({headers: request.headers.set("Authorization", "Bearer " + res.accessToken)}));
+        // }),
+        // catchError((err) => {
+        //   this.authService.logout()
+        //   this.router.navigateByUrl("/auth/signin")
+        //   return throwError(err);
+        // })
+      // );
+    // } else {
+    //   this.authService.logout()
+    //   this.router.navigateByUrl("/auth/signin")
+    // }
+  // }
 }

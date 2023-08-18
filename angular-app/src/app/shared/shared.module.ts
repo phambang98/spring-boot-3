@@ -25,10 +25,11 @@ import {NotificationListComponent} from './notification/notification/notificatio
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {DialogLuckyWheelComponent} from './dialog/dialog-lucky-wheel/dialog-lucky-wheel.component';
 
 
 @NgModule({
-  declarations: [DialogSuccessComponent, DialogAuthenticationFailureComponent, ImgFallbackDirective, NotificationListComponent],
+  declarations: [DialogSuccessComponent, DialogLuckyWheelComponent, DialogAuthenticationFailureComponent, ImgFallbackDirective, NotificationListComponent, DialogLuckyWheelComponent],
   imports: [
     CommonModule, NbLayoutModule, NbCardModule, NbAlertModule, NbInputModule, NbFormFieldModule, NbCheckboxModule, NbProgressBarModule,
     NbButtonModule, NbIconModule, NbSpinnerModule, NbUserModule, NbSidebarModule, NbChatModule, NbListModule, NbContextMenuModule,
@@ -37,7 +38,7 @@ import {MatIconModule} from "@angular/material/icon";
   exports: [
     NbLayoutModule, NbCardModule, NbAlertModule, NbInputModule, NbFormFieldModule, NbCheckboxModule, NbButtonModule, NbIconModule,
     NbSpinnerModule, NbUserModule, NbSidebarModule, NbChatModule, NbListModule, NbContextMenuModule, NbDialogModule, NbProgressBarModule,
-    DialogSuccessComponent, DialogAuthenticationFailureComponent, NotificationListComponent,
+    DialogSuccessComponent, DialogLuckyWheelComponent, DialogAuthenticationFailureComponent, NotificationListComponent,
     ImgFallbackDirective,
   ]
 })

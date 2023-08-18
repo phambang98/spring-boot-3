@@ -7,6 +7,7 @@ import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
 import {LuckyWheelModel} from "../_dtos/lucky-wheel/LuckyWheelModel";
 import {PrizeGroup} from "../_dtos/lucky-wheel/PrizeGroup";
+import {ResultData} from "../_dtos/common/ResultData";
 
 @Injectable()
 export class LuckyWheelService extends WebSocketService {
@@ -15,18 +16,15 @@ export class LuckyWheelService extends WebSocketService {
     super(tokenStorageService)
   }
 
-  findFirstByCurrentDateTime(): Observable<PrizeGroup> {
-    return this.httpClient.get(`${environment.DOMAIN}/api/lucky-wheel`)
-      .pipe(map((model: PrizeGroup) => {
-        return model
-      }))
+  findFirstByCurrentDateTime(): Observable<ResultData> {
+    return this.httpClient.get(`${environment.DOMAIN}/api/lucky-wheel`) as Observable<ResultData>
   }
 
-  spin(groupPrizeId: number): Observable<LuckyWheelModel> {
-    return this.httpClient.post(`${environment.DOMAIN}/api/lucky-wheel/spin/${groupPrizeId}`,null)
-      .pipe(map((model: LuckyWheelModel) => {
-        this.updateNotificationLucky(model)
-        return model
+  spin(groupPrizeId: number): Observable<ResultData> {
+    return this.httpClient.post(`${environment.DOMAIN}/api/lucky-wheel/spin/${groupPrizeId}`, null)
+      .pipe(map((resultData: ResultData) => {
+        this.updateNotificationLucky(resultData)
+        return resultData
       }))
   }
 
@@ -34,7 +32,7 @@ export class LuckyWheelService extends WebSocketService {
     let json = JSON.parse(luckyWheel.body)
   }
 
-  updateNotificationLucky(model: LuckyWheelModel) {
+  updateNotificationLucky(resultData: ResultData) {
 
   }
 }

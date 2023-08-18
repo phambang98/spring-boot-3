@@ -4,6 +4,14 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {SignInRequest} from 'src/app/_dtos/auth/SignInRequest';
 import {Router, ActivatedRoute} from '@angular/router';
 import {environment} from '../../../environments/environment';
+import {SignInResponse} from "../../_dtos/auth/SignInResponse";
+import {ResultData} from "../../_dtos/common/ResultData";
+import {UserProfile} from "../../_dtos/user/UserProfile";
+import {TokenStorageService} from "../../_services/token-storage.service";
+import {
+  DialogAuthenticationFailureComponent
+} from "../../shared/dialog/dialog-alert/dialog-authentication-failure.component";
+import {NbDialogService} from "@nebular/theme";
 
 @Component({
   selector: 'app-signin',
@@ -16,19 +24,23 @@ export class SigninComponent implements OnInit {
   signInFrom: FormGroup
   redirect = "/"
 
-  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private authService: AuthService, private fb: FormBuilder, private router: Router, private dialogService: NbDialogService,
+              private activatedRoute: ActivatedRoute, private tokenStorage: TokenStorageService) {
     this.signInFrom = this.fb.group({
       userName: [],
-      password: []
+      password: [],
     })
 
     this.activatedRoute.queryParams.subscribe(params => {
       let userName = params['userName']
       let password = params['password']
+      if (params['returnUrl']) {
+        this.redirect = params['returnUrl']
+      }
       if (userName && password) {
         this.signInFrom.setValue({
           userName: userName,
-          password: password
+          password: password,
         });
       }
     })
@@ -43,8 +55,20 @@ export class SigninComponent implements OnInit {
       this.loading = true
       this.authService.login(new SignInRequest(data['userName'], data['password'])).subscribe({
         complete: () => {
-          this.router.navigateByUrl(this.redirect)
+
           this.loading = false
+        },
+        next: (resultData: ResultData) => {
+          if (resultData.success) {
+            this.tokenStorage.saveToken(resultData.data.accessToken)
+            // this.tokenStorage.saveRefreshToken(resultData.data.refreshToken)
+            this.tokenStorage.saveUser(new UserProfile(resultData.data.id, resultData.data.email, resultData.data.userName, resultData.data.imageUrl))
+            this.router.navigateByUrl(this.redirect)
+          } else {
+            this.dialogService.open(DialogAuthenticationFailureComponent, {
+              context: {title: "Login Failure", message: resultData.message}
+            })
+          }
         },
         error: (e) => {
           this.loading = false

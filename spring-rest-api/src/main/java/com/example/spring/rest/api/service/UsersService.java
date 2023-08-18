@@ -1,5 +1,7 @@
 package com.example.spring.rest.api.service;
 
+import com.example.core.model.ResultData;
+import com.example.core.model.ForgotPasswordRequest;
 import com.example.spring.rest.api.security.UserPrincipal;
 import com.example.core.error.ResourceNotFoundException;
 import com.example.core.model.UserModel;
@@ -74,4 +76,5 @@ public class UsersService implements UserDetailsService {
     @CacheEvict(value = "users", allEntries = true)
     public void clearCache() {
     }
+
 }

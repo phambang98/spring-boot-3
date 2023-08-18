@@ -165,8 +165,6 @@ cspring-rest-api/src/main/java/com/example/spring/rest/api/security/UsersAuthent
 Rspring-rest-api/src/main/java/com/example/spring/rest/api/service/ChatService.java,6\a\6a484e59729a8fc23626a2e946b66a227af51409
 ‰
 Yspring-rest-api/src/main/java/com/example/spring/rest/api/service/FileStorageService.java,f\8\f88e08e6c1bb1e249f8832d7567294726272f0bb
-ˆ
-Xspring-rest-api/src/main/java/com/example/spring/rest/api/service/LuckyWheelService.java,e\8\e81cfd5f47fd4ed7a634e4d46c1124584b23476b
 ‚
 Rspring-rest-api/src/main/java/com/example/spring/rest/api/service/MenuService.java,b\8\b88474f7d1ac3a0bb56f173f3dae670c21aa786f
 ƒ
@@ -211,3 +209,9 @@ i
 9spring-rest-api/src/main/resources/application.properties,1\3\13d3d121cbe7c2a3ab2f1256c6163c868e026065
 ~
 Nspring-batch/src/main/java/com/example/spring/batch/tasklet/PersonTasklet.java,5\8\5896aa24674b74624118d034d11e3c573525e7d8
+„
+Tspring-rest-api/src/main/java/com/example/spring/rest/api/error/HandleException.java,3\1\3139cb4ba4ec51113a95d864969c132b0de78221
+…
+Uspring-rest-api/src/main/java/com/example/spring/rest/api/service/AccountService.java,4\d\4def0c9aeea2c2e6f010ea03bdacceec05ed992e
+ˆ
+Xspring-rest-api/src/main/java/com/example/spring/rest/api/service/LuckyWheelService.java,e\8\e81cfd5f47fd4ed7a634e4d46c1124584b23476b

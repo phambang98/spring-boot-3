@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class ForgotPasswordComponent implements OnInit {
 
   loading: Boolean = false
-  
-  constructor() { }
+
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+  }
+
+  onClickSubmit(data) {
+
   }
 
 }

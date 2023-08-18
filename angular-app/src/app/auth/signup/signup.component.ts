@@ -3,7 +3,7 @@ import {FormGroup, FormBuilder, Validators, AbstractControl, ValidatorFn} from '
 import {AuthService} from 'src/app/_services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SignUpRequest} from 'src/app/_dtos/auth/SignUpRequest';
-import {ApiResponse} from 'src/app/_dtos/common/ApiResponse';
+import {ResultData} from 'src/app/_dtos/common/ResultData';
 import {NbDialogService} from '@nebular/theme';
 import {DialogSuccessComponent} from 'src/app/shared/dialog/dialog-alert/dialog-success.component';
 import {
@@ -46,7 +46,7 @@ export class SignupComponent implements OnInit {
       let data = this.signUpFrom.value
       this.loading = true
       this.authService.register(new SignUpRequest(data['userName'], data['email'], data['password'])).subscribe({
-          next: (response: ApiResponse) => {
+          next: (response: ResultData) => {
             this.loading = false
             if (!response.success) {
               this.dialogService.open(DialogAuthenticationFailureComponent, {
