@@ -10,20 +10,22 @@ import com.example.core.repository.PrizeGroupRepository;
 import com.example.core.repository.PrizeRepository;
 import com.example.core.utils.WebSocketKey;
 import com.example.spring.rest.api.model.LuckyWheelModel;
+import com.example.spring.rest.api.model.PrizeDto;
+import com.example.spring.rest.api.model.PrizeGroupDto;
 import com.example.spring.rest.api.model.SocketModel;
 import com.example.spring.rest.api.security.SecurityUtils;
 import com.example.spring.rest.api.security.UserPrincipal;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -42,21 +44,28 @@ public class LuckyWheelService {
     private SimpMessagingTemplate simpMessagingTemplate;
 
     public ResultData findFirstByCurrentDateTime() {
+
         ResultData resultData = new ResultData();
         try {
+            ModelMapper modelMapper = new ModelMapper();
             var prizeGroup = prizeGroupRepository.findFirstByCurrentDateTime();
             if (prizeGroup != null) {
-                prizeGroup.setPrizeList(prizeRepository.getAllPrizeByPrizeGroupId());
-                if (prizeGroup.getPrizeList().size() < 6) {
-                    int addCount = 6 - prizeGroup.getPrizeList().size();
-                    prizeGroup.getPrizeList().addAll(prizeRepository.getAllPrizeByPrizeGroupIdDefault(addCount));
+                var prizeGroupDto = modelMapper.map(prizeGroup, PrizeGroupDto.class);
+                List<PrizeDto> prizeDto = modelMapper.map(prizeRepository.getAllPrizeByPrizeGroupId(), new TypeToken<List<PrizeDto>>() {
+                }.getType());
+
+                prizeGroupDto.setPrizeList(prizeDto);
+                if (prizeGroupDto.getPrizeList().size() < 6) {
+                    int addCount = 6 - prizeGroupDto.getPrizeList().size();
+                    prizeGroupDto.getPrizeList().addAll(modelMapper.map(prizeRepository.getAllPrizeByPrizeGroupIdDefault(addCount), new TypeToken<List<PrizeDto>>() {
+                    }.getType()));
                 }
                 Long i = 0l;
-                for (var obj : prizeGroup.getPrizeList()) {
+                for (var obj : prizeGroupDto.getPrizeList()) {
                     obj.setDisplayNumber(++i);
                 }
+                resultData.setData(prizeGroupDto);
             }
-            resultData.setData(prizeGroup);
             return resultData;
         } catch (Exception e) {
             log.error("", e);
@@ -82,7 +91,9 @@ public class LuckyWheelService {
             Long spinNumber = (long) (rand.nextInt(100) + 1);
             Prizes prizes = prizeRepository.getPrizeGroupIdAndLuckNumber(prizeGroupId, spinNumber);
             if (prizes == null || prizes.getQuantity() == 0) {
+                prizes = prizeRepository.selectOneRandomNotLucky(prizeGroupId);
                 luckyWheelModel.setSpinNumber(spinNumber);
+                luckyWheelModel.setPrizeId(prizes.getId());
                 luckyWheelModel.setMessage("Chúc bạn may mắn lần sau!");
                 resultData.setData(luckyWheelModel);
                 return resultData;

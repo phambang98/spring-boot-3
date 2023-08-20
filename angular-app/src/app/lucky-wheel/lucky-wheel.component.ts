@@ -42,48 +42,52 @@ export class LuckyWheelComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.renderer2.listen(this.inner.nativeElement, 'transitionend', () => {
-      // this.dialogService.open(DialogLuckyWheelComponent, {
-      //   context: {title: "Thông báo", message: this.message}
-      // }).onClose.subscribe(() => {
-        this.activeBtn = true
-      // })
-    })
+    // this.renderer2.listen(this.inner.nativeElement, 'transitionend', () => {
+    //   this.dialogService.open(DialogLuckyWheelComponent, {
+    //     context: {title: "Thông báo", message: this.message}
+    //   }).onClose.subscribe(() => {
+      this.activeBtn = true
+    //   })
+    // })
   }
 
   spin() {
     this.activeBtn = false
-    let randomNumber = Math.floor(Math.random() * 10)
-    this.deg += (randomNumber == 0 ? 10 : randomNumber) * 360;
+    let randomNumber = Math.random() * 10
+    this.deg += Math.floor((randomNumber == 0 ? 10 : randomNumber) * 3600);
     this.renderer2.setStyle(this.inner.nativeElement, "transform", `rotate(${this.deg}deg)`)
     this.luckyWheelService.spin(this.prizeGroupId).subscribe({
       next: (resultData: ResultData) => {
         if (resultData.success) {
           let luckyWheel: LuckyWheelModel = resultData.data
           this.message = luckyWheel.message
-          let displayNumber = this.prizes.filter(x => x.luckNumber == (luckyWheel.luckyNumber ? luckyWheel.spinNumber : null))[0].displayNumber
-          let numberPresent = Math.floor(this.deg / 6)
-          do {
-            numberPresent = Math.floor(numberPresent / 6)
-          } while (numberPresent > 6)
+          let displayNumber = this.prizes.filter(x => x.id == luckyWheel.prizeId)[0].displayNumber
+          if (this.deg % 360 % 60 == 0) {
+            this.deg += 20
+          }
+          let numberPresent = this.deg % 360 / 60
+          numberPresent = Math.round(numberPresent)
+          while (numberPresent > 6) {
+            numberPresent = numberPresent / 6
+          }
+          numberPresent = Math.round(numberPresent) + 1
           //  nếu ô hiện tại là 3 ô cần đến là 3 thì giữ nguyên
-          let numberRevolutionMiss = 0
           if (displayNumber == numberPresent) {
             return
           }
-
-          // nếu ô hiện tại là 1 ô cần đến là 5 thì quay thêm 4 ô (5-1)
-          if (displayNumber < numberPresent) {
-            numberRevolutionMiss = numberPresent - displayNumber
+          let numberRevolutionMiss = 0
+          // nếu số hiện tại là 5(numberPresent) số cần đến là 3(displayNumber) thì quay thêm 2 số. 4->3
+          if (numberPresent > displayNumber) {
+            numberRevolutionMiss = 6 - (numberPresent - displayNumber)
           }
-          //  nếu ô hiện tại là 3 ô cần đến là 1 thì quay thêm 4 ô ( 6-3+ ô cần đến)
+          // nếu số hiện tại là 3(numberPresent) cần đến là 5(displayNumber) thì quay thêm 4 số : 2->1->6->5
           if (displayNumber > numberPresent) {
-            numberRevolutionMiss = 6 - numberPresent + displayNumber
+            numberRevolutionMiss = displayNumber - numberPresent
           }
-          if (numberRevolutionMiss != 0) {
-            this.deg += (numberRevolutionMiss) * 60
-            this.renderer2.setStyle(this.inner.nativeElement, "transform", `rotate(${this.deg}deg)`)
-          }
+
+          this.deg += numberRevolutionMiss * 60
+          this.renderer2.setStyle(this.inner.nativeElement, "transform", `rotate(${this.deg}deg)`)
+          this.activeBtn = true
         } else {
           console.log(resultData.message)
         }

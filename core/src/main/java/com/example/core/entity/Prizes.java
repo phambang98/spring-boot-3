@@ -19,8 +19,11 @@ public class Prizes extends AbstractEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "LUCKY_NUMBER")
-    private Long luckNumber;
+    @Column(name = "LUCKY_NUMBER_FROM")
+    private Long luckNumberFrom;
+
+    @Column(name = "LUCKY_NUMBER_TO")
+    private Long luckNumberTo;
 
     @Column(name = "IMAGE_URL")
     private String imageUrl;

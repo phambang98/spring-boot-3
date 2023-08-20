@@ -1,7 +1,7 @@
 package com.example.spring.batch.error;
 
-import com.example.core.model.FieldError;
 import com.example.core.model.RecordNotFoundException;
+import com.example.core.model.ResultData;
 import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,14 +16,14 @@ public class HandleException {
     Logger logger = LoggerFactory.getLogger(HandleException.class);
 
     @ExceptionHandler({RecordNotFoundException.class, JobExecutionException.class})
-    public ResponseEntity<FieldError> handleRecordNotFoundException(HttpServletRequest request, Exception ex) {
+    public ResponseEntity<ResultData> handleRecordNotFoundException(HttpServletRequest request, Exception ex) {
         logger.error("", ex);
-        return new ResponseEntity<>(new FieldError(ex.getMessage(), ex.getLocalizedMessage()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(ResultData.builder().success(false).message(ex.getMessage()).build(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<FieldError> handleException(HttpServletRequest request, Exception ex) {
+    public ResponseEntity<ResultData> handleException(HttpServletRequest request, Exception ex) {
         logger.error("", ex);
-        return new ResponseEntity<>(new FieldError(ex.getMessage(), ex.getLocalizedMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(ResultData.builder().success(false).message(ex.getMessage()).build(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

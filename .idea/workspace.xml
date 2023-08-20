@@ -5,50 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f358e88c-6661-4414-8c17-e78c688f2271" name="Changes" comment="cuu a">
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/ForgotPasswordRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/ResultData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/8/e81cfd5f47fd4ed7a634e4d46c1124584b23476b" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/8/e81cfd5f47fd4ed7a634e4d46c1124584b23476b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/model/PrizeDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/model/PrizeGroupDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/8/e81cfd5f47fd4ed7a634e4d46c1124584b23476b" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/8/e81cfd5f47fd4ed7a634e4d46c1124584b23476b" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_dtos/auth/SignInRequest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_dtos/auth/SignInRequest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_dtos/auth/SignInResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_dtos/auth/SignInResponse.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_dtos/common/ApiResponse.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_dtos/common/ResultData.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_dtos/lucky-wheel/LuckyWheelModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_dtos/lucky-wheel/LuckyWheelModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_dtos/lucky-wheel/PrizeModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_dtos/lucky-wheel/PrizeModel.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_helpers/auth.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_helpers/auth.guard.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_helpers/jwt.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_helpers/jwt.interceptor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_services/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_services/lucky-wheel.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_services/lucky-wheel.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_services/token-storage.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_services/token-storage.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/auth/auth.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/auth/auth.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/auth/forgot-password/forgot-password.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/auth/forgot-password/forgot-password.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/auth/forgot-password/forgot-password.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/auth/forgot-password/forgot-password.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/auth/signin/signin.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/auth/signin/signin.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/auth/signin/signin.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/auth/signin/signin.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/auth/signup/signup.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/auth/signup/signup.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/auth/token/token.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/auth/token/token.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/shared/dialog/dialog-alert/dialog-success.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/shared/dialog/dialog-alert/dialog-success.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/shared/shared.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/shared/shared.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/PrizeGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/PrizeGroup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/Prizes.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/Prizes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/ApiResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/AuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/AuthResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/FieldError.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/LuckyWheelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/LuckyWheelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/error/HandleException.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/error/HandleException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/model/LuckyWheelModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/model/LuckyWheelModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/security/Oauth2SuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/security/Oauth2SuccessHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/security/jwt/TokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/security/jwt/TokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/PrizeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/PrizeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/error/HandleException.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/error/HandleException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-3/spring-rest-api/src/main/resources/schema.sql.mv.db" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/LuckyWheelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/LuckyWheelService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/UsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/UsersService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/data.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.trace.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,12 +85,6 @@
       </UrlAndAccount>
     </option>
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/spring-batch/src/main/java/com/example/springbatch/batch/job/CoffeeConfiguration.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/spring-chat/src/main/java/com/example/springchat/service/ChatService.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/spring-core/src/main/java/com/example/springcore/repository/impl/ChatRepositoryCustomImpl.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/spring-mq/src/main/java/com/example/springmq/controller/MqJsonController.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
@@ -147,7 +117,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;azul-17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/bangpt/Downloads/spring-boot-websocket-chat-demo-master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/custom-code/spring-boot-3&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -155,7 +125,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
@@ -211,7 +181,6 @@
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn compile" />
-      <command value="mvn clean" />
       <command value="mvn install" />
       <command value="mvn clean install -U" />
       <command value="mvn clean install -DskipTests -P" />
@@ -222,6 +191,7 @@
       <command value="mvn clean install -f spring-rest-api" />
       <command value="mvn clean install -pl spring-rest-api" />
       <command value="mvn clean install" />
+      <command value="mvn clean" />
     </option>
   </component>
   <component name="RunDashboard">
@@ -494,6 +464,8 @@
       <workItem from="1692244116124" duration="3310000" />
       <workItem from="1692257776459" duration="8184000" />
       <workItem from="1692345356989" duration="2507000" />
+      <workItem from="1692518161981" duration="256000" />
+      <workItem from="1692518432236" duration="6892000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679381899693</created>
@@ -666,16 +638,12 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="7862b114-38c6-4c3a-85c5-c3b9e805d369" value="TOOL_WINDOW" />
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="7862b114-38c6-4c3a-85c5-c3b9e805d369">
           <value>
             <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -694,7 +662,6 @@
                   </entry>
                 </map>
               </option>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
             </State>
           </value>
         </entry>
@@ -703,6 +670,11 @@
             <State />
           </value>
         </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="7862b114-38c6-4c3a-85c5-c3b9e805d369" value="TOOL_WINDOW" />
       </map>
     </option>
   </component>
@@ -739,17 +711,17 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/spring_boot_3$SpringApiApplication.ic" NAME="SpringApiApplication Coverage Results" MODIFIED="1681359933810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/spring_boot_3$SpringMqApplication.ic" NAME="SpringMqApplication Coverage Results" MODIFIED="1682394588438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/spring_boot_3$SpringBatchApplication.ic" NAME="SpringBatchApplication Coverage Results" MODIFIED="1681121050513" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/spring_boot_3$SpringRestApiApplication.ic" NAME="SpringRestApiApplication Coverage Results" MODIFIED="1691049262094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.example.spring.rest.api.*</FILTER>
-    </SUITE>
     <SUITE FILE_PATH="coverage/spring_boot_3$DemoApplication.ic" NAME="DemoApplication Coverage Results" MODIFIED="1680766437115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.example.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/spring_boot_3$SpringMvcApplication.ic" NAME="SpringMvcApplication Coverage Results" MODIFIED="1689933696410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.example.spring.mvc.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/spring_boot_3$SpringMqApplication.ic" NAME="SpringMqApplication Coverage Results" MODIFIED="1682394588438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/spring_boot_3$SpringRestApiApplication.ic" NAME="SpringRestApiApplication Coverage Results" MODIFIED="1691049262094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.spring.rest.api.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/spring_boot_3$SpringApiApplication.ic" NAME="SpringApiApplication Coverage Results" MODIFIED="1681359933810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

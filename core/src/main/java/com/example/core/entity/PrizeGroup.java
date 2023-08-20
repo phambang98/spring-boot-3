@@ -22,7 +22,4 @@ public class PrizeGroup extends AbstractEntity {
 
     @Column(name = "DATE_TIME")
     private Date dateTime;
-
-    @Transient
-    private List<Prizes> prizeList = new LinkedList<>();
 }
