@@ -64,7 +64,7 @@ body {
     border-radius: 50%;
     position: relative;
     overflow: hidden;
-    transition: cubic-bezier(0.19, 1, 0.22, 1) 5s;
+    transition: 10s cubic-bezier(0.25, 0.1, 0.25, 1);
   }
 
   &__sec {
@@ -124,9 +124,8 @@ body {
       position: absolute;
       width: 0;
       height: 0;
-      border: solid;
+      border: solid transparent;
       border-width: 0 10px 20px;
-      border-color: transparent;
       border-bottom-color: #fff;
       top: -15px;
       left: 25px;

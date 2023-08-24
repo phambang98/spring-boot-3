@@ -58,6 +58,9 @@ public class CustomChannelInterceptor implements ChannelInterceptor {
                 if (dst == null) {
                     dst = getDst(accessor.getDestination(), "/notifications/", WebSocketKey.DESTINATION_STATUS);
                 }
+                if (StringUtils.equals(accessor.getDestination(), WebSocketKey.LUCKY_WHEEL)) {
+                    return message;
+                }
                 if (accessor.getUser() != null && Boolean.FALSE.equals(verifyUser(accessor.getUser(), dst))) {
                     return null;
                 }

@@ -77,7 +77,7 @@ public class LuckyWheelService {
 
     private Random rand = new Random();
 
-    @Transactional(timeout = 5)
+    @Transactional
     public ResultData spinWheel(Long prizeGroupId) {
         ResultData resultData = new ResultData();
         try {
@@ -115,13 +115,9 @@ public class LuckyWheelService {
             String messagePrize = prizes.getDescription();
             luckyWheelModel.setMessage("Chúc mừng bạn đã trúng giải : " + messagePrize);
             luckyWheelModel.setLuckyNumber(spinNumber);
-            Thread thread = new Thread(() -> {
-                LuckyWheelModel model = luckyWheelModel;
-                model.setLuckyNumber(null);
-                model.setMessage(user.getName() + " đã trúng giải : " + messagePrize);
-                simpMessagingTemplate.convertAndSend(WebSocketKey.LUCKY_WHEEL, new SocketModel<>(SocketType.NOTIFICATIONS_LUCKY_WHEEL, model));
-            });
-            thread.start();
+            LuckyWheelModel model = luckyWheelModel;
+            model.setMessage(user.getName() + " đã trúng giải : " + messagePrize);
+            simpMessagingTemplate.convertAndSend(WebSocketKey.LUCKY_WHEEL, new SocketModel<>(SocketType.NOTIFICATIONS_LUCKY_WHEEL, model));
             resultData.setData(luckyWheelModel);
             return resultData;
         } catch (Exception e) {

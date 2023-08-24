@@ -13,7 +13,6 @@ import {UserChatGroupModel} from "../_dtos/chat/UserChatGroupModel";
 @Injectable()
 export class ChatService extends WebSocketService {
 
-
   public chatModel: Observable<ChatModel[]>
   private myChatModel: BehaviorSubject<ChatModel[]> = new BehaviorSubject([])
 
@@ -30,7 +29,6 @@ export class ChatService extends WebSocketService {
         newChats.forEach(f => chatsValue.push(f))
       } else {
         data.status = newChats[0].status
-        data.lastTimeLogin = newChats[0].lastTimeLogin
         data.blockedBy = newChats[0].blockedBy
       }
     }
@@ -73,10 +71,10 @@ export class ChatService extends WebSocketService {
   }
 
 
-  fetchChats(): Observable<ChatModel[]> {
+  getAllChat(): Observable<ChatModel[]> {
     return this.httpClient.get(`${environment.DOMAIN}/api/chat`)
       .pipe(map((chats: ChatModel[]) => {
-        this.updateFetchChats(chats, false)
+        this.myChatModel.next(chats)
         return chats
       }))
   }
@@ -84,7 +82,6 @@ export class ChatService extends WebSocketService {
   createChat(userName: String): Observable<ChatModel> {
     return this.httpClient.post(`${environment.DOMAIN}/api/chat?userName=${userName}`, null)
       .pipe(map((chats: ChatModel) => {
-        // this.updateFetchChats([chats], true)
         return chats
       }))
   }
@@ -117,11 +114,6 @@ export class ChatService extends WebSocketService {
       }))
   }
 
-
-  getAllChat(): Observable<ChatModel[]> {
-    return this.myChatModel
-  }
-
   getOneChat(chatId: number): ChatModel {
     return this.myChatModel.value.find(x => x.chatId === chatId)
   }
@@ -135,27 +127,13 @@ export class ChatService extends WebSocketService {
     let data = json['data'] as ChatModel
     if (json['type'] == "USER_CONVERSATION_UPDATED" || json['type'] == "USER_CONVERSATION_ADDED" || json['type'] == "USER_STATUS"
       || json['type'] == "USER_CONVERSATION_BLOCK" || json['type'] == "USER_CONVERSATION_UNBLOCK") {
-      this.updateStatusChat(data)
       this.updateFetchChats([data], true)
-    }
-  }
-
-  updateStatusChat(data: ChatModel) {
-    if (data.status === 'ONLINE') {
-      data.status = 'success'
-    } else if (data.status === 'OFFLINE') {
-      if (data.blockedBy) {
-        data.status = ''
-      } else {
-        data.status = 'danger'
-      }
     }
   }
 
   blockChat(chatId: number): Observable<any> {
     return this.httpClient.post(`${environment.DOMAIN}/api/chat/block/${chatId}`, null)
       .pipe(map((chat: ChatModel) => {
-        this.updateStatusChat(chat)
         this.updateFetchChats([chat], true)
         return chat
       }))
@@ -164,7 +142,6 @@ export class ChatService extends WebSocketService {
   unblockChat(chatId: number): Observable<any> {
     return this.httpClient.post(`${environment.DOMAIN}/api/chat/unblock/${chatId}`, null)
       .pipe(map((chat: ChatModel) => {
-        this.updateStatusChat(chat)
         this.updateFetchChats([chat], true)
         return chat
       }))

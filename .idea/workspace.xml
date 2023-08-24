@@ -5,24 +5,48 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f358e88c-6661-4414-8c17-e78c688f2271" name="Changes" comment="cuu a">
-      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/model/PrizeDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/model/PrizeGroupDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/8/e81cfd5f47fd4ed7a634e4d46c1124584b23476b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/e/8/e81cfd5f47fd4ed7a634e4d46c1124584b23476b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_dtos/chat/ChatModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_dtos/chat/ChatModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_services/chat.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_services/chat.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_services/lucky-wheel.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_services/lucky-wheel.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_services/web-socket.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_services/web-socket.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat-banner/chat-banner.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat-banner/chat-banner.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat-banner/chat-banner.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat-banner/chat-banner.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat-detail/chat-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-detail/chat-detail.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat-detail/chat-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat-detail/chat-detail.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat-list/chat-list.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat-list/chat-list.component.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat-list/chat-list.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat-list/chat-list.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/new-chat/new-chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/new-chat/new-chat.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/home-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/home/home-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/home/home.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/home/home.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/lucky-wheel/lucky-wheel.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/PrizeGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/PrizeGroup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/Prizes.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/Prizes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/profile/profile.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/profile/profile.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/angular-app/src/app/shared/notification/notification/notification-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/shared/notification/notification/notification-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/entity/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/ChatModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/ChatModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/MessageModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/MessageModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/ChatRepositoryCustom.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/ChatRepositoryCustom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/PrizeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/PrizeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/error/HandleException.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/error/HandleException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-boot-3/spring-rest-api/src/main/resources/schema.sql.mv.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/impl/ChatRepositoryCustomImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/repository/impl/ChatRepositoryCustomImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/utils/WebSocketKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/utils/WebSocketKey.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/resources/mapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/resources/mapping.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/config/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/config/WebSocketConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/ChatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/ChatService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/LuckyWheelService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/LuckyWheelService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/MessageService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/ultis/CustomChannelInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/ultis/CustomChannelInterceptor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.trace.db" afterDir="false" />
     </list>
@@ -117,7 +141,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;azul-17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/custom-code/spring-boot-3&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/custom-code/spring-angular-chat-master/server&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -168,11 +192,11 @@
       <recent name="com.example.springchat.ultis" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.core.model" />
       <recent name="com.example.spring.rest.api.model" />
       <recent name="com.example.core.repository" />
       <recent name="com.example.core.entity" />
       <recent name="com.example.spring.rest.api.config" />
-      <recent name="com.example.springchat.config" />
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="" />
@@ -190,8 +214,8 @@
       <command value="mvn clean install -f spring-rt-api" />
       <command value="mvn clean install -f spring-rest-api" />
       <command value="mvn clean install -pl spring-rest-api" />
-      <command value="mvn clean install" />
       <command value="mvn clean" />
+      <command value="mvn clean install" />
     </option>
   </component>
   <component name="RunDashboard">
@@ -466,6 +490,13 @@
       <workItem from="1692345356989" duration="2507000" />
       <workItem from="1692518161981" duration="256000" />
       <workItem from="1692518432236" duration="6892000" />
+      <workItem from="1692693016240" duration="6099000" />
+      <workItem from="1692762307598" duration="1379000" />
+      <workItem from="1692771844192" duration="4497000" />
+      <workItem from="1692783864607" duration="787000" />
+      <workItem from="1692785113808" duration="5279000" />
+      <workItem from="1692843445448" duration="6146000" />
+      <workItem from="1692859748465" duration="6005000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679381899693</created>
@@ -638,12 +669,16 @@
     </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="7862b114-38c6-4c3a-85c5-c3b9e805d369" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="7862b114-38c6-4c3a-85c5-c3b9e805d369">
           <value>
             <State>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -662,6 +697,7 @@
                   </entry>
                 </map>
               </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
             </State>
           </value>
         </entry>
@@ -670,11 +706,6 @@
             <State />
           </value>
         </entry>
-      </map>
-    </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="7862b114-38c6-4c3a-85c5-c3b9e805d369" value="TOOL_WINDOW" />
       </map>
     </option>
   </component>
@@ -703,6 +734,11 @@
           <line>29</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/springframework/spring-messaging/6.0.11/spring-messaging-6.0.11-sources.jar!/org/springframework/messaging/simp/user/UserDestinationMessageHandler.java</url>
+          <line>287</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -711,17 +747,17 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/spring_boot_3$SpringMqApplication.ic" NAME="SpringMqApplication Coverage Results" MODIFIED="1682394588438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/spring_boot_3$SpringApiApplication.ic" NAME="SpringApiApplication Coverage Results" MODIFIED="1681359933810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/spring_boot_3$SpringBatchApplication.ic" NAME="SpringBatchApplication Coverage Results" MODIFIED="1681121050513" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/spring_boot_3$SpringRestApiApplication.ic" NAME="SpringRestApiApplication Coverage Results" MODIFIED="1691049262094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.example.spring.rest.api.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/spring_boot_3$DemoApplication.ic" NAME="DemoApplication Coverage Results" MODIFIED="1680766437115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.example.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/spring_boot_3$SpringMvcApplication.ic" NAME="SpringMvcApplication Coverage Results" MODIFIED="1689933696410" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>com.example.spring.mvc.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/spring_boot_3$SpringRestApiApplication.ic" NAME="SpringRestApiApplication Coverage Results" MODIFIED="1691049262094" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.example.spring.rest.api.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/spring_boot_3$SpringApiApplication.ic" NAME="SpringApiApplication Coverage Results" MODIFIED="1681359933810" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/spring_boot_3$SpringMqApplication.ic" NAME="SpringMqApplication Coverage Results" MODIFIED="1682394588438" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

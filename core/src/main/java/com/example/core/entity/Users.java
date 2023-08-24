@@ -45,8 +45,10 @@ public class Users implements Serializable {
 
     @Column(name = "CREDENTIALS_EXPIRED")
     private Boolean credentialsExpired;
+
     @Column(name = "ROLES")
     private String roles;
+
     @Column(name = "STATUS")
     private String status;
 

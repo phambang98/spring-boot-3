@@ -1,6 +1,23 @@
 <nb-layout>
-    <nb-layout-column class="mb-4">
-    <router-outlet></router-outlet>
-    </nb-layout-column>
+  <nb-layout-column>
+    <nb-card>
+      <nb-card-body>
+        <nb-tabset (changeTab)="onChangeTab($event)">
+          <nb-tab tabTitle="Lucky wheel" tabIcon="bell-outline" responsive>
+            <router-outlet></router-outlet>
+          </nb-tab>
+          <nb-tab tabTitle="Chat" tabIcon="person-outline" responsive>
+            <router-outlet></router-outlet>
+          </nb-tab>
+
+          <nb-tab tabTitle="Log out" tabIcon="log-out-outline" responsive>
+          </nb-tab>
+        </nb-tabset>
+
+      </nb-card-body>
+    </nb-card>
+  </nb-layout-column>
+
 </nb-layout>
-<app-notification></app-notification>
+
+

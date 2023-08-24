@@ -8,7 +8,7 @@
         <div class="col-lg-9 friend-profile-name">{{chatModel.userName}}</div>
         <div class="col-lg-2">
           <nb-icon icon="more-vertical-outline" [nbContextMenu]="menuFriend" nbContextMenuPlacement="left"
-                   nbContextMenuTag="context-chat-more"></nb-icon>
+                   nbContextMenuTag="chat-detail-more"></nb-icon>
         </div>
       </div>
     </ng-template>
@@ -26,7 +26,7 @@
                      [avatar]="msg.imageUrl"
                      [nbContextMenu]=" msg.reply == true ? eventMessageMain :eventMessageSub"
                      nbContextMenuPlacement="bottom"
-                     nbContextMenuTag="chat-detail"
+                     nbContextMenuTag="message-detail-more"
                      (click)="clickId(msg.chatId,msg.messageId)"
                      nbContextMenuTrigger="click">
     </nb-chat-message>
@@ -37,3 +37,4 @@
     </nb-chat-form>
   </nb-chat>
 </div>
+

@@ -6,13 +6,11 @@ import {HomeComponent} from './home.component';
 import {ChatComponent} from '../chat/chat.component';
 import {ProfileComponent} from '../profile/profile.component';
 import {HomeRoutingModule} from './home-routing.module';
-import {ChatListComponent} from '../chat/chat-list/chat-list.component';
 import {UserService} from '../_services/user.service';
 import {ChatService} from '../_services/chat.service';
-import {ChatBannerComponent} from '../chat/chat-banner/chat-banner.component';
 import {NewChatComponent} from '../chat/new-chat/new-chat.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {NbMenuService} from "@nebular/theme";
+import {NbMenuService, NbRouteTabsetModule, NbTabsetModule} from "@nebular/theme";
 import {MessageService} from "../_services/message.service";
 import {WebSocketService} from "../_services/web-socket.service";
 import {NotificationService} from "../_services/notification.service";
@@ -29,16 +27,14 @@ import {AddUserGroupComponent} from "../chat/add-user-group/add-user-group.compo
     HomeComponent,
     ChatComponent,
     ProfileComponent,
-    ChatListComponent,
     ChatDetailComponent,
-    ChatBannerComponent,
     NewChatComponent,
     NewGroupComponent,
     AddUserGroupComponent,
     LuckyWheelComponent
   ],
   imports: [
-    CommonModule, HomeRoutingModule, SharedModule, MatProgressBarModule, NgOptimizedImage, ReactiveFormsModule, MatTabsModule
+    CommonModule, HomeRoutingModule, SharedModule, MatProgressBarModule, NgOptimizedImage, ReactiveFormsModule, MatTabsModule, NbTabsetModule, NbRouteTabsetModule
   ],
   exports: [
     LuckyWheelComponent

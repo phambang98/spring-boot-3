@@ -23,21 +23,12 @@
 
   <div class="col-3 div-text-wheel scrollbar">
     <div class="text-wheel">
-      <div class="alert alert-success alert-dismissible">
-        <strong>Well done!</strong> You successfully
-      </div>
-      <div class="alert alert-danger alert-dismissible">
-        <strong>Oh snap!</strong> Change a
-      </div>
-      <div class="alert alert-success alert-dismissible">
-        <strong>Well done!</strong> You successfully
-      </div>
-      <div class="alert alert-danger alert-dismissible">
-        <strong>Oh snap!</strong> Change a
+      <div *ngFor="let luckyWheel of luckyWheelList"
+           [ngClass]="{'alert alert-danger alert-dismissible':luckyWheel.luckyNumber == null,  'alert alert-success alert-dismissible' :luckyWheel.luckyNumber != null}">
+        <strong>Thông báo :</strong> {{luckyWheel.message}}
       </div>
     </div>
   </div>
-
 </div>
 
 

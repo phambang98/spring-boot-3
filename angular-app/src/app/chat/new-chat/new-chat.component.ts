@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {NbDialogRef} from '@nebular/theme';
 import {CloseDialog} from "../../_dtos/chat/CloseDialog";
 
@@ -6,8 +6,8 @@ import {CloseDialog} from "../../_dtos/chat/CloseDialog";
   template: `
     <nb-card>
       <nb-card-header>Enter Your Friend User Name</nb-card-header>
-      <nb-card-body>
-        <input #userName nbInput placeholder="User Name" type="text">
+      <nb-card-body class="example-items-col">
+        <input #userName nbInput fullWidth status="primary" placeholder="User Name" type="text">
       </nb-card-body>
       <nb-card-footer class="text-center">
         <button nbButton (click)="submit(userName.value)" status="primary" class="m-2">Submit</button>

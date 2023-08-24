@@ -16,6 +16,7 @@ import {MessageRequest} from "../../_dtos/chat/MessageRequest";
 import {UserChatGroupModel} from "../../_dtos/chat/UserChatGroupModel";
 import {AddUserGroupComponent} from "../add-user-group/add-user-group.component";
 import {CloseDialog} from "../../_dtos/chat/CloseDialog";
+import {filter, map} from "rxjs/operators";
 
 @Component({
   selector: 'app-chat-detail',
@@ -27,12 +28,12 @@ export class ChatDetailComponent implements OnInit {
   messages: MessageDetail[] = []
   chatModel: ChatModel
   myProfile: UserProfile
-  subscription: any
-  private messageId: number
-  private chatId: number
+  messageId: number
+  chatId: number
   menuFriend = [
     {id: 1, title: 'Profile Friend', icon: 'person-outline'},
   ]
+  subscription: any
 
   eventMessageMain = [
     {title: 'Update', icon: 'edit-outline'},
@@ -46,23 +47,51 @@ export class ChatDetailComponent implements OnInit {
   constructor(private chatService: ChatService, private messageService: MessageService, private router: Router,
               private route: ActivatedRoute, private userService: UserService, private errorService: ErrorService,
               private menuService: NbMenuService, private dialogService: NbDialogService) {
-
     (async () => {
       this.route.params.subscribe(params => {
-        if (this.subscription) this.subscription.unsubscribe()
-        this.myProfile = this.userService.getProfile()
-        this.chatModel = this.chatService.getOneChat(Number(params['chatId']))
-        this.chatService.chatModel.subscribe((fps: ChatModel[]) => {
-          this.chatModel = fps.find(x => x.chatId == this.chatModel.chatId)
-        })
-        this.showHideBlock()
-        this.getChat()
+        if (params['chatId']) {
+          let chatId = Number(params['chatId'])
+          if (this.subscription) this.subscription.unsubscribe()
+          this.messages = []
+          this.myProfile = this.userService.getProfile()
+          this.chatModel = this.chatService.getOneChat(chatId)
+
+          this.messageService.fetchMessages(chatId).subscribe({
+            next: (arrayMsg: MessageDetail[]) => {
+              this.messages.push(...arrayMsg?.slice(this.messages.length, arrayMsg.length))
+              this.messageService.nbMessages.subscribe((mapMessage: Map<number, MessageDetail[]>) => {
+                this.messages = mapMessage.get(this.chatModel.chatId)
+              })
+            }, error: (e) => {
+              console.log("error", e)
+            }
+          })
+          this.showHideBlock()
+          this.getChat()
+          this.menuChatDetail()
+          this.menuMessageDetail()
+        }
       })
     })();
   }
 
   ngOnInit(): void {
-    this.menuChatDetail()
+  }
+
+
+  getChat() {
+    this.messages = []
+    this.subscription = this.messageService.fetchMessages(this.chatModel.chatId).subscribe({
+      next: (arrayMsg: MessageDetail[]) => {
+
+        this.messages.push(...arrayMsg?.slice(this.messages.length, arrayMsg.length))
+        this.messageService.nbMessages.subscribe((mapMessage: Map<number, MessageDetail[]>) => {
+          this.messages = mapMessage.get(this.chatModel.chatId)
+        })
+      }, error: (e) => {
+        console.log("error", e)
+      }
+    })
   }
 
   showHideBlock() {
@@ -89,87 +118,85 @@ export class ChatDetailComponent implements OnInit {
   }
 
   menuChatDetail() {
-    this.menuService.onItemClick().subscribe((data) => {
-      switch (data.item.title) {
-        case 'Delete':
-          this.messageService.deleteMessage(this.chatId, this.messageId)
-          break;
-        case 'Update':
-          break;
-        case 'Block':
-          this.chatService.blockChat(this.chatModel.chatId).subscribe({
-            next: (value: ChatModel) => {
-              this.chatModel = value
-              this.showHideBlock()
-            },
-            error: (err) => {
-              console.log("err-block-friend", err)
-            }
-          })
-          break;
-        case 'Un Block':
-          this.chatService.unblockChat(this.chatModel.chatId).subscribe({
-            next: (value: ChatModel) => {
-              this.chatModel = value
-              this.showHideBlock()
-            },
-            error: (err) => {
-              console.log("err-block-friend", err)
-            }
-          })
-          break;
-        case 'Reply':
-          break;
-        case 'Profile Friend':
-          this.router.navigate(['/profile-friend'], {
-            queryParams: {
-              friendId: this.chatModel.userId,
-              isFriend: true,
-            }
-          });
-          break;
-        case 'Add User From Group' :
-          this.dialogService.open(AddUserGroupComponent, {
-            context: this.chatModel.userName
-          }).onClose.subscribe((closeDialog: CloseDialog) => {
-            if (closeDialog?.submit) {
-              this.chatService.addUserChatGroup(new UserChatGroupModel(closeDialog.data, this.chatId)).subscribe({
-                complete: () => {
-                  console.log("add-user-chat-group-complete");
-                },
-                // next: (v) => {
-                //   let newChat = this.chatModels['_value'].find(x => x.userId === v.userId)
-                //   newChat.lastTimeLogin = v.lastTimeLogin
-                //   newChat.status = v.status
-                //   this.chatService.updateStatusChat(newChat)
-                // },
-                error: (err) => {
-                  console.log("err-createFriend", err);
-                },
-              })
-            }
+    this.menuService.onItemClick()
+      .pipe(
+        filter(({tag}) => tag === 'chat-detail-more'),
+        map(({item: {title}}) => title),
+      )
+      .subscribe((title) => {
+        switch (title) {
+          case 'Block':
+            this.chatService.blockChat(this.chatModel.chatId).subscribe({
+              next: (value: ChatModel) => {
+                this.chatModel = value
+                this.showHideBlock()
+              },
+              error: (err) => {
+                console.log("err-block-friend", err)
+              }
+            })
+            break;
+          case 'Un Block':
+            this.chatService.unblockChat(this.chatModel.chatId).subscribe({
+              next: (value: ChatModel) => {
+                this.chatModel = value
+                this.showHideBlock()
+              },
+              error: (err) => {
+                console.log("err-block-friend", err)
+              }
+            })
+            break;
+          case 'Profile Friend':
+            this.router.navigate(['/profile-friend'], {
+              queryParams: {
+                friendId: this.chatModel.userId,
+                isFriend: true,
+              }
+            });
+            break;
+          case 'Add User From Group' :
+            this.dialogService.open(AddUserGroupComponent, {
+              context: this.chatModel.userName
+            }).onClose.subscribe((closeDialog: CloseDialog) => {
+              if (closeDialog?.submit) {
+                this.chatService.addUserChatGroup(new UserChatGroupModel(closeDialog.data, this.chatId)).subscribe({
+                  complete: () => {
+                    console.log("add-user-chat-group-complete");
+                  },
+                  error: (err) => {
+                    console.log("err-createFriend", err);
+                  },
+                })
+              }
 
-          })
-          break
-        default:
-          break;
-      }
-    });
+            })
+            break
+          default:
+            break;
+        }
+      });
   }
 
-  getChat() {
-    this.messages = []
-    this.subscription = this.messageService.fetchMessages(this.chatModel.chatId).subscribe({
-      next: (arrayMsg: MessageDetail[]) => {
-
-        this.messages.push(...arrayMsg?.slice(this.messages.length, arrayMsg.length))
-        this.messageService.nbMessages.subscribe((mapMessage: Map<number, MessageDetail[]>) => {
-          this.messages = mapMessage.get(this.chatModel.chatId)
-        })
-      }, error: (e) => {
-        console.log("error", e)
-      }
-    })
+  menuMessageDetail() {
+    this.menuService.onItemClick()
+      .pipe(
+        filter(({tag}) => tag === 'message-detail-more'),
+        map(({item: {title}}) => title),
+      )
+      .subscribe((title) => {
+        switch (title) {
+          case 'Delete':
+            this.messageService.deleteMessage(this.chatId, this.messageId)
+            break;
+          case 'Update':
+            break;
+          case 'Reply':
+            break;
+          default:
+            break;
+        }
+      });
   }
 
   sendMessage(event) {

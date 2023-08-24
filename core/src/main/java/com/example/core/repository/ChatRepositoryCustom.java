@@ -3,7 +3,6 @@ package com.example.core.repository;
 import com.example.core.entity.Chat;
 import com.example.core.model.ChatModel;
 import com.example.core.model.StatusModel;
-import org.springframework.cache.annotation.Cacheable;
 
 import java.util.List;
 

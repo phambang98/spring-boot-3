@@ -33,7 +33,7 @@ export class WebSocketService {
           _this.stompClient.subscribe(`/notifications/${_this.tokenStorageService.getUser().id}/queue/status`, function (sdkEvent) {
             _this.onStatusReceived(sdkEvent);
           });
-          _this.stompClient.subscribe(`/notifications/lucky-wheel`, function (sdkEvent) {
+          _this.stompClient.subscribe(`/topic/lucky-wheel`, function (sdkEvent) {
             _this.onLuckyWheelReceived(sdkEvent);
           });
         }, function (error) {
@@ -50,7 +50,7 @@ export class WebSocketService {
 
   }
 
-  onLuckyWheelReceived(luckyWheel: any) {
+  onLuckyWheelReceived(resultData: any) {
 
   }
 }

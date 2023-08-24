@@ -9,10 +9,12 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.EmptyResultDataAccessException;
 
 import java.util.List;
 
+@Slf4j
 public class ChatRepositoryCustomImpl implements ChatRepositoryCustom {
 
     @PersistenceContext
@@ -22,10 +24,9 @@ public class ChatRepositoryCustomImpl implements ChatRepositoryCustom {
     public List<ChatModel> getFriendList(Long userId) {
         try {
             String sqlStr =
-                    "select * from (select c.chat_id as chatId,u.id as userId, u.email ," +
-                            "              u.user_name as userName, u.image_Url as imageUrl ,c.BLOCKED_BY as blockedBy," +
-                            "              case when c.BLOCKED_BY is null then us.status else null end as status, " +
-                            "              us.last_time_login as lastTimeLogin," +
+                    "select * from (select c.chat_id as chatId,u.id as userId,u.user_name as userName, u.image_Url as imageUrl ," +
+                            "              case when c.BLOCKED_BY is null then us.status end as status, " +
+                            "              c.BLOCKED_BY as blockedBy,us.last_time_login as lastTimeLogin," +
                             "              (select case when CONTENT_TYPE ='file' and content is null " +
                             "                      then concat((case when sender_id =:userId then 'Bạn:' else '' end),concat('send ',(select count(1) from file where message_id =mss.message_id)),' file') " +
                             "                      else concat((case when sender_id =:userId then 'Bạn:' else '' end),content) end from message mss where chat_id = c.chat_id order by CREATE_AT desc limit 1 ) " +
@@ -35,13 +36,11 @@ public class ChatRepositoryCustomImpl implements ChatRepositoryCustom {
                             "                   inner join user_status us on us.user_id = u.id " +
                             "                   left join message m on c.chat_id = m.chat_id " +
                             "       where c.user_Id1 = :userId or c.user_Id2 = :userId and c.chat_type ='NORMAL' " +
-                            "       group by u.id, u.email ,u.user_name,u.image_Url,c.BLOCKED_BY,us.status,us.last_time_login,c.chat_id " +
+                            "       group by u.id, u.email ,u.user_name,u.image_Url,c.BLOCKED_BY,us.status,c.chat_id " +
                             "       union all" +
-                            "       select c.chat_id as chatId,0 as userId,null as email ," +
+                            "       select c.chat_id as chatId, u.id as userId," +
                             "              c.display_name as userName ,c.image_url as imageUrl ," +
-                            "              0 as blockedBy," +
-                            "              'ONLINE' as status, " +
-                            "              null as lastTimeLogin," +
+                            "              'ONLINE' as status, 0 as blockedBy, null as lastTimeLogin," +
                             "              (select case when CONTENT_TYPE ='file' and content is null " +
                             "                      then concat((case when sender_id =:userId then 'Bạn:' else '' end),concat('send ',(select count(1) from file where message_id =mss.message_id)),' file') " +
                             "                      else concat((case when sender_id =:userId then 'Bạn:' else '' end),content) end from message mss where chat_id = c.chat_id order by CREATE_AT desc limit 1 ) " +
@@ -57,6 +56,7 @@ public class ChatRepositoryCustomImpl implements ChatRepositoryCustom {
             query.setParameter("userId", userId);
             return query.getResultList();
         } catch (Exception e) {
+            log.error("", e);
             throw new RuntimeException(e);
         }
     }

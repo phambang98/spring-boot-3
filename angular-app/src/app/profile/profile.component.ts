@@ -23,7 +23,6 @@ export class ProfileComponent implements OnInit {
       let chat = this.chatService.getOneChat(Number(params['chatId']))
       if (this.isFriend) {
         this.profile.id = chat.userId
-        this.profile.email = chat.email
         this.profile.userName = chat.userName
         this.profile.imageUrl = chat.imageUrl
       }

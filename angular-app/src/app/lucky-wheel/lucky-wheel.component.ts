@@ -19,11 +19,25 @@ export class LuckyWheelComponent implements OnInit, AfterViewInit {
   prizeGroupId: number
   message: string
   @ViewChild("wheel__inner") inner: ElementRef
+  luckyWheelList: LuckyWheelModel []
 
   constructor(private luckyWheelService: LuckyWheelService, private renderer2: Renderer2, private elementRef: ElementRef,
               private dialogService: NbDialogService) {
+    this.luckyWheelService.nbNotificationWheel.subscribe(
+      (model: LuckyWheelModel[]) => {
+        this.luckyWheelList = model
+      }
+    )
+  }
 
-
+  ngAfterViewInit() {
+    this.renderer2.listen(this.inner.nativeElement, 'transitionend', () => {
+        this.dialogService.open(DialogLuckyWheelComponent, {
+          context: {title: "Thông báo", message: this.message}
+        }).onClose.subscribe(() => {
+      this.activeBtn = true
+      })
+    })
   }
 
   ngOnInit(): void {
@@ -41,20 +55,10 @@ export class LuckyWheelComponent implements OnInit, AfterViewInit {
     })
   }
 
-  ngAfterViewInit(): void {
-    // this.renderer2.listen(this.inner.nativeElement, 'transitionend', () => {
-    //   this.dialogService.open(DialogLuckyWheelComponent, {
-    //     context: {title: "Thông báo", message: this.message}
-    //   }).onClose.subscribe(() => {
-      this.activeBtn = true
-    //   })
-    // })
-  }
-
   spin() {
     this.activeBtn = false
-    let randomNumber = Math.random() * 10
-    this.deg += Math.floor((randomNumber == 0 ? 10 : randomNumber) * 3600);
+    let randomNumber = Number((Math.random() * (10) + 10).toFixed(2))
+    this.deg += Math.floor(randomNumber * 360);
     this.renderer2.setStyle(this.inner.nativeElement, "transform", `rotate(${this.deg}deg)`)
     this.luckyWheelService.spin(this.prizeGroupId).subscribe({
       next: (resultData: ResultData) => {
@@ -62,15 +66,24 @@ export class LuckyWheelComponent implements OnInit, AfterViewInit {
           let luckyWheel: LuckyWheelModel = resultData.data
           this.message = luckyWheel.message
           let displayNumber = this.prizes.filter(x => x.id == luckyWheel.prizeId)[0].displayNumber
-          if (this.deg % 360 % 60 == 0) {
+          let numberPresent = this.deg % 360
+          if (numberPresent != 0) {
+            if (numberPresent > 30 && numberPresent < 90) {
+              numberPresent = 6
+            } else if (numberPresent > 90 && numberPresent < 150) {
+              numberPresent = 5
+            } else if (numberPresent > 150 && numberPresent < 210) {
+              numberPresent = 4
+            } else if (numberPresent > 210 && numberPresent < 270) {
+              numberPresent = 3
+            } else if (numberPresent > 270 && numberPresent < 330) {
+              numberPresent = 2
+            } else {
+              numberPresent = 1
+            }
+          } else {
             this.deg += 20
           }
-          let numberPresent = this.deg % 360 / 60
-          numberPresent = Math.round(numberPresent)
-          while (numberPresent > 6) {
-            numberPresent = numberPresent / 6
-          }
-          numberPresent = Math.round(numberPresent) + 1
           //  nếu ô hiện tại là 3 ô cần đến là 3 thì giữ nguyên
           if (displayNumber == numberPresent) {
             return
@@ -78,16 +91,14 @@ export class LuckyWheelComponent implements OnInit, AfterViewInit {
           let numberRevolutionMiss = 0
           // nếu số hiện tại là 5(numberPresent) số cần đến là 3(displayNumber) thì quay thêm 2 số. 4->3
           if (numberPresent > displayNumber) {
-            numberRevolutionMiss = 6 - (numberPresent - displayNumber)
+            numberRevolutionMiss = numberPresent - displayNumber
           }
-          // nếu số hiện tại là 3(numberPresent) cần đến là 5(displayNumber) thì quay thêm 4 số : 2->1->6->5
-          if (displayNumber > numberPresent) {
-            numberRevolutionMiss = displayNumber - numberPresent
+          // nếu số hiện tại là 1(numberPresent) cần đến là 5(displayNumber) thì quay thêm 2 số : 6->5
+          if (numberPresent < displayNumber) {
+            numberRevolutionMiss = 6 - (displayNumber - numberPresent)
           }
-
           this.deg += numberRevolutionMiss * 60
           this.renderer2.setStyle(this.inner.nativeElement, "transform", `rotate(${this.deg}deg)`)
-          this.activeBtn = true
         } else {
           console.log(resultData.message)
         }

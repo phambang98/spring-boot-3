@@ -3,6 +3,7 @@ import {ChatService} from '../_services/chat.service';
 import {Router} from '@angular/router';
 import {UserService} from "../_services/user.service";
 import {ErrorService} from "../_services/error.service";
+import {MatTabChangeEvent} from "@angular/material/tabs";
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,21 @@ export class HomeComponent implements OnInit ,AfterViewInit{
         console.log("error", e)
       },
     })
+  }
+
+  onChangeTab(event:any): void {
+    switch (event.tabTitle) {
+      case 'Chat':
+        this.router.navigate(['/chat'])
+        break
+      case 'Lucky wheel':
+        this.router.navigate(['/lucky-wheel'])
+        break
+      case 'Log out':
+        this.userService.logout()
+        this.router.navigateByUrl("/auth")
+        break
+    }
   }
 
   ngOnInit(): void {

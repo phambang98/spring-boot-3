@@ -4,7 +4,7 @@ import {NotificationService} from "../../../_services/notification.service";
 import {Notification, NotificationType} from "../../../_dtos/notification/notification";
 
 @Component({
-  selector: 'app-notification',
+  selector: 'app-chat-notification',
   template: `
     <div class="notifications">
       <div *ngFor="let notification of notifications" class="notification" [ngClass]="className(notification)">

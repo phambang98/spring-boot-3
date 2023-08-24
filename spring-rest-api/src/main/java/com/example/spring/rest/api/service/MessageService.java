@@ -51,8 +51,6 @@ public class MessageService {
 
     @Autowired
     private UsersRepository usersRepository;
-    @Autowired
-    private UserStatusRepository userStatusRepository;
 
 
     public List<MessageModel> getMessagesByRecipientId(Long chatId, Long userId) {

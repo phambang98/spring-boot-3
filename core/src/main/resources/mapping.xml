@@ -38,12 +38,10 @@
         <constructor-result target-class="com.example.core.model.ChatModel">
             <column name="chatId" class="java.lang.Long"/>
             <column name="userId" class="java.lang.Long"/>
-            <column name="email"/>
             <column name="userName"/>
             <column name="imageUrl"/>
             <column name="blockedBy" class="java.lang.Long"/>
             <column name="status"/>
-            <column name="lastTimeLogin"/>
             <column name="lastMsg"/>
             <column name="lastTimeMsg" class="java.util.Date"/>
             <column name="chatType"/>

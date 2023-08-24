@@ -21,9 +21,9 @@ public interface PrizeRepository extends JpaRepository<Prizes, Long> {
     List<Prizes> getAllPrizeByPrizeGroupId();
 
 
-    @Query(value = "select p.* from Prizes p  inner join Prize_Group pg on p.prize_Group_Id = pg.id and pg.id = 2 order by p.display_Number limit :number", nativeQuery = true)
+    @Query(value = "select p.* from Prizes p  inner join Prize_Group pg on p.prize_Group_Id = pg.id and pg.id = 2 order by p.display_Number asc limit :number", nativeQuery = true)
     List<Prizes> getAllPrizeByPrizeGroupIdDefault(@Param("number") int number);
 
-    @Query(value = "select * from (SELECT p.* FROM Prizes p inner join Prize_Group pg on p.prize_Group_Id = pg.id and pg.id = 2 ORDER BY p.display_Number limit 3) ORDER BY  RAND() LIMIT 1 ", nativeQuery = true)
+    @Query(value = "select * from (SELECT p.* FROM Prizes p inner join Prize_Group pg on p.prize_Group_Id = pg.id and pg.id = 2 ORDER BY p.display_Number asc limit 3) ORDER BY  RAND() LIMIT 1 ", nativeQuery = true)
     Prizes selectOneRandomNotLucky(Long prizeGroupId);
 }
