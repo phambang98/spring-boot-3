@@ -130,7 +130,7 @@ VALUES (1, 'giai 2', 10, 20, NULL, '2', 2, 5, 'A', 'SYSTEM', current_date, 'SYST
 
 insert into PRIZES(PRIZE_GROUP_ID, DESCRIPTION, LUCKY_NUMBER_FROM, LUCKY_NUMBER_TO, IMAGE_URL, TYPE, DISPLAY_NUMBER,
                    QUANTITY, STATUS, LAST_APPROVE_BY, LAST_APPROVE_DATE, LAST_UPDATE_BY, LAST_UPDATE_DATE)
-VALUES (1, 'giai 3', 0, 99, NULL, '3', 3, 10, 'A', 'SYSTEM', current_date, 'SYSTEM', current_date);
+VALUES (1, 'giai 3', 40, 60, NULL, '3', 3, 10, 'A', 'SYSTEM', current_date, 'SYSTEM', current_date);
 
 
 

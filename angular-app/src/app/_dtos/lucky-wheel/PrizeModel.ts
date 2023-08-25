@@ -1,11 +1,9 @@
 export class PrizeModel {
   id: number;
-  prizeGroupId: number;
-  description: string;
-  luckNumber: number;
-  imageUrl: string;
-  type: string;
-  displayNumber: number;
-  quantity: number;
+  prizeGroupId: number
+  description: string
+  imageUrl: string
+  type: string
+  displayNumber: number
   deg: number
 }

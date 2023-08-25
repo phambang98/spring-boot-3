@@ -21,7 +21,6 @@ import {ChatDetailComponent} from "../chat/chat-detail/chat-detail.component";
 import {LuckyWheelService} from "../_services/lucky-wheel.service";
 import {MatTabsModule} from "@angular/material/tabs";
 import {AddUserGroupComponent} from "../chat/add-user-group/add-user-group.component";
-
 @NgModule({
   declarations: [
     HomeComponent,

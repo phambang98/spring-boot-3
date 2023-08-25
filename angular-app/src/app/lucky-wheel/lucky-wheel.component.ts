@@ -23,6 +23,18 @@ export class LuckyWheelComponent implements OnInit, AfterViewInit {
 
   constructor(private luckyWheelService: LuckyWheelService, private renderer2: Renderer2, private elementRef: ElementRef,
               private dialogService: NbDialogService) {
+    this.luckyWheelService.findFirstByCurrentDateTime().subscribe({
+      next: (resultData: ResultData) => {
+        if (resultData.success) {
+          this.prizes = resultData.data.prizeList
+          this.prizeGroupId = resultData.data.id
+          this.prizes.map(x => x.deg = 60)
+        }
+      },
+      error: (err: any) => {
+        console.log("err-lucky-wheel", err)
+      }
+    })
     this.luckyWheelService.nbNotificationWheel.subscribe(
       (model: LuckyWheelModel[]) => {
         this.luckyWheelList = model
@@ -41,18 +53,7 @@ export class LuckyWheelComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.luckyWheelService.findFirstByCurrentDateTime().subscribe({
-      next: (resultData: ResultData) => {
-        if (resultData.success) {
-          this.prizes = resultData.data.prizeList
-          this.prizeGroupId = resultData.data.id
-          this.prizes.map(x => x.deg = 60)
-        }
-      },
-      error: (err: any) => {
-        console.log("err-lucky-wheel", err)
-      }
-    })
+    this.activeBtn = true
   }
 
   spin() {

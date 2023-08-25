@@ -148,7 +148,7 @@ export class ChatDetailComponent implements OnInit {
             })
             break;
           case 'Profile Friend':
-            this.router.navigate(['/profile-friend'], {
+            this.router.navigate(['/chat/profile-friend'], {
               queryParams: {
                 friendId: this.chatModel.userId,
                 isFriend: true,
