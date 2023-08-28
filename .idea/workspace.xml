@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f358e88c-6661-4414-8c17-e78c688f2271" name="Changes" comment="cuu a">
-      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/PingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/ImageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/ImageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/MovieController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/MenuService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/MovieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/MovieService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" afterDir="false" />
-    </list>
+    <list default="true" id="f358e88c-6661-4414-8c17-e78c688f2271" name="Changes" comment="cuu a" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -464,7 +455,7 @@
       <workItem from="1692931522541" duration="1511000" />
       <workItem from="1692944807758" duration="3530000" />
       <workItem from="1692951727014" duration="3596000" />
-      <workItem from="1693183797017" duration="4621000" />
+      <workItem from="1693183797017" duration="4642000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679381899693</created>
