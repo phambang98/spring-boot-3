@@ -14,11 +14,7 @@ import java.io.IOException;
 @RequestMapping("/api")
 public class ImageController {
 
-    @GetMapping("ping")
-    public String ping() {
-        SecurityUtils.getCurrentUserLogin();
-        return "osssk";
-    }
+
 
     @GetMapping(value = "/image2")
     public ResponseEntity<byte[]> getImage() throws IOException {
