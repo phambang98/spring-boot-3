@@ -29,6 +29,15 @@ export class HomeComponent implements OnInit ,AfterViewInit{
       case 'Lucky wheel':
         this.router.navigate(['/lucky-wheel'])
         break
+      case 'Cherry charm':
+        this.router.navigate(['/cherry-charm'])
+        break
+      case 'Slot machine':
+        this.router.navigate(['/slot-machine'])
+        break
+      case 'Live stream':
+        this.router.navigate(['/live-stream'])
+        break
       case 'Log out':
         this.userService.logout()
         this.router.navigateByUrl("/auth")

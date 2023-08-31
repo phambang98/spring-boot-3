@@ -3,13 +3,21 @@
     <nb-card>
       <nb-card-body>
         <nb-tabset (changeTab)="onChangeTab($event)">
+          <nb-tab tabTitle="Live stream" tabIcon="color-palette-outline" responsive>
+            <app-live-stream></app-live-stream>
+          </nb-tab>
+          <nb-tab tabTitle="Slot machine" tabIcon="color-palette-outline" responsive>
+            <app-slot-machine></app-slot-machine>
+          </nb-tab>
+          <nb-tab tabTitle="Cherry charm" tabIcon="color-palette-outline" responsive>
+            <app-cherry-charm></app-cherry-charm>
+          </nb-tab>
           <nb-tab tabTitle="Lucky wheel" tabIcon="bell-outline" responsive>
-            <router-outlet></router-outlet>
+            <app-lucky-wheel></app-lucky-wheel>
           </nb-tab>
           <nb-tab tabTitle="Chat" tabIcon="person-outline" responsive>
             <router-outlet></router-outlet>
           </nb-tab>
-
           <nb-tab tabTitle="Log out" tabIcon="log-out-outline" responsive>
           </nb-tab>
         </nb-tabset>

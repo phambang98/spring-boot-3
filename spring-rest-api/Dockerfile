@@ -1,5 +1,3 @@
-
-
 # Docker Build Stage
 FROM openjdk:17-jdk-alpine
 

@@ -15,12 +15,16 @@ import {MessageService} from "../_services/message.service";
 import {WebSocketService} from "../_services/web-socket.service";
 import {NotificationService} from "../_services/notification.service";
 import {NewGroupComponent} from "../chat/new-group/new-group.component";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {LuckyWheelComponent} from "../lucky-wheel/lucky-wheel.component";
 import {ChatDetailComponent} from "../chat/chat-detail/chat-detail.component";
 import {LuckyWheelService} from "../_services/lucky-wheel.service";
 import {MatTabsModule} from "@angular/material/tabs";
 import {AddUserGroupComponent} from "../chat/add-user-group/add-user-group.component";
+import {CherryCharmComponent} from "../cherry-charm/cherry-charm.component";
+import {SlotMachineComponent} from "../slot-machine/slot-machine.component";
+import {LiveStreamComponent} from "../live-stream/live-stream.component";
+
 @NgModule({
   declarations: [
     HomeComponent,
@@ -30,10 +34,13 @@ import {AddUserGroupComponent} from "../chat/add-user-group/add-user-group.compo
     NewChatComponent,
     NewGroupComponent,
     AddUserGroupComponent,
-    LuckyWheelComponent
+    LuckyWheelComponent,
+    CherryCharmComponent,
+    SlotMachineComponent,
+    LiveStreamComponent
   ],
   imports: [
-    CommonModule, HomeRoutingModule, SharedModule, MatProgressBarModule, NgOptimizedImage, ReactiveFormsModule, MatTabsModule, NbTabsetModule, NbRouteTabsetModule
+    CommonModule, HomeRoutingModule, SharedModule, MatProgressBarModule, NgOptimizedImage, ReactiveFormsModule, MatTabsModule, NbTabsetModule, NbRouteTabsetModule, FormsModule
   ],
   exports: [
     LuckyWheelComponent

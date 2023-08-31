@@ -7,6 +7,8 @@ import {ChatComponent} from '../chat/chat.component';
 import {ProfileComponent} from '../profile/profile.component';
 import {LuckyWheelComponent} from "../lucky-wheel/lucky-wheel.component";
 import {ChatDetailComponent} from "../chat/chat-detail/chat-detail.component";
+import {CherryCharmComponent} from "../cherry-charm/cherry-charm.component";
+import {LiveStreamComponent} from "../live-stream/live-stream.component";
 
 const routes: Routes = [
   {
@@ -19,7 +21,10 @@ const routes: Routes = [
         ]
       },
       {path: 'profile', component: ProfileComponent},
-      {path: 'lucky-wheel', component: LuckyWheelComponent}
+      {path: 'lucky-wheel', component: LuckyWheelComponent},
+      {path: 'cherry-charm', component: CherryCharmComponent},
+      {path: 'slot-machine', component: CherryCharmComponent},
+      {path: 'live-stream', component: LiveStreamComponent}
     ]
   }
 ];
