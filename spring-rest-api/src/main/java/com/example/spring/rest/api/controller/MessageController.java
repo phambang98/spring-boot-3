@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/message")
 @SecurityRequirements({@SecurityRequirement(name = "GoogleOauth2"),
         @SecurityRequirement(name = "bearerAuth")}
 )
@@ -29,20 +29,20 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-    @GetMapping("/message/{chatId}")
+    @GetMapping("/{chatId}")
     public ResponseEntity<List<MessageModel>> getMessagesByRecipientId(@PathVariable("chatId") Long chatId) {
         UserPrincipal user = SecurityUtils.getCurrentIdLogin();
         return ResponseEntity.ok(messageService.getMessagesByRecipientId(chatId, user.getId()));
     }
 
-    @DeleteMapping("/message/{messageId}")
+    @DeleteMapping("/{messageId}")
     public ResponseEntity<Void> deleteMessage(@PathVariable("messageId") Long messageId) {
         UserPrincipal user = SecurityUtils.getCurrentIdLogin();
         messageService.deleteMessage(messageId, user.getId());
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping(value = "/message/files", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/files", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<MessageModel> createMessageFile(@RequestParam(value = "recipientId") Long recipientId,
                                                           @RequestParam(value = "chatType") String chatType,
                                                           @RequestParam(value = "files") List<MultipartFile> files) throws ResourceNotFoundException, BadRequestException {

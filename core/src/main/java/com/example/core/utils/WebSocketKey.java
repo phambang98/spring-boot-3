@@ -7,4 +7,6 @@ public class WebSocketKey {
 
     public static final String LUCKY_WHEEL = "/topic/lucky-wheel";
 
+    public static final String HORSE_RACING = "/topic/horse-racing";
+
 }

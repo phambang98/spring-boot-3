@@ -239,3 +239,7 @@ i
 Xspring-rest-api/src/main/java/com/example/spring/rest/api/service/LuckyWheelService.java,e\8\e81cfd5f47fd4ed7a634e4d46c1124584b23476b
 s
 Ccore/src/main/java/com/example/core/repository/PrizeRepository.java,1\c\1cc9891aecc0fb53ef89c8d5c1b8f3d9b72da777
+ˆ
+Xspring-rest-api/src/main/java/com/example/spring/rest/api/controller/FileController.java,6\1\6199e08c921a92786338ff41c19ab18871f4944f
+h
+8core/src/main/java/com/example/core/utils/FileUtils.java,4\f\4fdb432c0a837d5d8f8c0e63e531e57d9f45143a

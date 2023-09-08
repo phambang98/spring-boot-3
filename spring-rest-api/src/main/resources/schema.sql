@@ -254,6 +254,30 @@ create table MOVIE_GENRES
     LAST_UPDATE_DATE  TIMESTAMP(6)
 );
 
+create table USER_MONEY
+(
+    ID                INT AUTO_INCREMENT PRIMARY KEY,
+    USER_ID           NUMBER(15),
+    TOTAL_MONEY       NUMBER(20),
+    STATUS            varchar2(1),
+    LAST_APPROVE_BY   VARCHAR2(50),
+    LAST_APPROVE_DATE TIMESTAMP(6),
+    LAST_UPDATE_BY    VARCHAR2(50),
+    LAST_UPDATE_DATE  TIMESTAMP(6)
+);
+
+create table TRANSACTION_USER_MONEY
+(
+    ID                INT AUTO_INCREMENT PRIMARY KEY,
+    USER_ID           NUMBER(15),
+    AMOUNT_MONEY      NUMBER(20),
+    STATUS            varchar2(1),
+    LAST_APPROVE_BY   VARCHAR2(50),
+    LAST_APPROVE_DATE TIMESTAMP(6),
+    LAST_UPDATE_BY    VARCHAR2(50),
+    LAST_UPDATE_DATE  TIMESTAMP(6)
+);
+
 create table LUCKY_RESULT
 (
     ID                INT AUTO_INCREMENT PRIMARY KEY,
@@ -284,8 +308,8 @@ create table PRIZES
     ID                INT AUTO_INCREMENT PRIMARY KEY,
     PRIZE_GROUP_ID    NUMBER(15),
     DESCRIPTION       VARCHAR2(500),
-    LUCKY_NUMBER_FROM      NUMBER(10),
-    LUCKY_NUMBER_TO      NUMBER(10),
+    LUCKY_NUMBER_FROM NUMBER(10),
+    LUCKY_NUMBER_TO   NUMBER(10),
     IMAGE_URL         VARCHAR2(250),
     TYPE              VARCHAR2(5),
     DISPLAY_NUMBER    NUMBER(15),
@@ -297,4 +321,55 @@ create table PRIZES
     LAST_UPDATE_DATE  TIMESTAMP(6)
 );
 
+
+create table HORSE_RACING_RESULT
+(
+    ID                INT AUTO_INCREMENT PRIMARY KEY,
+    HORSE_RACING_ID   NUMBER(15),
+    TOP               NUMBER(2),
+    STATUS            varchar2(1),
+    LAST_APPROVE_BY   VARCHAR2(50),
+    LAST_APPROVE_DATE TIMESTAMP(6),
+    LAST_UPDATE_BY    VARCHAR2(50),
+    LAST_UPDATE_DATE  TIMESTAMP(6)
+);
+
+create table HORSE_RACING_RESULT_USER
+(
+    ID                     INT AUTO_INCREMENT PRIMARY KEY,
+    HORSE_RACING_RESULT_ID NUMBER(15),
+    USER_ID                NUMBER(15),
+    BET_AMOUNT             NUMBER(17, 2),
+    STATUS                 varchar2(1),
+    LAST_APPROVE_BY        VARCHAR2(50),
+    LAST_APPROVE_DATE      TIMESTAMP(6),
+    LAST_UPDATE_BY         VARCHAR2(50),
+    LAST_UPDATE_DATE       TIMESTAMP(6)
+);
+
+create table HORSE_RACING
+(
+    ID                    INT AUTO_INCREMENT PRIMARY KEY,
+    HORSE_RACING_GROUP_ID NUMBER(15),
+    DESCRIPTION           varchar2(500),
+    DISPLAY_NUMBER        NUMBER(15),
+    IMAGE_URL             VARCHAR2(250),
+    STATUS                varchar2(1),
+    LAST_APPROVE_BY       VARCHAR2(50),
+    LAST_APPROVE_DATE     TIMESTAMP(6),
+    LAST_UPDATE_BY        VARCHAR2(50),
+    LAST_UPDATE_DATE      TIMESTAMP(6)
+);
+
+create table HORSE_RACING_GROUP
+(
+    ID                INT AUTO_INCREMENT PRIMARY KEY,
+    DESCRIPTION       varchar2(500),
+    DATE_TIME         TIMESTAMP(6),
+    STATUS            varchar2(1),
+    LAST_APPROVE_BY   VARCHAR2(50),
+    LAST_APPROVE_DATE TIMESTAMP(6),
+    LAST_UPDATE_BY    VARCHAR2(50),
+    LAST_UPDATE_DATE  TIMESTAMP(6)
+);
 

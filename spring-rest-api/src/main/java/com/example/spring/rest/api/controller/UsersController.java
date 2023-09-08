@@ -16,18 +16,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api")
+@RequestMapping("api/user")
 public class UsersController {
     @Autowired
     private UsersService usersService;
 
-    @GetMapping("user/me")
+    @GetMapping("me")
     public UserProfile getMyProfile() throws ResourceNotFoundException {
         UserPrincipal user = SecurityUtils.getCurrentIdLogin();
         return new ModelMapper().map(usersService.getUserProfile(user.getId()), UserProfile.class);
     }
 
-    @GetMapping("user/exists")
+    @GetMapping("exists")
     public ResponseEntity<Boolean> existsByUserName(@RequestParam("userName") String userName) throws ResourceNotFoundException {
         if (SecurityUtils.getCurrentIdLogin().getUsername().equals(userName)) {
             return ResponseEntity.ok(false);
@@ -35,7 +35,7 @@ public class UsersController {
         return ResponseEntity.ok(usersService.existsByUserName(userName));
     }
 
-    @GetMapping("user")
+    @GetMapping("")
     public ResponseEntity<List<Users>> findAll(Pageable pageable, @RequestParam("listEmail") List<String> listEmail) {
         return new ResponseEntity<>(usersService.findAll(pageable, listEmail), HttpStatus.OK);
     }

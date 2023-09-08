@@ -39,7 +39,7 @@ public class CoffeePartitioner implements Partitioner {
                 result.put("partition" + i, value);
             }
         } else {
-            logger.warn("------------------- No Annual Free Statistic to process ---------------------");
+            logger.warn("------------------- No Coffee to process ---------------------");
         }
 
         return result;

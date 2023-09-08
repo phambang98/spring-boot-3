@@ -47,7 +47,7 @@ public class FileStorageService {
         return uploadedFiles;
     }
 
-    public FileModel readFileByName(String fileName) throws IOException {
+    public FileModel readFileByName(String fileName) {
         com.example.core.entity.File fileEntity = fileRepository.findByFileName(fileName);
         Path cwd = Path.of(System.getProperty("user.dir")).getParent();
         MediaType mediaType;

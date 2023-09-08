@@ -17,15 +17,15 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class PersonJobConfiguration extends BatchConfiguration {
 
     @Bean
-    public Job personJob(JobRepository jobRepository) {
+    public Job personJob(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
         return new JobBuilder("personJob", jobRepository)
                 .incrementer(new RunIdIncrementer())
-                .start(personStep1(jobRepository, null)).on(BatchExitStatus.FAILED.name())
-                .to(personStep11(jobRepository, null)).on(BatchExitStatus.FAILED.name()).end()
-                .from(personStep1(null, null)).on("COMPLETED")
-                .to(personStep2(jobRepository, null)).on(BatchExitStatus.FAILED.name()).end()
-                .from(personStep2(jobRepository, null)).on("COMPLETED")
-                .to(personStep3(jobRepository, null)).end()
+                .start(personStep1(jobRepository, transactionManager)).on(BatchExitStatus.FAILED.name())
+                .to(personStep11(jobRepository, transactionManager)).on(BatchExitStatus.FAILED.name()).end()
+                .from(personStep1(jobRepository, transactionManager)).on("COMPLETED")
+                .to(personStep2(jobRepository, transactionManager)).on(BatchExitStatus.FAILED.name()).end()
+                .from(personStep2(jobRepository, transactionManager)).on("COMPLETED")
+                .to(personStep3(jobRepository, transactionManager)).end()
                 .listener(jobNotificationListener)
                 .build();
     }
