@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  DOMAIN: 'http://localhost:9992',
-  CHAT_NORMAL: 'NORMAL',
-  CHAT_GROUP: 'GROUP'
+  DOMAIN: 'http://localhost:9992'
 };
 
 /*
