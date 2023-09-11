@@ -1,0 +1,12 @@
+<nb-card size="medium">
+  <nb-card-header>{{ title }}</nb-card-header>
+  <nb-card-body class="text-center">
+    <p>
+      <nb-icon icon="fas fa-smile" status="danger" size="giant"></nb-icon>
+    </p>
+    <p class="congratulation__note">{{ message }}</p>
+  </nb-card-body>
+  <nb-card-footer class="text-center">
+    <button nbButton (click)="dismiss()" status="primary">Close</button>
+  </nb-card-footer>
+</nb-card>

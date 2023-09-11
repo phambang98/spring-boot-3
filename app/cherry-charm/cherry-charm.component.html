@@ -1,0 +1,166 @@
+<section class="slot-main-container">
+  <div>
+    <div class="win-condition-container">
+      <div [style.background-color]="bgColorCombination" class="combo1"><img src="./assets/cherry-charm/images/BAR.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo2"><img src="./assets/cherry-charm/images/BAR.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo3"><img src="./assets/cherry-charm/images/2xBAR.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo4"><img src="./assets/cherry-charm/images/3xBAR.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo5"><img src="./assets/cherry-charm/images/Cherry.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo6"><img src="./assets/cherry-charm/images/7.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo7"><img src="./assets/cherry-charm/images/Cherry.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo8"><img src="./assets/cherry-charm/images/Cherry.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo9"><img src="./assets/cherry-charm/images/Cherry.png"></div>
+
+      <div [style.background-color]="bgColorCombination" class="combo1"><img src="./assets/cherry-charm/images/BAR.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo2"><img src="./assets/cherry-charm/images/BAR.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo3"><img src="./assets/cherry-charm/images/2xBAR.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo4"><img src="./assets/cherry-charm/images/3xBAR.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo5"><img src="./assets/cherry-charm/images/7.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo6"><img src="./assets/cherry-charm/images/7.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo7"><img src="./assets/cherry-charm/images/Cherry.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo8"><img src="./assets/cherry-charm/images/Cherry.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo9"><img src="./assets/cherry-charm/images/Cherry.png"></div>
+
+      <div [style.background-color]="bgColorCombination" class="combo1"></div>
+      <div [style.background-color]="bgColorCombination" class="combo2"><img src="./assets/cherry-charm/images/BAR.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo3"><img src="./assets/cherry-charm/images/2xBAR.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo4"><img src="./assets/cherry-charm/images/3xBAR.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo5"></div>
+      <div [style.background-color]="bgColorCombination" class="combo6"><img src="./assets/cherry-charm/images/7.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo7"><img src="./assets/cherry-charm/images/Cherry.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo8"><img src="./assets/cherry-charm/images/Cherry.png"></div>
+      <div [style.background-color]="bgColorCombination" class="combo9"><img src="./assets/cherry-charm/images/Cherry.png"></div>
+
+      <div [style.background-color]="bgColorCombination" class="combo1">Any line</div>
+      <div [style.background-color]="bgColorCombination" class="combo2">Any line</div>
+      <div [style.background-color]="bgColorCombination" class="combo3">Any line</div>
+      <div [style.background-color]="bgColorCombination" class="combo4">Any line</div>
+      <div [style.background-color]="bgColorCombination" class="combo5">Any line</div>
+      <div [style.background-color]="bgColorCombination" class="combo6">Any line</div>
+      <div [style.background-color]="bgColorCombination" class="combo7">Central line</div>
+      <div [style.background-color]="bgColorCombination" class="combo8">Top line</div>
+      <div [style.background-color]="bgColorCombination" class="combo9">Bottom line</div>
+
+      <div [style.background-color]="bgColorCombination" class="combo1">5</div>
+      <div [style.background-color]="bgColorCombination" class="combo2">10</div>
+      <div [style.background-color]="bgColorCombination" class="combo3">20</div>
+      <div [style.background-color]="bgColorCombination" class="combo4">50</div>
+      <div [style.background-color]="bgColorCombination" class="combo5">75</div>
+      <div [style.background-color]="bgColorCombination" class="combo6">150</div>
+      <div [style.background-color]="bgColorCombination" class="combo7">1000</div>
+      <div [style.background-color]="bgColorCombination" class="combo8">2000</div>
+      <div [style.background-color]="bgColorCombination" class="combo9">4000</div>
+    </div>
+    <div class="slot-machine">
+      <div class="slot-top">
+        <div class="player-score-container">
+          <span class="flying-money" [ngClass]="{'animate': showDebitMoney}"
+                *ngIf="debitedMoney === -1">{{debitedMoney}}</span>
+          <span class="flying-money" [ngClass]="{'animate-red': showDebitMoney}"
+                *ngIf="debitedMoney !== -1 && debitedMoney !==0 ">{{debitedMoney}}</span>
+          <input type="number" class="playerScore" [value]="playerScore" [disabled]="isSpinning">
+
+        </div>
+
+      </div>
+    </div>
+
+    <section class="slot-wheel-container">
+      <div class="slot-wheen-wrapper">
+        <div class="wheel-container">
+          <div #wheelCell1 class="wheel">
+            <img [attr.data-position]="4" src="./assets/cherry-charm/images/Cherry.png" alt="3 BAR image">
+            <img [attr.data-position]="3" src="./assets/cherry-charm/images/3xBAR.png" alt="BAR image">
+            <img [attr.data-position]="2" src="./assets/cherry-charm/images/7.png" alt="7 image">
+            <img [attr.data-position]="1" src="./assets/cherry-charm/images/2xBAR.png" alt="2 BAR image">
+            <img [attr.data-position]="5" src="./assets/cherry-charm/images/BAR.png" alt="Cherry image">
+          </div>
+        </div>
+        <div class="wheel-container">
+          <div #wheelCell2 class="wheel">
+            <img [attr.data-position]="4" src="./assets/cherry-charm/images/Cherry.png" alt="3 BAR image">
+            <img [attr.data-position]="3" src="./assets/cherry-charm/images/3xBAR.png" alt="BAR image">
+            <img [attr.data-position]="2" src="./assets/cherry-charm/images/7.png" alt="7 image">
+            <img [attr.data-position]="1" src="./assets/cherry-charm/images/2xBAR.png" alt="2 BAR image">
+            <img [attr.data-position]="5" src="./assets/cherry-charm/images/BAR.png" alt="Cherry image">
+          </div>
+        </div>
+        <div class="wheel-container">
+          <div #wheelCell3 class="wheel">
+            <img [attr.data-position]="4" src="./assets/cherry-charm/images/Cherry.png" alt="3 BAR image">
+            <img [attr.data-position]="3" src="./assets/cherry-charm/images/3xBAR.png" alt="BAR image">
+            <img [attr.data-position]="2" src="./assets/cherry-charm/images/7.png" alt="7 image">
+            <img [attr.data-position]="1" src="./assets/cherry-charm/images/2xBAR.png" alt="2 BAR image">
+            <img [attr.data-position]="5" src="./assets/cherry-charm/images/BAR.png" alt="Cherry image">
+          </div>
+        </div>
+
+        <div [ngClass]="{'active': line1Score !== 0 &&
+        line1Score === getMaxScore()}" class="wheel-line top"></div>
+        <div [ngClass]="{'active': line2Score !== 0 &&
+        line2Score === getMaxScore()}" class="wheel-line center"></div>
+        <div [ngClass]="{'active': line3Score !== 0 &&
+        line3Score === getMaxScore()}" class="wheel-line bottom"></div>
+      </div>
+
+      <div id="slot-trigger">
+        <div class="arm clicked" (click)="!isSpinning && knobPulled()">
+          <div class="knob"></div>
+        </div>
+        <div class="arm-shadow"></div>
+        <div class="ring1">
+          <div class="shadow"></div>
+        </div>
+        <div class="ring2">
+          <div class="shadow"></div>
+        </div>
+      </div>
+    </section>
+
+
+<!--    <div class="debug-container">-->
+<!--      <div class="debug-wrapper">-->
+<!--        <div class="debug-mode">-->
+<!--          <input id="debug-cb" type="checkbox" [(ngModel)]="debugMode" />-->
+<!--          <label class="debug-toggle-btn" for="debug-cb">Debug-->
+<!--          </label>-->
+<!--        </div>-->
+<!--        <div class="debug-controls" [ngClass]="{'random': !debugMode}">-->
+<!--          <div class="debug-image-container" [ngClass]="{'random': !debugMode}">-->
+<!--            <img [attr.data-position]="4" draggable="true" id="cherry" (dragstart)="onDragStart($event)"-->
+<!--                 src="./assets/cherry-charm/images/Cherry.png" alt="Cherry image">-->
+<!--            <img [attr.data-position]="3" draggable="true" id="3bar" (dragstart)="onDragStart($event)"-->
+<!--                 src="./assets/cherry-charm/images/3xBAR.png" alt="3 BAR image">-->
+<!--            <img [attr.data-position]="2" draggable="true" id="7" (dragstart)="onDragStart($event)"-->
+<!--                 src="./assets/cherry-charm/images/7.png" alt="7 image">-->
+<!--            <img [attr.data-position]="1" draggable="true" id="2bar" (dragstart)="onDragStart($event)"-->
+<!--                 src="./assets/cherry-charm/images/2xBAR.png" alt="2 BAR image">-->
+<!--            <img [attr.data-position]="5" draggable="true" id="bar" (dragstart)="onDragStart($event)"-->
+<!--                 src="./assets/cherry-charm/images/BAR.png" alt="BAR image">-->
+<!--          </div>-->
+<!--          <div class="debug-area-bottom">-->
+<!--            <div class="debug-line-opt-container" [ngClass]="{'random': !debugMode}">-->
+<!--              <div class="debug-line" [ngClass]="{'active': debugLine == 4}" (click)="debugLine = 4">-->
+<!--                Top Line-->
+<!--              </div>-->
+<!--              <div class="debug-line" [ngClass]="{'active': debugLine == 3}" (click)="debugLine = 3">-->
+<!--                Center Line-->
+<!--              </div>-->
+<!--              <div class="debug-line" [ngClass]="{'active': debugLine == 2}" (click)="debugLine = 2">-->
+<!--                Bottom Line-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="debug-wheel-container" [ngClass]="{'random': !debugMode}">-->
+<!--              <div #debugWheel1 class="debug-wheel" (dragover)="onDragOver($event)" (drop)="onDrop($event)"></div>-->
+<!--              <div #debugWheel2 class="debug-wheel" (dragover)="onDragOver($event)" (drop)="onDrop($event)"></div>-->
+<!--              <div #debugWheel3 class="debug-wheel" (dragover)="onDragOver($event)" (drop)="onDrop($event)"></div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+
+
+  </div>
+</section>

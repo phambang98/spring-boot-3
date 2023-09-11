@@ -1,0 +1,43 @@
+
+.congratulation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba($color: #000000, $alpha: 0.2);
+  display: none;
+
+  &__container {
+    width: 40vw;
+    padding: 30px;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #c0392b;
+    cursor: pointer;
+    transition: all 0.5s;
+
+    &:hover {
+      transform: rotate(360deg);
+    }
+  }
+
+  &__emotion {
+    color: #f39c12;
+    text-align: center;
+    margin: 0 0 20px 0;
+  }
+
+  &__note {
+    text-align: center;
+  }
+}

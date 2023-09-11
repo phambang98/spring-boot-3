@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-3">
+    <div class="rule">
+      <div class="rule__content" *ngFor="let prize of prizes;let i = index">
+        <div [ngClass]="'rule__color color-' + (i+1) "></div>
+        <div class="rule__text">
+          {{prize.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6 item-wheel">
+    <div class="wheel">
+      <div class="wheel__inner" #wheel__inner>
+        <div class="wheel__sec" *ngFor="let prize of prizes">
+        </div>
+      </div>
+      <div class="wheel__arrow">
+        <button class="wheel__button" (click)="spin()" [disabled]="!activeBtn">SPIN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-3 div-text-wheel scrollbar">
+    <div class="text-wheel">
+      <div *ngFor="let luckyWheel of luckyWheelList"
+           [ngClass]="{'alert alert-danger alert-dismissible':luckyWheel.luckyNumber == null,  'alert alert-success alert-dismissible' :luckyWheel.luckyNumber != null}">
+        <strong>Thông báo :</strong> {{luckyWheel.message}}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
