@@ -4,28 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f358e88c-6661-4414-8c17-e78c688f2271" name="Changes" comment="cuu a">
+    <list default="true" id="f358e88c-6661-4414-8c17-e78c688f2271" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/version17/BinarySearch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/AfterRun.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/model/AddCreditModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/3rdpartylicenses.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/assets/auth.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/assets/cherry-charm/audio/knob-pull.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/assets/cherry-charm/audio/pay-out.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/assets/cherry-charm/audio/spinning.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/assets/cherry-charm/images/2xBAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/assets/cherry-charm/images/3xBAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/assets/cherry-charm/images/7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/assets/cherry-charm/images/BAR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/assets/cherry-charm/images/Cherry.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/assets/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/assets/friends.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/assets/slot-machine/slot-wheel.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/main.a362145163b61396.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/polyfills.db537ce4e8746642.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/runtime.eeca062dc9942a6e.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/scripts.dbd57de62ef0fb06.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/dist/frontend/styles.d6f80903420acd5b.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,11 +166,11 @@
       <recent name="com.example.springchat.ultis" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.spring.rest.api" />
       <recent name="com.example.core.entity" />
       <recent name="com.example.spring.rest.api.model" />
       <recent name="com.example.core.repository" />
       <recent name="com.example.spring.rest.api.service" />
-      <recent name="com.example.core.model" />
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="" />
@@ -214,39 +202,13 @@
       </set>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="JavaNewVersion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.springcore.version17.JavaNewVersion" />
-      <module name="spring-core" />
+  <component name="RunManager" selected="Application.BinarySearch">
+    <configuration name="BinarySearch" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.core.version17.BinarySearch" />
+      <module name="core" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.springcore.version17.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.springcore.version17.Main2" />
-      <module name="spring-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.springcore.version17.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TreeList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.springcore.version17.TreeList" />
-      <module name="spring-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.springcore.version17.*" />
+          <option name="PATTERN" value="com.example.core.version17.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -314,18 +276,6 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="spring-rest-api/Dockerfile build" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
-      <deployment type="dockerfile">
-        <settings>
-          <option name="imageTag" value="maven3-jdk-17-alpine_build" />
-          <option name="buildCliOptions" value="--target build" />
-          <option name="buildKitEnabled" value="true" />
-          <option name="buildOnly" value="true" />
-          <option name="sourceFilePath" value="spring-rest-api/Dockerfile" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
     <configuration name="Angular CLI Server (angular-app)" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/angular-app/package.json" />
       <command value="run" />
@@ -337,10 +287,7 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Main2" />
-      <item itemvalue="Application.TreeList" />
-      <item itemvalue="Application.JavaNewVersion" />
-      <item itemvalue="Docker.spring-rest-api/Dockerfile build" />
+      <item itemvalue="Application.BinarySearch" />
       <item itemvalue="npm.Angular CLI Server (angular-app)" />
       <item itemvalue="Spring Boot.SpringBatchApplication" />
       <item itemvalue="Spring Boot.SpringMqApplication" />
@@ -350,11 +297,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TreeList" />
-        <item itemvalue="Application.Main2" />
-        <item itemvalue="Application.JavaNewVersion" />
+        <item itemvalue="Application.BinarySearch" />
         <item itemvalue="Spring Boot.SpringRestApiApplication" />
-        <item itemvalue="Application.JavaNewVersion" />
       </list>
     </recent_temporary>
   </component>
@@ -517,7 +461,10 @@
       <workItem from="1693981265035" duration="19478000" />
       <workItem from="1694068974964" duration="23696000" />
       <workItem from="1694165326794" duration="3561000" />
-      <workItem from="1694399447254" duration="2641000" />
+      <workItem from="1694399447254" duration="3867000" />
+      <workItem from="1694486794500" duration="1045000" />
+      <workItem from="1694489108234" duration="29940000" />
+      <workItem from="1694661638809" duration="34000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679381899693</created>
@@ -666,7 +613,15 @@
       <option name="project" value="LOCAL" />
       <updated>1684398568928</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="cuu a">
+      <option name="closed" value="true" />
+      <created>1694406184443</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1694406184443</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -741,6 +696,17 @@
     <MESSAGE value="done 1" />
     <MESSAGE value="cuu a" />
     <option name="LAST_COMMIT_MESSAGE" value="cuu a" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/core/src/main/java/com/example/core/version17/BinarySearch.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

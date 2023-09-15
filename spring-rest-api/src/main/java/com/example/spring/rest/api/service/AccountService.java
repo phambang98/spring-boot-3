@@ -2,7 +2,7 @@ package com.example.spring.rest.api.service;
 
 import com.example.core.enums.AuthProvider;
 import com.example.core.model.*;
-import com.example.core.repository.RefreshTokenRepository;
+import com.example.spring.rest.api.model.AddCreditModel;
 import com.example.spring.rest.api.security.UserPrincipal;
 import com.example.spring.rest.api.security.jwt.TokenProvider;
 import lombok.extern.slf4j.Slf4j;
@@ -70,5 +70,17 @@ public class AccountService {
         }
         return ResultData.builder().success(false).message("User verify token failure").build();
     }
+
+    public ResultData addCredit(AddCreditModel request){
+
+        return ResultData.builder().message("Add credit successfully@").build();
+    }
+
+//    public ResultData forgotPassword(ForgotPasswordRequest request) {
+//        if (tokenProvider.validateToken(tokenVerify.getAccessToken())) {
+//            return ResultData.builder().message("User verify token successfully@").build();
+//        }
+//        return ResultData.builder().success(false).message("User verify token failure").build();
+//    }
 
 }

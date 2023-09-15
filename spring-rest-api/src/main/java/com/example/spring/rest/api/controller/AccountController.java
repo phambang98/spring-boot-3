@@ -1,5 +1,6 @@
 package com.example.spring.rest.api.controller;
 
+import com.example.spring.rest.api.model.AddCreditModel;
 import com.example.spring.rest.api.service.AccountService;
 import com.example.core.model.*;
 import jakarta.validation.Valid;
@@ -29,9 +30,14 @@ public class AccountController {
         return ResponseEntity.ok(accountService.verifyToken(tokenVerify));
     }
 
-//    @PostMapping("/forgot")
+    @PostMapping("/add-credit")
+    public ResponseEntity<ResultData> addCredit(@Valid @RequestBody AddCreditModel request) {
+        return ResponseEntity.ok(accountService.addCredit(request));
+    }
+
+//    @PostMapping("/forgot-password")
 //    public ResponseEntity<ResultData> forgotPassword(@Valid @RequestBody ForgotPasswordRequest request) {
-//        return ResponseEntity.ok(userService.forgotPassword(request));
+//        return ResponseEntity.ok(accountService.forgotPassword(request));
 //    }
 
 }
