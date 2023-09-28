@@ -1,11 +1,16 @@
 package com.example.spring.rest.api.service;
 
+import cn.apiclub.captcha.Captcha;
 import com.example.core.enums.AuthProvider;
 import com.example.core.model.*;
 import com.example.spring.rest.api.model.AddCreditModel;
+import com.example.spring.rest.api.model.CaptchaRp;
 import com.example.spring.rest.api.security.UserPrincipal;
 import com.example.spring.rest.api.security.jwt.TokenProvider;
+import com.example.spring.rest.api.util.CaptchaUtil;
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +21,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.UUID;
 
 
 @Service
@@ -35,8 +42,14 @@ public class AccountService {
     @Autowired
     private TokenProvider tokenProvider;
 
-    public ResultData authenticate(LoginRequest loginRequest) {
+
+    public ResultData authenticate(LoginRequest loginRequest, HttpSession session) {
         try {
+            String captchaAnswer = (String) session.getAttribute("captchaAnswer");
+            if (!StringUtils.equals(loginRequest.getCaptchaAnswer(), captchaAnswer)) {
+
+                return ResultData.builder().success(false).message("captcha failure!").build();
+            }
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword())
             );
@@ -71,7 +84,16 @@ public class AccountService {
         return ResultData.builder().success(false).message("User verify token failure").build();
     }
 
-    public ResultData addCredit(AddCreditModel request){
+    public ResultData captcha(HttpSession httpSession) {
+        Captcha captcha = CaptchaUtil.createCaptcha(200, 50);
+        httpSession.setAttribute("captchaAnswer", captcha.getAnswer());
+        return ResultData.builder().data(CaptchaRp.builder()
+                .captchaId(String.valueOf(UUID.randomUUID()))
+                .captchaImg(CaptchaUtil.encodeCaptcha(captcha))
+                .build()).build();
+    }
+
+    public ResultData addCredit(AddCreditModel request) {
 
         return ResultData.builder().message("Add credit successfully@").build();
     }

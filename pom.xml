@@ -18,6 +18,7 @@
         <module>core</module>
         <module>spring-rest-api</module>
         <module>spring-batch</module>
+        <module>spring-kafka</module>
         <module>spring-mvc</module>
         <module>spring-mq</module>
         <module>spring-web-services</module>

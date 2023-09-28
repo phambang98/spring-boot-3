@@ -1,15 +1,13 @@
 
-r
-java:S1192<"WDefine a constant instead of duplicating this literal "Can't chat for myself-" 3 times.(ºÊ„àüÿÿÿÿ
-b
-java:S11929"LDefine a constant instead of duplicating this literal "User email-" 3 times.(«Ôÿò
+z
+java:S1192°"WDefine a constant instead of duplicating this literal "Chat Id does not exist" 3 times.(¹ÿ“ğüÿÿÿÿ8•ÃØâ«1
 l
-java:S1192"UDefine a constant instead of duplicating this literal "List user name error" 4 times.(şöÚ±
-|
-java:S4144§"`Update this method so that its implementation is not identical to "createGroupChat" on line 140.(àÖøşÿÿÿÿ
-
-java:S4144Ü"hUpdate this method so that its implementation is not identical to "removeUserFromGroupChat" on line 194.(çƒ†…
+java:S1192"UDefine a constant instead of duplicating this literal "List user name error" 5 times.(şöÚ±
+Z
+java:S1854W"8Remove this useless assignment to local variable "date".(”Ç©šùÿÿÿÿ8ºÃØâ«1
+K
+java:S1481W")Remove this unused "date" local variable.(”Ç©šùÿÿÿÿ8»ÃØâ«1
 i
-java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(÷­¿½
-i
-java:S6204¸"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(÷­¿½
+java:S6204œ"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(÷­¿½
+u
+java:S6204³"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(øïÅúÿÿÿÿ8ÉÃØâ«1

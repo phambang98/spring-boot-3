@@ -1,0 +1,8 @@
+
+S
+java:S1854"=Remove this useless assignment to local variable "calendar2".(¤ê¦Û
+Q	java:S125"<This block of commented-out lines of code should be removed.(ø‡ÄÑ
+Q	java:S125"<This block of commented-out lines of code should be removed.(Ä«Üº
+D
+java:S1481".Remove this unused "calendar2" local variable.(¤ê¦Û
+@	java:S106"+Replace this use of System.out by a logger.(î¸Ëþ

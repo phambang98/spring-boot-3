@@ -3,15 +3,11 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 import {environment} from '../../environments/environment';
-import {map} from 'rxjs/operators';
-import {SignInResponse} from '../_dtos/auth/SignInResponse';
 import {SignInRequest} from '../_dtos/auth/SignInRequest';
 import {SignUpRequest} from '../_dtos/auth/SignUpRequest';
 import {ResultData} from '../_dtos/common/ResultData';
-import {UserProfile} from '../_dtos/user/UserProfile';
 import {TokenVerify} from "../_dtos/auth/TokenVerify";
 import {TokenStorageService} from "./token-storage.service";
-import {RefreshTokenRequest} from "../_dtos/auth/RefreshTokenRequest";
 
 @Injectable({
   providedIn: 'root'
@@ -60,5 +56,9 @@ export class AuthService {
 
   logout() {
     this.tokenStorage.signOut()
+  }
+
+  getCaptcha(){
+    return this.http.get(`${environment.DOMAIN}/api/account/captcha`) as Observable<ResultData>
   }
 }

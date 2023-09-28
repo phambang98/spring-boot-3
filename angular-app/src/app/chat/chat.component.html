@@ -22,7 +22,7 @@
         <nb-list-item *ngFor="let friend of chatModel " (click)="chatClicked(friend.chatId)">
           <nb-user [name]="friend.userName" [title]="friend.lastMsg" size="giant" [picture]="friend.imageUrl"
                    shape="round" [badgeText]="badgeText"
-                   [badgeStatus]="friend.blockedBy === null ? ( friend.status=='ONLINE' ?'danger' :'success'):'' "
+                   [badgeStatus]="friend.blockedBy == null || friend.blockedBy==0  ? ( friend.status=='ONLINE' ?'success' :'danger'):'danger' "
                    badgePosition="bottom right">
           </nb-user>
         </nb-list-item>

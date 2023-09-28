@@ -1,0 +1,13 @@
+
+h
+java:S1192)"FDefine a constant instead of duplicating this literal "image" 3 times.(›á„şøÿÿÿÿ8ƒÄØâ«1
+\
+java:S2259("?A "NullPointerException" could be thrown; "a" is nullable here.(‚¾çè8‰ÄØâ«1
+r
+java:S2229&"P"abc's" @Transactional requirement is incompatible with the one for this method.(ßÑîÁûÿÿÿÿ8‹ÄØâ«1
+I
+java:S2201(",The return value of "toString" must be used.(‚¾çè8ÄØâ«1
+a
+java:S1858("D"a" is already a string, there's no need to call "toString()" on it.(‚¾çè8ÄØâ«1
+e
+java:S1128"HRemove this unused import 'org.springframework.context.annotation.Bean'.(‚î‰Ş8ÄØâ«1

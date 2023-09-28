@@ -1,10 +1,14 @@
 
 œ
-java:S1186K"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÔÌ³Ïşÿÿÿÿ
+java:S1186M"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ÔÌ³Ïşÿÿÿÿ
 m
-java:S6204$"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£Œ™ùÿÿÿÿ
+java:S6204&"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(£Œ™ùÿÿÿÿ
 m
-java:S62045"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(©Ÿøıÿÿÿÿ
+java:S62047"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(©Ÿøıÿÿÿÿ
 E
-java:S1172E"/Remove this unused method parameter "pageable".(¬”Ş£
-V	java:S125F"<This block of commented-out lines of code should be removed.(¿Á Êûÿÿÿÿ
+java:S1172G"/Remove this unused method parameter "pageable".(¬”Ş£
+V	java:S125H"<This block of commented-out lines of code should be removed.(¿Á Êûÿÿÿÿ
+[
+java:S1128">Remove this unused import 'com.example.core.model.ResultData'.(á»½ú8ş¾Øâ«1
+k
+java:S1128"IRemove this unused import 'com.example.core.model.ForgotPasswordRequest'.(²¼öøÿÿÿÿ8ş¾Øâ«1

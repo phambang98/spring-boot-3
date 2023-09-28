@@ -12,6 +12,7 @@ import {
   DialogAuthenticationFailureComponent
 } from "../../shared/dialog/dialog-alert/dialog-authentication-failure.component";
 import {NbDialogService} from "@nebular/theme";
+import {Captcha} from "../../_dtos/auth/Captcha";
 
 @Component({
   selector: 'app-signin',
@@ -23,25 +24,43 @@ export class SigninComponent implements OnInit {
   loading: Boolean = false
   signInFrom: FormGroup
   redirect = "/"
+  captcha: Captcha
+  imageSrcCaptcha: string
 
   constructor(private authService: AuthService, private fb: FormBuilder, private router: Router, private dialogService: NbDialogService,
               private activatedRoute: ActivatedRoute, private tokenStorage: TokenStorageService) {
     this.signInFrom = this.fb.group({
       userName: [],
       password: [],
+      captchaAnswer: [],
     })
 
     this.activatedRoute.queryParams.subscribe(params => {
       let userName = params['userName']
       let password = params['password']
+      let captchaAnswer = params['captchaAnswer']
       if (params['returnUrl']) {
         this.redirect = params['returnUrl']
       }
-      if (userName && password) {
+      if (userName && password && captchaAnswer) {
         this.signInFrom.setValue({
           userName: userName,
           password: password,
+          captchaAnswer: captchaAnswer
         });
+      }
+    })
+    authService.getCaptcha().subscribe({
+      next: (resultData: ResultData) => {
+        if (resultData.success) {
+          this.captcha = resultData.data
+          this.imageSrcCaptcha = "data:image/jpg;base64," + this.captcha.captchaImg
+        } else {
+          console.log("captcha-resultData-false")
+        }
+      },
+      error(e: any) {
+        console.log("error", e)
       }
     })
   }
@@ -53,7 +72,7 @@ export class SigninComponent implements OnInit {
     if (this.signInFrom.valid) {
       let data = this.signInFrom.value
       this.loading = true
-      this.authService.login(new SignInRequest(data['userName'], data['password'])).subscribe({
+      this.authService.login(new SignInRequest(data['userName'], data['password'], data['captchaAnswer'])).subscribe({
         complete: () => {
 
           this.loading = false

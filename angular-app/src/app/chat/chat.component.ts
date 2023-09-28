@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ChatModel} from "../_dtos/chat/ChatModel";
 import {UserProfile} from "../_dtos/user/UserProfile";
 import {NbDialogService, NbMenuService} from "@nebular/theme";
@@ -39,6 +39,11 @@ export class ChatComponent implements OnInit {
         console.log("error", e)
       },
     })
+    this.chatService.chatModel.subscribe(
+      (models: ChatModel[]) => {
+        this.chatModel = models
+      }
+    )
     this.menuListener()
   }
 

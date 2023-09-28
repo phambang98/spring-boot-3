@@ -5,7 +5,7 @@ import com.example.core.enums.AuthProvider;
 import com.example.core.error.InternalServerErrorException;
 import com.example.core.error.OAuth2AuthenticationProcessingException;
 import com.example.core.model.UserModel;
-import com.example.spring.rest.api.ultis.OAuth2UserInfo;
+import com.example.spring.rest.api.util.OAuth2UserInfo;
 import com.example.core.entity.UserStatus;
 import com.example.core.entity.Users;
 import com.example.core.enums.Status;

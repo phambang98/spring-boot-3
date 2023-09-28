@@ -1,0 +1,11 @@
+
+U
+java:S2259"?A "NullPointerException" could be thrown; "a" is nullable here.(‚¾çè
+—
+java:S1186
+"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ýü²ó
+E	java:S106"+Replace this use of System.out by a logger.(çòö¿üÿÿÿÿ
+B
+java:S2201",The return value of "toString" must be used.(‚¾çè
+Z
+java:S1858"D"a" is already a string, there's no need to call "toString()" on it.(‚¾çè

@@ -1,7 +1,7 @@
 package com.example.spring.rest.api.security;
 
 import com.example.spring.rest.api.security.jwt.TokenProvider;
-import com.example.spring.rest.api.ultis.OAuth2RequestRepository;
+import com.example.spring.rest.api.util.OAuth2RequestRepository;
 import com.example.core.error.BadRequestException;
 import com.example.core.utils.AuthenticationKey;
 import com.example.core.utils.CookieUtils;

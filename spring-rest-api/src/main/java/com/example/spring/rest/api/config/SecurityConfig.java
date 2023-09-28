@@ -4,8 +4,8 @@ import com.example.spring.rest.api.security.OAuth2FailureHandler;
 import com.example.spring.rest.api.security.Oauth2SuccessHandler;
 import com.example.spring.rest.api.security.jwt.TokenAuthenticationFilter;
 import com.example.spring.rest.api.service.CustomOAuth2UsersService;
-import com.example.spring.rest.api.ultis.OAuth2RequestRepository;
-import com.example.spring.rest.api.ultis.RestAuthenticationEntryPoint;
+import com.example.spring.rest.api.util.OAuth2RequestRepository;
+import com.example.spring.rest.api.util.RestAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 
 
 @Configuration
@@ -52,7 +51,8 @@ public class SecurityConfig {
         return http.cors()
                 .and()
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+//                .maximumSessions(1).maxSessionsPreventsLogin(false).and()
                 .and().csrf().disable()
                 .formLogin().disable()
                 .httpBasic().disable()
@@ -69,7 +69,7 @@ public class SecurityConfig {
                         AntPathRequestMatcher.antMatcher("/login/oauth2/code/*"), AntPathRequestMatcher.antMatcher("/ws/**"),
                         AntPathRequestMatcher.antMatcher("/swagger-ui/**"), AntPathRequestMatcher.antMatcher("/v3/api-docs"),
                         AntPathRequestMatcher.antMatcher("/v3/api-docs/**"), AntPathRequestMatcher.antMatcher("/api/authenticate"),
-                        AntPathRequestMatcher.antMatcher("/api/file/**")).permitAll()
+                        AntPathRequestMatcher.antMatcher("/api/file/**"),AntPathRequestMatcher.antMatcher("/api/test/**")).permitAll()
                 .requestMatchers(PathRequest.toH2Console()).permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/api/image2")).hasAuthority("dog")
                 .anyRequest().authenticated()
@@ -93,5 +93,9 @@ public class SecurityConfig {
             throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+//    @Bean
+//    public HttpSessionIdResolver httpSessionIdResolver() {
+//        return HeaderHttpSessionIdResolver.xAuthToken(); // Sử dụng cookie phiên (session)
+//    }
 
 }

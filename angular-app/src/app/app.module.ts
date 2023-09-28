@@ -17,6 +17,7 @@ import {MatTabsModule} from "@angular/material/tabs";
     AppComponent,
   ],
     imports: [
+
         BrowserModule,
         BrowserAnimationsModule,
         NbThemeModule.forRoot({name: 'cosmic'}),

@@ -1,5 +1,5 @@
 
 h
-java:S6204I"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
+java:S6204H"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(ª™¨¹
 m
-java:S3776d"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(ó¸ÔØüÿÿÿÿ
+java:S3776c"RRefactor this method to reduce its Cognitive Complexity from 32 to the 15 allowed.(ó¸ÔØüÿÿÿÿ

@@ -9,4 +9,6 @@ public class LoginRequest {
     private String userName;
     @NotBlank
     private String password;
+    @NotBlank
+    private String captchaAnswer;
 }

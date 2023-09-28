@@ -1,6 +1,6 @@
 package com.example.core.version17;
 
-public final class Dog extends Vehicle{
+public final class Dog extends Vehicle {
 
     public Dog(String registrationNumber) {
         super(registrationNumber);
@@ -13,6 +13,8 @@ public final class Dog extends Vehicle{
 
     public static void main(String[] args) {
         System.out.println("         '\\1\\3')                                                                     BRANCH, ");
+        String a = null;
+        a.toString();
 
     }
 }

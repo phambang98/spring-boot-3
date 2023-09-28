@@ -20,10 +20,20 @@
           <a class="caption-2 text-primary" routerLink="../forgot">Forgot Password?</a>
         </p>
       </div>
+      <div class="form-control-group mb-3">
+                <span class="label-with-link">
+                    <label class="label" for="image-captcha">Captcha:</label>
+                </span>
+        <img src="{{imageSrcCaptcha}}" id="image-captcha" alt="image-captcha"/>
+      </div>
 
-      <!--            <button nbButton fullWidth outline status="primary" size="large" [disabled]="!signInFrom.valid">-->
-      <!--                Sign In-->
-      <!--            </button>-->
+      <div class="form-control-group mb-3">
+                <span class="label-with-link">
+                    <label class="label" for="input-captcha">Enter captcha:</label>
+                </span>
+        <input nbInput fullWidth id="input-captcha" [maxlength]="5" type="text" fieldSize="large"
+               formControlName="captchaAnswer">
+      </div>
       <button [disabled]="!signInFrom.valid">
         <span></span>
         <span></span>

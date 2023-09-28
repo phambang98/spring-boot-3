@@ -6,7 +6,7 @@ import org.quartz.Job;
 public enum JobConstant {
 
     CLIENT_EXPORT_JOB("usersExportJob", UsersQuartzJob.class, "Users export file csv"),
-    COFFEE_IMPORT_JOB("coffeeJob", CoffeeQuartzJob.class, "Coffee import from file csv"),
+    COFFEE_IMPORT_JOB("coffeeImportCsvJob", CoffeeImportCsvQuartzJob.class, "Coffee import from file csv"),
     MENU_EXPORT_JSON_JOB("menuExportJsonJob", MenuExportJsonQuartzJob.class, "Menu export from file json"),
     TRADE_IMPORT_XML_JOB("tradeImportXmlJob", TradeImportQuartzJob.class, "Trade import from file xml"),
     TRADE_EXPORT_XML_JOB("tradeExportXmlJob", TradeExportQuartzJob.class, "Trade export file xml"),
