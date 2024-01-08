@@ -193,7 +193,7 @@ public class CoffeeImportCsvConfiguration extends BatchConfiguration {
                 .partitioner(coffeeNextStep(jobRepository, transactionManager).getName(), coffeePartitioner(null))
                 .step(coffeeNextStep(jobRepository, transactionManager))
                 .gridSize(3)
-                .taskExecutor(batchTaskExecutor())
+                .taskExecutor(batchTaskExecutor)
                 .build();
     }
 

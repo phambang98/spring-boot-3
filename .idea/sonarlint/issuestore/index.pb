@@ -173,14 +173,8 @@ Uspring-rest-api/src/main/java/com/example/spring/rest/api/service/MessageServic
 Sspring-rest-api/src/main/java/com/example/spring/rest/api/service/UsersService.java,c\8\c84484060b276cb6ae0b167ab038b3f631b53408
 â
 Yspring-rest-api/src/main/java/com/example/spring/rest/api/controller/UsersController.java,3\9\3919aafab80c2bb753ae103d5e8ccd763ac76c26
-ç
-]spring-rest-api/src/main/java/com/example/spring/rest/api/ultis/CustomChannelInterceptor.java,d\1\d1d0497249550b152b4ef8b4f89d8dd0f48db86f
-É
-Sspring-rest-api/src/main/java/com/example/spring/rest/api/ultis/OAuth2UserInfo.java,8\b\8bd2ce576c0801e86b20b52fa8adeb835a2bd5d7
 è
 _spring-rest-api/src/main/java/com/example/spring/rest/api/service/CustomOAuth2UsersService.java,f\6\f60310c3250957472270d5706590c633b1c8e69d
-ë
-aspring-rest-api/src/main/java/com/example/spring/rest/api/ultis/RestAuthenticationEntryPoint.java,b\4\b41988d447831e2af9c0499978b8aeea3a96211a
 Ñ
 Tspring-rest-api/src/main/java/com/example/spring/rest/api/config/SecurityConfig.java,5\9\5907f90388c4d06bae5c3d6bdb9382a5da7c6222
 Ü
@@ -197,8 +191,6 @@ Uspring-rest-api/src/main/java/com/example/spring/rest/api/config/WebSocketConfi
 ]spring-rest-api/src/main/java/com/example/spring/rest/api/config/WebSocketSecurityConfig.java,8\7\8709897aaa4045ac4c01a798a9b33c4994ce9dc1
 ï
 espring-rest-api/src/main/java/com/example/spring/rest/api/security/jwt/TokenAuthenticationFilter.java,b\7\b7b92d58609ac4bf6f56273a7a6ca93ded13be8b
-å
-\spring-rest-api/src/main/java/com/example/spring/rest/api/ultis/OAuth2RequestRepository.java,3\4\34b3bb3af2c4c542c228ea4db9e4e0f95fd11987
 å
 \spring-rest-api/src/main/java/com/example/spring/rest/api/security/Oauth2SuccessHandler.java,e\f\ef779c496fd47e3e7ea6c1001a07c7b0e9dc2b12
 å

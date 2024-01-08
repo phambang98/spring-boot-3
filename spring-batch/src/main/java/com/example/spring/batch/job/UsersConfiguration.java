@@ -56,7 +56,7 @@ public class UsersConfiguration extends BatchConfiguration {
                 .faultTolerant()
                 .skip(Exception.class)
                 .skipPolicy(skipPolicy())
-                .taskExecutor(batchTaskExecutor())
+                .taskExecutor(batchTaskExecutor)
                 .listener(stepNotificationListener)
                 .build();
     }

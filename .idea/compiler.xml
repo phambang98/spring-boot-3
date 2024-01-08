@@ -8,10 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="core" />
-        <module name="spring-rest-api" />
         <module name="spring-mvc" />
-        <module name="spring-batch" />
         <module name="spring-mq" />
+        <module name="spring-kafka" />
+        <module name="spring-rest-api" />
+        <module name="spring-batch" />
         <module name="spring-web-services" />
       </profile>
     </annotationProcessing>

@@ -5,55 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f358e88c-6661-4414-8c17-e78c688f2271" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/angular-app/src/app/_dtos/auth/Captcha.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/version17/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-kafka/src/main/java/com/example/springkafka/config/KafkaTopicConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/TestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/model/CaptchaRp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/model/ReCaptchaResponseType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/util/CaptchaUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/version17/module/AbstractProcess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/version17/module/ProcessNew.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/job/ClusterExportJobConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/d/0db939e8b879b9ae6acf41985f67c33477b56cd0" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/d/0db939e8b879b9ae6acf41985f67c33477b56cd0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/d/4def0c9aeea2c2e6f010ea03bdacceec05ed992e" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/d/4def0c9aeea2c2e6f010ea03bdacceec05ed992e" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/a/6a484e59729a8fc23626a2e946b66a227af51409" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/a/6a484e59729a8fc23626a2e946b66a227af51409" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/8/b88474f7d1ac3a0bb56f173f3dae670c21aa786f" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/8/b88474f7d1ac3a0bb56f173f3dae670c21aa786f" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/6/c60c5e4417344b6d80d469d81f33c7c92d76e681" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/6/c60c5e4417344b6d80d469d81f33c7c92d76e681" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/8/c84484060b276cb6ae0b167ab038b3f631b53408" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/8/c84484060b276cb6ae0b167ab038b3f631b53408" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/4/34b3bb3af2c4c542c228ea4db9e4e0f95fd11987" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/b/8bd2ce576c0801e86b20b52fa8adeb835a2bd5d7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/b/4/b41988d447831e2af9c0499978b8aeea3a96211a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/1/d1d0497249550b152b4ef8b4f89d8dd0f48db86f" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/3/4/34b3bb3af2c4c542c228ea4db9e4e0f95fd11987" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/8/b/8bd2ce576c0801e86b20b52fa8adeb835a2bd5d7" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/b/4/b41988d447831e2af9c0499978b8aeea3a96211a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/d/1/d1d0497249550b152b4ef8b4f89d8dd0f48db86f" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_dtos/auth/SignInRequest.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_dtos/auth/SignInRequest.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/_services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/_services/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/auth/signin/signin.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/auth/signin/signin.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/auth/signin/signin.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/auth/signin/signin.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/auth/signin/signin.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/auth/signin/signin.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/app/chat/chat.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/angular-app/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/angular-app/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/model/LoginRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/utils/CommonKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/utils/CommonKey.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/version17/Dog.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/version17/Dog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/version17/JavaNewVersion.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/version17/JavaNewVersion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/job/CoffeeConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/job/CoffeeImportCsvConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/CoffeeQuartzJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/config/CoffeeImportCsvQuartzJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/constant/JobConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/quartz/constant/JobConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/main/java/com/example/core/version17/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/main/java/com/example/core/version17/Solution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/configuration/BatchConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/configuration/BatchConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/job/CoffeeImportCsvConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/job/CoffeeImportCsvConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/job/MultiFileImportConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/job/MultiFileImportConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/job/UsersConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/java/com/example/spring/batch/job/UsersConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-batch/src/main/resources/schema.sql.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/config/WebSocketConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/config/WebSocketConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/security/OAuth2FailureHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/security/OAuth2FailureHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/security/Oauth2SuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/security/Oauth2SuccessHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/CustomOAuth2UsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/service/CustomOAuth2UsersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/ultis/CustomChannelInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/util/CustomChannelInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/ultis/OAuth2RequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/util/OAuth2RequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/ultis/OAuth2UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/util/OAuth2UserInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/ultis/RestAuthenticationEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/java/com/example/spring/rest/api/util/RestAuthenticationEntryPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.mv.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/spring-rest-api/src/main/resources/schema.sql.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spring-boot-3-modules.iml" beforeDir="false" afterPath="$PROJECT_DIR$/spring-boot-3-modules.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,8 +47,8 @@
         <option value="CSS File" />
         <option value="SCSS File" />
         <option value="JavaScript File" />
-        <option value="Interface" />
         <option value="Enum" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -126,6 +103,9 @@
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
   </component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -142,6 +122,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.ProcessNew.executor&quot;: &quot;Run&quot;,
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;JPA.DatabaseSchemaImportDialog&quot;: &quot;fa14310f-0dac-4404-971c-0896d3c9d313&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
@@ -157,7 +138,9 @@
     &quot;ToolWindowDebug.ShowToolbar&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;E:/custom-code/spring-boot-3/spring-rest-api/src/main/resources/docx&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;SCSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -169,6 +152,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;f7f9e11e2cc9df6c00f84906c230ecc1&quot;,
     &quot;ts.external.directory.path&quot;: &quot;E:\\custom-code\\spring-boot-3\\angular-app\\node_modules\\typescript\\lib&quot;,
@@ -240,18 +224,20 @@
     <option name="configurationTypes">
       <set>
         <option value="MavenRunConfiguration" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
         <option value="SpringBootApplicationConfigurationType" />
         <option value="js.build_tools.npm" />
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.SpringRestApiApplication">
-    <configuration name="FileStorageService" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.spring.rest.api.service.FileStorageService" />
-      <module name="spring-rest-api" />
+  <component name="RunManager" selected="Application.ProcessNew">
+    <configuration name="CommonKey" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.core.utils.CommonKey" />
+      <module name="core" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.example.spring.rest.api.service.*" />
+          <option name="PATTERN" value="com.example.core.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -259,12 +245,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JavaNewVersion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.example.core.version17.JavaNewVersion" />
+    <configuration name="Dog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.core.version17.Dog" />
       <module name="core" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.example.core.version17.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProcessNew" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.core.version17.module.ProcessNew" />
+      <module name="core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.core.version17.module.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -301,6 +300,13 @@
     <configuration name="SpringBatchApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="spring-batch" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.spring.batch.SpringBatchApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringKafkaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="spring-kafka" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.springkafka.SpringKafkaApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -356,10 +362,12 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.ProcessNew" />
+      <item itemvalue="Application.CommonKey" />
+      <item itemvalue="Application.Dog" />
       <item itemvalue="Application.Solution" />
-      <item itemvalue="Application.JavaNewVersion" />
-      <item itemvalue="Application.FileStorageService" />
       <item itemvalue="npm.Angular CLI Server (angular-app)" />
+      <item itemvalue="Spring Boot.SpringKafkaApplication" />
       <item itemvalue="Spring Boot.SpringBatchApplication" />
       <item itemvalue="Spring Boot.SpringMqApplication" />
       <item itemvalue="Spring Boot.SpringMvcApplication" />
@@ -368,12 +376,20 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ProcessNew" />
+        <item itemvalue="Application.CommonKey" />
+        <item itemvalue="Application.Dog" />
         <item itemvalue="Spring Boot.SpringRestApiApplication" />
         <item itemvalue="Application.Solution" />
-        <item itemvalue="Application.JavaNewVersion" />
-        <item itemvalue="Application.FileStorageService" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-corretto-17.0.9-3183f394aec4-8f899f12" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -556,6 +572,30 @@
       <workItem from="1695795706664" duration="1596000" />
       <workItem from="1695802475680" duration="3861000" />
       <workItem from="1695824173850" duration="19336000" />
+      <workItem from="1696208043383" duration="599000" />
+      <workItem from="1696397498096" duration="603000" />
+      <workItem from="1696576700518" duration="1746000" />
+      <workItem from="1697166893269" duration="668000" />
+      <workItem from="1697167626356" duration="300000" />
+      <workItem from="1698120741684" duration="324000" />
+      <workItem from="1698121798904" duration="93000" />
+      <workItem from="1698136237197" duration="65000" />
+      <workItem from="1698661059843" duration="194000" />
+      <workItem from="1700723973173" duration="1286000" />
+      <workItem from="1701311745778" duration="115000" />
+      <workItem from="1701316883564" duration="120000" />
+      <workItem from="1701327799398" duration="104000" />
+      <workItem from="1702267905878" duration="165000" />
+      <workItem from="1702457594676" duration="87000" />
+      <workItem from="1702478326478" duration="597000" />
+      <workItem from="1702526802507" duration="28000" />
+      <workItem from="1702536797136" duration="857000" />
+      <workItem from="1703054477385" duration="638000" />
+      <workItem from="1703127484884" duration="1757000" />
+      <workItem from="1704250722862" duration="733000" />
+      <workItem from="1704263543866" duration="272000" />
+      <workItem from="1704271900652" duration="419000" />
+      <workItem from="1704708155796" duration="961000" />
     </task>
     <task id="LOCAL-00001" summary="ok">
       <created>1679381899693</created>

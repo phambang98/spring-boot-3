@@ -30,7 +30,7 @@ public class MultiFileImportConfiguration extends BatchConfiguration {
     @Bean
     public Flow multiFileImportFlow() {
         return new FlowBuilder<SimpleFlow>("multiFileImportFlow")
-                .split(batchTaskExecutor())
+                .split(batchTaskExecutor)
                 .add(importFileCsvFlow(null, null, null, null),
                         importFileXmlFlow(null, null), importFileJsonFlow(null, null))
                 .build();

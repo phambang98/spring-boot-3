@@ -59,7 +59,10 @@ public class BatchConfiguration {
     @Value("${taskExecutor.thread.timeout}")
     private int threadTimeOut;
 
-    @Bean
+    @Autowired
+    protected TaskExecutor batchTaskExecutor;
+
+    @Bean(name = "batchTaskExecutor")
     public TaskExecutor batchTaskExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(corePoolSize);
