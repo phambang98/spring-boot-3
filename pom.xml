@@ -37,10 +37,8 @@
             
     <module>spring-web-services</module>
           
-    <module>myproject</module>
-      
   </modules>
-      
+
   <dependencyManagement>
             
     <dependencies>
