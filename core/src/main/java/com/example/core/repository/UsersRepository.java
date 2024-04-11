@@ -5,6 +5,7 @@ import jakarta.persistence.LockModeType;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -24,6 +25,9 @@ public interface UsersRepository extends JpaRepository<Users, Long>, UsersReposi
 
     List<Users> findByUserNameIn(List<String> listUserName);
 
-    @Cacheable(value = "users", key = "T(java.lang.String).format('%s', #p0)")
+//    @Cacheable(value = "users", key = "T(java.lang.String).format('%s', #p0)")
+//    List<Users> findByEmailIn(List<String> listEmail);
+
+    @Query(value = "select * from Users for update nowait ",nativeQuery = true)
     List<Users> findByEmailIn(List<String> listEmail);
 }

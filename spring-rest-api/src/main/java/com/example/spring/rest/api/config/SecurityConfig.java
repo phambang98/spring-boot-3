@@ -69,6 +69,7 @@ public class SecurityConfig {
                         AntPathRequestMatcher.antMatcher("/login/oauth2/code/*"), AntPathRequestMatcher.antMatcher("/ws/**"),
                         AntPathRequestMatcher.antMatcher("/swagger-ui/**"), AntPathRequestMatcher.antMatcher("/v3/api-docs"),
                         AntPathRequestMatcher.antMatcher("/v3/api-docs/**"), AntPathRequestMatcher.antMatcher("/api/authenticate"),
+                        AntPathRequestMatcher.antMatcher("/api/user/**"),
                         AntPathRequestMatcher.antMatcher("/api/file/**"),AntPathRequestMatcher.antMatcher("/api/test/**")).permitAll()
                 .requestMatchers(PathRequest.toH2Console()).permitAll()
                 .requestMatchers(AntPathRequestMatcher.antMatcher("/api/image2")).hasAuthority("dog")

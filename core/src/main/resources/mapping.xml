@@ -6,9 +6,9 @@
     <named-native-query name="getAllUsersBean" result-class="com.example.core.model.UsersBean"
                         result-set-mapping="UsersBeanMapping">
         <query><![CDATA[
-        select id,user_name as userName,email,password,Last_update_date as lastUpdateDate
+        select id,user_name as userName,email,password
         from Users
-        where user_name = :userName or email = :userName
+        for update nowait
         ]]>
         </query>
     </named-native-query>
@@ -18,7 +18,7 @@
             <column name="userName"/>
             <column name="email"/>
             <column name="password"/>
-            <column name="lastUpdateDate" class="java.util.Date"/>
+<!--            <column name="lastUpdateDate" class="java.util.Date"/>-->
         </constructor-result>
     </sql-result-set-mapping>
 

@@ -2,6 +2,7 @@ package com.example.spring.rest.api.service;
 
 import com.example.core.model.ResultData;
 import com.example.core.model.ForgotPasswordRequest;
+import com.example.core.model.UsersBean;
 import com.example.spring.rest.api.security.UserPrincipal;
 import com.example.core.error.ResourceNotFoundException;
 import com.example.core.model.UserModel;
@@ -71,6 +72,12 @@ public class UsersService implements UserDetailsService {
     public List<Users> findAll(Pageable pageable, List<String> listEmail) {
 //        clearCache();
         return usersRepository.findByEmailIn(listEmail);
+    }
+
+    public List<UsersBean> getAllUsersBean() throws InterruptedException {
+//        clearCache();
+        var ss= usersRepository.getAllUsersBean();
+        return ss;
     }
 
     @CacheEvict(value = "users", allEntries = true)

@@ -14,7 +14,7 @@ public class UsersRepositoryCustomImpl implements UsersRepositoryCustom {
     @Override
     public List<UsersBean> getAllUsersBean() {
         Query query = em.createNamedQuery("getAllUsersBean", UsersBean.class);
-        query.setParameter("userName", "2");
+//        query.setParameter("userName", "2");
         return query.getResultList();
     }
 

@@ -45,11 +45,11 @@ public class AccountService {
 
     public ResultData authenticate(LoginRequest loginRequest, HttpSession session) {
         try {
-            String captchaAnswer = (String) session.getAttribute("captchaAnswer");
-            if (!StringUtils.equals(loginRequest.getCaptchaAnswer(), captchaAnswer)) {
-
-                return ResultData.builder().success(false).message("captcha failure!").build();
-            }
+//            String captchaAnswer = (String) session.getAttribute("captchaAnswer");
+//            if (!StringUtils.equals(loginRequest.getCaptchaAnswer(), captchaAnswer)) {
+//
+//                return ResultData.builder().success(false).message("captcha failure!").build();
+//            }
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword())
             );

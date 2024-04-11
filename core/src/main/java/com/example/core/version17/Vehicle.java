@@ -1,6 +1,6 @@
 package com.example.core.version17;
 
-public abstract sealed class Vehicle permits Car, Dog, Truck {
+public abstract sealed class Vehicle permits Dog, Car, Truck {
 
     protected final String registrationNumber;
 

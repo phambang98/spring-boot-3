@@ -1,6 +1,7 @@
 package com.example.spring.rest.api.controller;
 
 import com.example.core.entity.Users;
+import com.example.core.model.UsersBean;
 import com.example.spring.rest.api.model.UserProfile;
 import com.example.spring.rest.api.security.SecurityUtils;
 import com.example.spring.rest.api.security.UserPrincipal;
@@ -39,4 +40,10 @@ public class UsersController {
     public ResponseEntity<List<Users>> findAll(Pageable pageable, @RequestParam("listEmail") List<String> listEmail) {
         return new ResponseEntity<>(usersService.findAll(pageable, listEmail), HttpStatus.OK);
     }
+
+    @GetMapping("all")
+    public ResponseEntity<List<UsersBean>> all() throws InterruptedException {
+        return new ResponseEntity<>(usersService.getAllUsersBean(), HttpStatus.OK);
+    }
+
 }
