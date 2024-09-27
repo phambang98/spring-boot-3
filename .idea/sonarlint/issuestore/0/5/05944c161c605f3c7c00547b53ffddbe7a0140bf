@@ -1,13 +1,25 @@
 
 b
-java:S11927"GDefine a constant instead of duplicating this literal "/login" 3 times.(¸µ—üùÿÿÿÿ
-u
-java:S3305$"ZInject this field value directly into "securityFilterChain", the only method that uses it.(Ú·Û´øÿÿÿÿ
+java:S11928"GDefine a constant instead of duplicating this literal "/login" 3 times.(¸µ—üùÿÿÿÿ
+_
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8şÕ€2
+_
+java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÿÕ€2
+_
+java:S6813&"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÿÕ€2
+_
+java:S6813)"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÿÕ€2
+_
+java:S6813,"BRemove this field injection and use constructor injection instead.(êæÄŞ8ÿÕ€2
 u
 java:S3305-"ZInject this field value directly into "securityFilterChain", the only method that uses it.(—ĞÔşÿÿÿÿ
 p
 java:S3305*"ZInject this field value directly into "securityFilterChain", the only method that uses it.(Ş¾Ù®
-p
-java:S3305'"ZInject this field value directly into "securityFilterChain", the only method that uses it.(…±Ï›
+u
+java:S3305$"ZInject this field value directly into "securityFilterChain", the only method that uses it.(Ú·Û´øÿÿÿÿ
 u
 java:S3305!"ZInject this field value directly into "securityFilterChain", the only method that uses it.(ÆÚõÛşÿÿÿÿ
+p
+java:S3305'"ZInject this field value directly into "securityFilterChain", the only method that uses it.(…±Ï›
+
+java:S1128"rRemove this unused import 'org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer'.(Ç¼Î8‘Õ€2

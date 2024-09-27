@@ -31,3 +31,15 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Intellij ###
+.idea/
+
+
+### Angular ###
+angular-app/.angular
+angular-app/node_modules
+angular-app/.idea
+
+### test  ###
+core/src/main/java/com/example/core/version17
